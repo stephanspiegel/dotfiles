@@ -1,0 +1,17 @@
+#!bin/bash
+
+#Switch versions of Java
+alias java14='export JAVA_HOME=$JAVA_14_HOME'
+alias java11='export JAVA_HOME=$JAVA_11_HOME'
+
+#file listing
+alias ls='lsd -al'
+
+#edit .zshrc
+alias ec="${EDITOR:-vim} ~/.zshrc; source ~/.zshrc"
+
+#manage dot files with git
+alias dotgit='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# make more aliases!
+alias realias="${EDITOR:-vim} ~/.config/.aliases; source ~/.config/.aliases"
