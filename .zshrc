@@ -20,34 +20,6 @@ compinit
 # End of lines added by compinstall
 #
 
-source ~/.zplug/init.zsh
-
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
-zplug bobsoppe/zsh-ssh-agent, use:ssh-agent.zsh, from:github
-
-zplug "djui/alias-tips"
-zplug "michaelxmcbride/zsh-dircycle"
-zplug "modules/command-not-found", from:prezto, defer:2
-zplug "modules/history-substring-search", from:prezto, defer:2
-zplug "plugins/git",   from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
-zplug "urbainvaes/fzf-marks"
-zplug "zuxfoucault/colored-man-pages_mod"
-zplug romkatv/powerlevel10k, use:powerlevel10k.zsh-theme
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load --verbose
-
-
 alias watch='watch ' # hack to enable alias expansion using watch
 alias sl='cd ~/ledger && source ~/ledger-scripts/alias' # Start ledger
 
@@ -82,28 +54,24 @@ function find_sfdx_project_root() {
     echo $sfdx_root
 }
 
-function sfdx_settings() {
+function prompt_sfdx() {
     globalConfig="$(cat ~/.sfdx/sfdx-config.json)";
     sfdx_root=$(find_sfdx_project_root)
     if [ ! $sfdx_root = "" ] && [ ! $sfdx_root = $HOME ]
     then
         localconfig="$(cat $sfdx_root/.sfdx/sfdx-config.json)"    
-        defaultusername="$(echo ${localconfig} | jq -r .defaultusername)"
-        defaultdevhubusername="$(echo ${localconfig} | jq -r .defaultdevhubusername)"
+        defaultusername="u:%B$(echo ${localconfig} | jq -r .defaultusername)%b"
+        defaultdevhubusername="d:$(echo ${localconfig} | jq -r .defaultdevhubusername)"
     fi
     if [ -z "$defaultusername" ] || [ "$defaultusername" = "null" ]
     then
-        defaultusername="U:$(echo ${globalConfig} | jq -r .defaultusername)"
-    else
-        defaultusername="u:"$defaultusername
+        defaultusername="U:%B$(echo ${globalConfig} | jq -r .defaultusername)%b"
     fi
     if [ -z "$defaultdevhubusername" ] || [ "$defaultdevhubusername" = "null" ]
     then
         defaultdevhubusername="D:$(echo ${globalConfig} | jq -r .defaultdevhubusername)"
-    else
-        defaultdevhubusername="d:"$defaultdevhubusername
     fi
-    echo "\uf0c2 "$defaultdevhubusername" "$defaultusername
+    p10k segment -i '' -b white -f blue -t "$defaultdevhubusername $defaultusername"
 }
 
 # PowerLevel10k configuration
@@ -170,6 +138,23 @@ zinit light-mode for \
     zinit-zsh/z-a-bin-gem-node
 
 ### End of Zinit's installer chunk
+
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
+
+# zplug "modules/history-substring-search", from:prezto, defer:2
+
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma/fast-syntax-highlighting
+zinit light djui/alias-tips
+zinit light urbainvaes/fzf-marks
+zinit light zuxfoucault/colored-man-pages_mod
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
+
+zinit light Aloxaf/fzf-tab
+zinit light aperezdc/zsh-fzy
+bindkey '^R'  fzy-history-widget
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
