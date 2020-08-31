@@ -13,5 +13,11 @@ alias ec="${EDITOR:-vim} ~/.zshrc; source ~/.zshrc"
 #manage dot files with git
 alias dotgit='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+#sfdx
+alias sss='sfdx force:source:status'
+alias spl='sfdx force:source:pull'
+alias sps='sfdx force:source:push'
+
+
 # make more aliases!
 alias realias="${EDITOR:-vim} ~/.config/.aliases; source ~/.config/.aliases"
