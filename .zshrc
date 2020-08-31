@@ -70,8 +70,6 @@ alias dotgit='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export JAVA_14_HOME=$(/usr/libexec/java_home -v14)
 export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 function find_sfdx_project_root() {
     sfdx_root=$(pwd -P 2>/dev/null || command pwd)
     while [ ! -e "$sfdx_root/.sfdx" ]; do
@@ -99,6 +97,16 @@ function prompt_sfdx() {
         defaultdevhubusername="D:$(echo ${globalConfig} | jq -r .defaultdevhubusername)"
     fi
     p10k segment -i '' -b white -f blue -t "$defaultdevhubusername $defaultusername"
+}
+
+# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
+# https://github.com/junegunn/fzf/wiki/Examples#git
+fbr() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
 # PowerLevel10k configuration
@@ -171,5 +179,10 @@ zinit light Aloxaf/fzf-tab
 zinit light aperezdc/zsh-fzy
 bindkey '^R'  fzy-history-widget
 
+zinit ice wait lucid
+zinit load 'wfxr/forgit'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
