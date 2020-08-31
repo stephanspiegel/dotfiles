@@ -9,7 +9,7 @@ fi
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt appendhistory autocd extendedglob nomatch
+setopt appendhistory autocd extendedglob nomatch complete_aliases
 unsetopt beep
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
