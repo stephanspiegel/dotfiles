@@ -6,11 +6,8 @@
 
 - link:
     ~/.zshrc: zshrc
-    ~/.vim: vim/
+    ~/.p10k: p10k
     ~/.config/vifm: vifm/
-
-- create:
-    - ~/.vim/undo-history
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
