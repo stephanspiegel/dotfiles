@@ -6,6 +6,7 @@
 
 - link:
     ~/.config/vifm: vifm/
+    ~/.config/kitty: kitty/
     ~/.fehbg: fehbg
     ~/.gitconfig: gitconfig
     ~/.p10k.zsh: p10k.zsh
