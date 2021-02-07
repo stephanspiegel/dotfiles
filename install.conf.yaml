@@ -10,6 +10,7 @@
     ~/.fehbg: fehbg
     ~/.gitconfig: gitconfig
     ~/.p10k.zsh: p10k.zsh
+    ~/.vim: vim/
     ~/.zshrc: zshrc
 
 - shell:
