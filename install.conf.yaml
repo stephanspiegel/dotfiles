@@ -5,9 +5,10 @@
 - clean: ['~']
 
 - link:
-    ~/.zshrc: zshrc
-    ~/.p10k: p10k
     ~/.config/vifm: vifm/
+    ~/.fehbg: fehbg
+    ~/.p10k.zsh: p10k.zsh
+    ~/.zshrc: zshrc
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
