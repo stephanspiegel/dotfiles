@@ -96,9 +96,9 @@ function prompt_sfdx() {
 alias ls='lsd -al'
 
 # Internet radio stations
-alias playoe1="mplayer 'https://orf-live.ors-shoutcast.at/oe1-q2a' -cache 4096" # Oesterreich 1
-alias playoe3="mplayer 'https://orf-live.ors-shoutcast.at/oe3-q2a' -cache 4096" # Oesterreich 3
-alias playoe2="mplayer 'https://orf-live.ors-shoutcast.at/vbg-q2a' -cache 4096" # Radio Vorarlberg
+alias playoe1="mplayer 'https://orf-live.ors-shoutcast.at/oe1-q2a' -cache 4096 -cache-min 15" # Oesterreich 1
+alias playoe3="mplayer 'https://orf-live.ors-shoutcast.at/oe3-q2a' -cache 4096 -cache-min 15" # Oesterreich 3
+alias playoe2="mplayer 'https://orf-live.ors-shoutcast.at/vbg-q2a' -cache 4096 -cache-min 15" # Radio Vorarlberg
 
 alias playmainepublic="" # Maine Public Radio
 alias playmaineclassical="" # Maine Public Classical
