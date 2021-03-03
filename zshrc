@@ -109,6 +109,8 @@ alias playdubstep="mplayer -playlist https://somafm.com/dubstep130.pls" # Soma F
 alias playspace="mplayer -playlist https://somafm.com/spacestation130.pls" # Soma FM Space Station Soma
 alias playdefcon="mplayer -playlist https://somafm.com/defcon130.pls" # Soma FM DEF CON Radio
 
+alias switchtheme="find ~/.config/kitty/kitty-themes/themes -iname '*.conf' -printf '%f\n' | sed 's/\.conf$//' | sort -r | fzf | xargs -Ixx kitty @ set-colors --all --configured ~/.config/kitty/kitty-themes/themes/xx.conf"
+
 export EDITOR=vim
 bindkey -v
 # sfdx autocomplete setup
