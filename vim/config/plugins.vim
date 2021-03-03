@@ -349,8 +349,9 @@ Plug 'janko/vim-test'
 " Projectionist: Buffer switching
 Plug 'tpope/vim-projectionist'
 
-" Tidal: support tidalcycles music live coding language
-Plug 'tidalcycles/vim-tidal'
+" Tidal: support tidalcycles music live coding language. This is the
+" vim-specific version
+Plug 'flupe/vim-tidal'
 let g:tidal_target = "terminal"
 
 " Vimwiki: wiki
