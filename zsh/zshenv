@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+###############################
+# EXPORT ENVIRONMENT VARIABLE #
+###############################
+
+# editor
+export EDITOR="vim"
+export VISUAL="vim"
+
+# zsh
+export HISTFILE=~/.histfile     # History filepath
+export HISTSIZE=10000           # size of history memory
+export SAVEHIST=100000          # size of history on disk
+
+# fzf
+export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

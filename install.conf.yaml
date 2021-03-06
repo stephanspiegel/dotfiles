@@ -9,9 +9,10 @@
     ~/.config/kitty: kitty/
     ~/.fehbg: fehbg
     ~/.gitconfig: gitconfig
-    ~/.p10k.zsh: p10k.zsh
+    ~/.p10k.zsh: zsh/p10k.zsh
     ~/.vim: vim/
-    ~/.zshrc: zshrc
+    ~/.zshrc: zsh/zshrc
+    ~/.zshenv: zsh/zshenv
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
