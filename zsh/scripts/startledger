@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+function startledger() {
+    if ! grep -qs '/home/stephan/ledger ' /proc/mounts; then
+        cryfs /home/stephan/Dropbox/ledger/ /home/stephan/ledger
+    fi
+    cd /home/stephan/ledger/personal
+    source /home/stephan/ledger-scripts/alias
+}
+
+function killledger() {
+    fusermount -u "/home/stephan/ledger"
+}
+
+function reportbudget() {
+    join -e 0 -a 1 -o auto -t $'\t' <(reportUsedBudget) <(reportInitialBudget) | xclip -selection clipboard
+    echo Report copied to clipboard.
+}
+
+function reportUsedBudget(){
+    firstDayOfNextMonth=$(date -d "`date +%Y%m01` +1 month" +%Y-%m-%d)
+    ledger -f main.ledger --market balance budget --flat --no-total --balance-format '%A\t%T\n' --empty --end $firstDayOfNextMonth | sed 's/^Assets:Budget\t.*//'|sed 's/^Assets:Budget://' |sed '/AvailableNextMonth/d'|sed '/PortlandSweetery/d'|sed '/Unbudgeted/d'| sed 's/ USD$//' | sed 's/://' | sort
+}
+
+function reportInitialBudget(){
+    firstDayOfCurrentMonth=$(date -d "`date +%Y%m01`" +%Y-%m-%d)
+    secondDayOfCurrentMonth=$(date -d "`date +%Y%m02`" +%Y-%m-%d)
+    ledger -f main.ledger --market register --limit 'payee=~/Monthly Budget/' --flat --no-total --register-format '%A\t%t\n' --empty --begin $firstDayOfCurrentMonth --end $secondDayOfCurrentMonth | sed 's/^Assets:Budget\t.*//'|sed 's/^Assets:Budget://' |sed '/AvailableNextMonth/d'|sed '/PortlandSweetery/d'|sed '/Unbudgeted/d'| sed 's/ USD$//' | sed 's/://' | sort
+}
+
+function ensureLedgerDateOrder(){
+    find -regextype posix-extended -regex '.*/journal[0-9]{4}\.ledger' | sort | xargs rg "^(\d{4}-\d{2}-\d{2}).*" --no-line-number --threads 1 | sort -k1,1 -s -c
+}
+
+startledger
