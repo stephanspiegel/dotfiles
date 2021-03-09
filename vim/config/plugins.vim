@@ -12,6 +12,9 @@ Plug 'skywind3000/asyncrun.vim'
 " Elm: elm language support
 Plug 'ElmCast/elm-vim'
 
+" Groovy: groovy language support
+Plug 'vim-scripts/groovy.vim'
+
 " Nuake: Quake style terminal
 Plug 'Lenovsky/nuake'
 nnoremap <F4> :Nuake<CR>
