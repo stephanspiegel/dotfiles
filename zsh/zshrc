@@ -20,6 +20,7 @@ setopt always_to_end # move cursor to end if word had one match
 unsetopt beep
 
 bindkey -v # enable vi mode
+export KEYTIMEOUT=1 # make switch between INSERT/NORMAL modes easier; 10ms
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
