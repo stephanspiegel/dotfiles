@@ -19,6 +19,8 @@ setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
 unsetopt beep
 
+bindkey -v # enable vi mode
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/stephan/.zshrc'
@@ -27,12 +29,13 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 #
+_comp_options+=(globdots) # include hidden files in completions
+source /usr/share/fzf/completion.zsh    # use fzf completion
+source /usr/share/fzf/key-bindings.zsh  # use fzf completion key mappings
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 source ~/dotfiles/zsh/aliases
-
-bindkey -v
 
 # sfdx autocomplete setup
 SFDX_AC_ZSH_SETUP_PATH=/home/stephan/.cache/sfdx/autocomplete/zsh_setup \
@@ -78,9 +81,8 @@ zinit light Aloxaf/fzf-tab
 zinit light aperezdc/zsh-fzy
 
 bindkey '^R'  fzy-history-widget
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
 
+# autoload scripts
 fpath=( ~/dotfiles/zsh/scripts "${fpath[@]}" )
 autoload -Uz $fpath[1]/*(.:t)
 
