@@ -8,7 +8,6 @@ fi
 # Lines configured by zsh-newuser-install
 
 setopt autocd
-setopt complete_aliases
 setopt correct_all # autocorrect commands
 setopt extendedglob
 setopt hist_ignore_all_dups
