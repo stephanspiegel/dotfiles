@@ -8,6 +8,7 @@
     ~/.config/vifm: vifm/
     ~/.config/kitty: kitty/
     ~/.config/xmobar: xmobar/
+    ~/.config/nvim: nvim/
     ~/.fehbg: fehbg
     ~/.gitconfig: gitconfig
     ~/.p10k.zsh: zsh/p10k.zsh
