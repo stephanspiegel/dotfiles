@@ -5,16 +5,17 @@
 - clean: ['~']
 
 - link:
-    ~/.config/vifm: vifm/
     ~/.config/kitty: kitty/
-    ~/.config/xmobar: xmobar/
     ~/.config/nvim: nvim/
+    ~/.config/vifm: vifm/
+    ~/.config/xmobar: xmobar/
+    ~/.xmonad: xmonad/
     ~/.fehbg: fehbg
     ~/.gitconfig: gitconfig
     ~/.p10k.zsh: zsh/p10k.zsh
     ~/.vim: vim/
-    ~/.zshrc: zsh/zshrc
     ~/.zshenv: zsh/zshenv
+    ~/.zshrc: zsh/zshrc
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
