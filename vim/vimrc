@@ -55,3 +55,5 @@ set undodir=~/.vim/undo-history
 set undofile
 
 let g:session_autoload = 'no'
+
+let g:netrw_browsex_viewer= "xdg-open"

@@ -15,6 +15,9 @@ Plug 'ElmCast/elm-vim'
 " Groovy: groovy language support
 Plug 'vim-scripts/groovy.vim'
 
+" KmonadVim: support for kmonad .kbd config files
+Plug 'kmonad/kmonad-vim'
+
 " Nuake: Quake style terminal
 Plug 'Lenovsky/nuake'
 nnoremap <F4> :Nuake<CR>
