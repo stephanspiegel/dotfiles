@@ -5,8 +5,8 @@
 ###############################
 
 # editor
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # zsh
 export HISTFILE=~/.histfile     # History filepath
