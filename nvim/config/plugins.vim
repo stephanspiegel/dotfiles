@@ -166,16 +166,9 @@ Plug 'othree/html5-syntax.vim'
 " HTML5: html5 autocomplete
 Plug 'othree/html5.vim'
 
-" Tag List: Display tags
-Plug 'vim-scripts/taglist.vim'
+" Vista: Show tags from a variety of sources
+Plug 'liuchengxu/vista.vim'
 
-" Tag Bar: Display tags
-Plug 'majutsushi/tagbar'
-" show tags in the order they appear in the source
-let g:tagbar_sort = 0
-" show tagbar at top
-let g:tagbar_vertical = 10
-let g:tagbar_left = 1
 
 " Ultisnips: Snippets management
 Plug 'sirver/ultisnips'
