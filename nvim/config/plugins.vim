@@ -6,6 +6,9 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/bundle')
 
+" vim-smoothie: smooth scrolling
+Plug 'psliwka/vim-smoothie'
+
 " Doge: document generator
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
