@@ -1,6 +1,9 @@
 Config 
     { font = "xft:JetBrainsMono Nerd Font:weight=bold:pixelsize=17:antialias=true:hinting=true"
-    , additionalFonts = [ "xft:JetBrainsMono Nerd Font:size=21" ]
+    , additionalFonts = 
+        [ "xft:JetBrainsMono Nerd Font:size=21" 
+        , "xft:JetBrainsMono Nerd Font:size=31"  
+        ]
     , bgColor = "#1E222A"
     , fgColor = "#ff6c6b"
     , position = Top
@@ -8,7 +11,7 @@ Config
     , borderColor = "#646464"
     , sepChar = "%"   -- delineator between plugin names and straight text
     , alignSep = "}{"  -- separator between left-right alignment
-    , template = "%StdinReader% }{\
+    , template = "%XMonadLog%<fn=1><fc=#552c34,#1e222a:0></fc></fn>}{\
             \<fn=1><fc=#1e222a,#552c34:0> </fc></fn><fc=#e06c75,#552c34:0>%battery%</fc>\
             \<fn=1><fc=#552c34,#1e222a:0> </fc></fn><fc=#ff6c6b> %weather% </fc>\
             \<fn=1><fc=#1e222a,#552c34:0> </fc></fn><fc=#A1BF8F,#552c34:0><fn=1>%wifi%</fn></fc>\
@@ -22,7 +25,7 @@ Config
     , persistent = True          -- enable/disable hiding (True = disabled)
     , commands = 
         [ Run Com "/home/stephan/.config/xmobar/scripts/weather.sh" ["bar"] "weather" 36000
-        , Run StdinReader  -- workspace indicators
+        , Run XMonadLog  -- workspace indicators
         , Run Battery      
                 [ "--template" , "<acstatus>"
                 , "--Low", "15"
