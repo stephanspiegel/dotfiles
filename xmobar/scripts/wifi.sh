@@ -6,13 +6,13 @@ CONNECTIVITY=$(nmcli network connectivity)
 # full: the host is connected to a network and has full access to the Internet.
 # unknown
 ICON=$(case $CONNECTIVITY in
-    (none) echo "";;
-    (portal|limited) echo "直!";;
-    (full) echo "直";;
-    (*) echo "直?";;
+    (none) printf "<fn=1> </fn>";;
+    (portal|limited) printf "<fn=1>直 </fn>!";;
+    (full) printf "<fn=1>直 </fn>";;
+    (*) printf "<fn=1>直 </fn>?";;
 esac)
 
 #CONNECTIONINFO=$(nmcli -g AP device show wlan0 | rg "AP\[\d+\]:\*:")
 #AP[4]:*:3C\:37\:86\:D7\:02\:75:oort cloud:Infra:36:195 Mbit/s:40:▂▄__:WPA2
 
-echo "$ICON "
+printf "$ICON"

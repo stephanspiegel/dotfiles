@@ -80,8 +80,7 @@ formatForBar() {
         printf "<fn=1><fc=%s,%s> !</fc></fn>" \
             "$fgColor" "$bgColor"
     else
-        printf '<fn=1><fc=%s,%s>%s </fc></fn><fc=%s,%s> %s</fc>\n' \
-            "$fgColor" "$bgColor" "$icon" "$fgColor" "$bgColor" "$temperature"
+        printf '%s  %s' "$icon" "$temperature"
     fi
 }
 
