@@ -27,13 +27,13 @@ local apex_server = server.Server:new {
     { 'java', 'java was not found in path.' },
     },
     std.download_file('https://github.com/forcedotcom/salesforcedx-vscode/blob/develop/packages/salesforcedx-vscode-apex/out/apex-jorje-lsp.jar?raw=true', 
-      'apex-jorje-lsp.jar'),
+      'apex-langserver.jar'),
   },
   default_options = {
       cmd = { 
         'java',
         '-cp',
-        root_dir .. '/apex-jorje-lsp.jar',
+        root_dir .. '/apex-langserver.jar',
         '-Ddebug.internal.errors=true',
         '-Ddebug.semantic.errors=true',
         '-Ddebug.completion.statistics=true',
