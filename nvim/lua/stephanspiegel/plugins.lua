@@ -19,7 +19,13 @@ local plugin_specifications =
   }
 , { 'startup-nvim/startup.nvim'
   , requires = {'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim'}
-  , config = function() require'startup'.setup() end
+  , config =
+      function()
+        require'startup'.setup()
+      end
+  }
+, { 'ahmedkhalf/project.nvim'
+  , config = function() require'stephanspiegel.pluginconfigs.projects' end
   }
 , { 'rmagatti/auto-session'
   , config = function()
@@ -29,7 +35,7 @@ local plugin_specifications =
         auto_session_root_dir = vim.fn.stdpath('data').."/sessions/",
         auto_session_enabled = true,
         auto_save_enabled = nil,
-        auto_restore_enabled = nil,
+        auto_restore_enabled = false,
         auto_session_suppress_dirs = nil
       }
     end
@@ -47,10 +53,15 @@ local plugin_specifications =
 , { 'lukas-reineke/indent-blankline.nvim' }
 , { 'jremmen/vim-ripgrep' }
 , { 'xiyaowong/nvim-transparent' }
-, { 'liuchengxu/vista.vim' 
+, { 'liuchengxu/vista.vim'
   , config = function()
       vim.g.vista_default_executive = 'nvim_lsp'
       vim.g.vista_fzf_preview = {'right:50%'}
+    end
+  }
+, { 'feline-nvim/feline.nvim'
+  , config = function()
+      require('feline').setup()
     end
   }
 , { '~/Projects/vim/kraftwerk.nvim' }
