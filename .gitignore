@@ -45,3 +45,6 @@ view/
 
 # Ignore vifm state tracking
 vifm/vifminfo.json
+
+wallpapers/
+nvim/plugin/
