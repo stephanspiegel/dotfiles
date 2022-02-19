@@ -22,7 +22,6 @@ lsp_installer.on_server_ready(function(server)
 	}
 
 	if server.name == "soql" then
-		print('Attaching to SOQL')
 	 	local soql_opts = require("stephanspiegel.lsp.settings.soql")
 	 	opts = vim.tbl_deep_extend("force", soql_opts, opts)
 	end

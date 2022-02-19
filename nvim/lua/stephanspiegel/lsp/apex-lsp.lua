@@ -15,7 +15,6 @@ configs[server_name] = {
 }
 
 local root_dir = server.get_server_root_path(server_name)
-print ('root_dir (apex): '..root_dir)
 
 local apex_server = server.Server:new {
   name = server_name,
@@ -26,11 +25,11 @@ local apex_server = server.Server:new {
     std.ensure_executables {
     { 'java', 'java was not found in path.' },
     },
-    std.download_file('https://github.com/forcedotcom/salesforcedx-vscode/blob/develop/packages/salesforcedx-vscode-apex/out/apex-jorje-lsp.jar?raw=true', 
+    std.download_file('https://github.com/forcedotcom/salesforcedx-vscode/blob/develop/packages/salesforcedx-vscode-apex/out/apex-jorje-lsp.jar?raw=true',
       'apex-langserver.jar'),
   },
   default_options = {
-      cmd = { 
+      cmd = {
         'java',
         '-cp',
         root_dir .. '/apex-langserver.jar',
@@ -40,7 +39,7 @@ local apex_server = server.Server:new {
         '-Dlwc.typegeneration.disabled=true',
         'apex.jorje.lsp.ApexLanguageServerLauncher'
       },
-      filetypes = { 'apex', 'apexcode', 'apex-anon' }, 
+      filetypes = { 'apex', 'apexcode', 'apex-anon' },
       trace = 'verbose'
   }
 }

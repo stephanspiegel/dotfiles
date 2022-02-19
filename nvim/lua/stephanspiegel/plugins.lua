@@ -19,9 +19,7 @@ local plugin_specifications =
 , { 'startup-nvim/startup.nvim'
   , requires = {'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim'}
   , config =
-      function()
-        require'startup'.setup()
-      end
+      function() require'startup'.setup() end
   }
 , { 'ahmedkhalf/project.nvim'
   , config = function() require'stephanspiegel.pluginconfigs.projects' end
