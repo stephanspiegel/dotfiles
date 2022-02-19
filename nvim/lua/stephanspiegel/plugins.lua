@@ -4,6 +4,7 @@ local plugin_specifications =
 , { 'nvim-lua/plenary.nvim' }           -- Useful lua functions used by lots of plugins
 , { 'psliwka/vim-smoothie' }            -- smooth scrolling
 , { 'tpope/vim-surround' }              -- surround with quotes, brackets, etc.
+, { 'fcpg/vim-spotlightify' }           -- Highlighted search results, improved 
 , { 'tpope/vim-unimpaired' }
 , { 'tpope/vim-sleuth' }                -- automatically set tabstop
 , { 'windwp/nvim-autopairs'
