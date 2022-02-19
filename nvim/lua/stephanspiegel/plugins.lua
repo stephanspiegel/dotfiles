@@ -6,7 +6,6 @@ local plugin_specifications =
 , { 'tpope/vim-surround' }              -- surround with quotes, brackets, etc.
 , { 'tpope/vim-unimpaired' }
 , { 'tpope/vim-sleuth' }                -- automatically set tabstop
-, { 'tpope/vim-fugitive' }              -- git support
 , { 'windwp/nvim-autopairs'
   , config = function () require'stephanspiegel.pluginconfigs.autopairs' end
   }
@@ -97,9 +96,14 @@ local plugin_specifications =
 , { 'nvim-treesitter/playground'
   , run = ':TSInstallQuery' }
   -- git
+, { 'tpope/vim-fugitive' }
 , { 'lewis6991/gitsigns.nvim'
   , config = function() require 'stephanspiegel.pluginconfigs.gitsigns' end
   , requires = { 'nvim-lua/plenary.nvim' }
+  }
+, { 'sindrets/diffview.nvim'
+  , requires = 'nvim-lua/plenary.nvim'
+  , config = function() require 'stephanspiegel.pluginconfigs.diffview' end
   }
   -- ledger
 , { 'ledger/vim-ledger'
