@@ -1,7 +1,5 @@
-local status_ok, projects = pcall(require, 'project_nvim')
-if not status_ok then
-  return
-end
+local projects = require'project_nvim'
+
 projects.setup {
   -- Show hidden files in telescope
   show_hidden = true,
