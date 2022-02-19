@@ -14,11 +14,10 @@
     ~/.fehbg: fehbg
     ~/.gitconfig: gitconfig
     ~/.p10k.zsh: zsh/p10k.zsh
-    ~/.vim: vim/
     ~/.zshenv: zsh/zshenv
     ~/.zshrc: zsh/zshrc
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
+  - [git submodule update --init --recursive, Install submodules]
   - [ln -s ~/.cache/wal/Colors.hs ~/.config/xmonad/lib/Colors.hs, Link pywal output to xmonad Colors module]
   - [ln -s ~/.cache/wal/Colors.hs ~/.config/xmobar/lib/Colors.hs, Link pywal output to xmobar Colors module]
