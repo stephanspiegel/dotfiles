@@ -4,8 +4,8 @@ import Colors
 
 config :: Config
 config = defaultConfig 
-    { font = "xft:JetBrainsMono Nerd Font:weight=bold:pixelsize=16:antialias=true:hinting=true"
-    , additionalFonts = [ "xft:JetBrainsMono Nerd Font:size=19" ]
+    { font = "xft:JetBrainsMono Nerd Font:weight=bold:pixelsize=14:antialias=true:hinting=true"
+    , additionalFonts = [ "xft:JetBrainsMono Nerd Font:size=19:antialias=true:hinting=true" ]
     , bgColor = background
     , fgColor = foreground
     , position = Top
