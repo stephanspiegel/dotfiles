@@ -61,6 +61,9 @@ local plugin_specifications =
       require('feline').setup()
     end
   }
+, { 'vhyrro/neorg'                      -- Neorg, "orgmode" for neovim
+    , config = function() require('stephanspiegel.pluginconfigs.neorg') end
+  }
 , { '~/Projects/vim/kraftwerk.nvim' }
   -- completion
 , { 'hrsh7th/nvim-cmp' }                -- The completion plugin
