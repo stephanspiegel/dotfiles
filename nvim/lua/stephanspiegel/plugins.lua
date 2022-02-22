@@ -4,7 +4,7 @@ local plugin_specifications =
 , { 'nvim-lua/plenary.nvim' }           -- Useful lua functions used by lots of plugins
 , { 'psliwka/vim-smoothie' }            -- smooth scrolling
 , { 'tpope/vim-surround' }              -- surround with quotes, brackets, etc.
-, { 'fcpg/vim-spotlightify' }           -- Highlighted search results, improved 
+, { 'fcpg/vim-spotlightify' }           -- Highlighted search results, improved
 , { 'tpope/vim-unimpaired' }
 , { 'tpope/vim-sleuth' }                -- automatically set tabstop
 , { 'windwp/nvim-autopairs'
@@ -81,6 +81,14 @@ local plugin_specifications =
   -- lsp
 , { 'neovim/nvim-lspconfig' }           -- enable LSP
 , { 'williamboman/nvim-lsp-installer' } -- simple to use language server installer
+, { 'folke/trouble.nvim'
+  , requires = "kyazdani42/nvim-web-devicons"
+  , config = function() require 'stephanspiegel.pluginconfigs.trouble' end
+  }
+, { 'jose-elias-alvarez/null-ls.nvim'   -- use LSP API with linters that aren't strictly speaking LSPs
+  , config = function() require'stephanspiegel.pluginconfigs.null-ls' end
+  , requires = { 'nvim-lua/plenary.nvim' },
+  }
   -- telescope
 , { 'nvim-telescope/telescope.nvim'
   , requires = { { 'nvim-lua/plenary.nvim' } }
