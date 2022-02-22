@@ -3,7 +3,7 @@ local server = require 'nvim-lsp-installer.server'
 local servers = require 'nvim-lsp-installer.servers'
 local configs = require 'lspconfig.configs'
 local std = require 'nvim-lsp-installer.installers.std'
-local context = require 'nvim-lsp-installer.installers.context'
+-- local context = require 'nvim-lsp-installer.installers.context'
 
 local server_name = 'apex'
 
