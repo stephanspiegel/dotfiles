@@ -47,11 +47,16 @@ local options =
 , timeoutlen = 1000                         -- time to wait for a mapped sequence to complete (in milliseconds)
 , undofile = true                          -- enable persistent undo
 , updatetime = 300                         -- faster completion (4000ms default)
-, wrap = false                             -- display lines as one long line
+, wrap = true                              -- wrap lines
+, linebreak = true                         -- wrap at word boundaries
+, breakindent = true                       -- indent wrapped lines
+, showbreak = '↪️ '
 , writebackup = false                      -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 , sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
 }
 
+vim.opt.breakindentopt:append 'shift:4'
+vim.opt.breakindentopt:remove 'sbr'
 vim.opt.shortmess:append 'c'
 
 for k, v in pairs(options) do
@@ -61,6 +66,3 @@ end
 vim.cmd 'set whichwrap+=<,>,[,],h,l'
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
-
---todo 2022-02-09 <stephan@stephanspiegel.com> Stephan Spiegel -- Remove when done troubleshooting
-vim.lsp.set_log_level("debug")
