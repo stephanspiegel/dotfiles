@@ -65,6 +65,12 @@ local plugin_specifications =
 , { 'vhyrro/neorg'                      -- Neorg, "orgmode" for neovim
     , config = function() require('stephanspiegel.pluginconfigs.neorg') end
   }
+, { 'ray-x/go.nvim'
+  , requires =
+    { { 'nvim-treesitter/nvim-treesitter' }
+    , { 'nvim-treesitter/nvim-treesitter-textobjects' }
+    }
+  }
 , { '~/Projects/vim/kraftwerk.nvim' }
   -- completion
 , { 'hrsh7th/nvim-cmp' }                -- The completion plugin
@@ -102,6 +108,7 @@ local plugin_specifications =
   , run = ':TSUpdate'
   , config = function() require 'stephanspiegel.treesitter' end
   }
+, { 'nvim-treesitter/nvim-treesitter-textobjects' }
 , { 'p00f/nvim-ts-rainbow' }           -- hightlight brackets in matching colors
 , { 'nvim-treesitter/playground'
   , run = ':TSInstallQuery' }
