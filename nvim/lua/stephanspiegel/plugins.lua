@@ -91,7 +91,7 @@ local plugin_specifications =
   }
   -- telescope
 , { 'nvim-telescope/telescope.nvim'
-  , requires = { { 'nvim-lua/plenary.nvim' } }
+  , requires = {  'nvim-lua/plenary.nvim'  }
   , config = function() require 'stephanspiegel.telescope' end
   }
 , { 'nvim-telescope/telescope-fzf-native.nvim'
@@ -125,19 +125,24 @@ local plugin_specifications =
 }
 
 local colorscheme_specifications =
-{ { 'junegunn/seoul256.vim' }
+{ { 'folke/tokyonight.nvim' }
+, { 'junegunn/seoul256.vim' }
 , { 'mhartington/oceanic-next' }
 , { 'morhetz/gruvbox' }
 , { 'nightsense/stellarized' }
+, { 'rafamadriz/neon' }
 , { 'rakr/vim-one' }
 , { 'rakr/vim-two-firewatch' }
-, { 'sainnhe/gruvbox-material' }
+, { 'rockerBOO/boo-colorscheme-nvim' }
 , { 'sainnhe/edge' }
+, { 'sainnhe/everforest' }
 , { 'sainnhe/forest-night' }
+, { 'sainnhe/gruvbox-material' }
 , { 'sainnhe/sonokai' }
+, { 'savq/melange' }
 , { 'smallwat3r/vim-hashpunk-sw' }
+, { 'theniceboy/nvim-deus' }
 , { 'xstrex/FireCode.vim' }
-, { 'folke/tokyonight.nvim' }
 }
 
 local fn = vim.fn
