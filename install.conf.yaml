@@ -15,7 +15,13 @@
     ~/.gitconfig: gitconfig
     ~/.p10k.zsh: zsh/p10k.zsh
     ~/.zshenv: zsh/zshenv
-    ~/.zshrc: zsh/zshrc
+    ~/.config/zsh: 
+      path: zsh/*
+      glob: true
+      exclude: 
+        - zsh/zshenv
+        - zsh/zshrc
+    ~/.config/zsh/.zshrc: zsh/zshrc
 
 - shell:
   - [git submodule update --init --recursive, Install submodules]

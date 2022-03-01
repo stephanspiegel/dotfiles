@@ -34,7 +34,7 @@ _comp_options+=(globdots) # include hidden files in completions
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-source ~/dotfiles/zsh/aliases
+source "$ZDOTDIR/aliases"
 
 # sfdx autocomplete setup
 SFDX_AC_ZSH_SETUP_PATH=/home/stephan/.cache/sfdx/autocomplete/zsh_setup \

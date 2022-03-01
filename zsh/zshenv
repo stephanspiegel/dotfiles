@@ -4,12 +4,18 @@
 # EXPORT ENVIRONMENT VARIABLE #
 ###############################
 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
+export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
+
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
 # editor
 export EDITOR="nvim"
 export VISUAL="nvim"
 
 # zsh
-export HISTFILE=~/.histfile     # History filepath
+export HISTFILE="$ZDOTDIR/.zhistory"     # History filepath
 export HISTSIZE=10000           # size of history memory
 export SAVEHIST=100000          # size of history on disk
 
