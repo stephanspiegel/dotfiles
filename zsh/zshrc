@@ -8,15 +8,15 @@ fi
 # Lines configured by zsh-newuser-install
 
 setopt autocd
-setopt correct_all # autocorrect commands
+setopt correct_all           # autocorrect commands
 setopt extendedglob
 setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
 setopt share_history
 setopt nomatch
-setopt auto_list # automatically list choices on ambiguous completion
-setopt auto_menu # automatically use menu completion
-setopt always_to_end # move cursor to end if word had one match
+setopt auto_list             # automatically list choices on ambiguous completion
+setopt auto_menu             # automatically use menu completion
+setopt always_to_end         # move cursor to end if word had one match
 unsetopt beep
 
 bindkey -v # enable vi mode
@@ -140,6 +140,20 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 [[ -n "${key[Up]}"   ]] && bindkey -M viins -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -M viins -- "${key[Down]}" down-line-or-beginning-search
+
+# Text Objects: enables `da"` or `ci(` in normal mode
+autoload -Uz select-bracketed select-quoted
+zle -N select-quoted
+zle -N select-bracketed
+for km in viopp visual; do
+  bindkey -M $km -- '-' vi-up-line-or-history
+  for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
+    bindkey -M $km $c select-quoted
+  done
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $km $c select-bracketed
+  done
+done
 
 source /usr/share/fzf/completion.zsh    # use fzf completion
 source /usr/share/fzf/key-bindings.zsh  # use fzf completion key mappings
