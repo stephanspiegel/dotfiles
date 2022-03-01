@@ -19,8 +19,7 @@ local plugin_specifications =
   }
 , { 'startup-nvim/startup.nvim'
   , requires = {'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim'}
-  , config =
-      function() require'startup'.setup() end
+  , config = function() require'stephanspiegel.pluginconfigs.startup' end
   }
 , { 'ahmedkhalf/project.nvim'
   , config = function() require'stephanspiegel.pluginconfigs.projects' end
@@ -109,7 +108,7 @@ local plugin_specifications =
   , config = function() require 'stephanspiegel.treesitter' end
   }
 , { 'nvim-treesitter/nvim-treesitter-textobjects' }
-, { 'p00f/nvim-ts-rainbow' }           -- hightlight brackets in matching colors
+, { 'p00f/nvim-ts-rainbow' }           -- highlight brackets in matching colors
 , { 'nvim-treesitter/playground'
   , run = ':TSInstallQuery' }
   -- git
