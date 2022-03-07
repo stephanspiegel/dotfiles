@@ -1,13 +1,13 @@
-local mapkeys = require"stephanspiegel.mapkeys"
+local maputil = require"stephanspiegel.maputil"
 
 --Remap space as leader key
-mapkeys.map("", "<Space>", "<Nop>")
+maputil.map("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
-mapkeys.nmap_all
-{ {"<Leader>bg", ':let &background = ( &background == "dark"? "light" : "dark")<CR>'} -- Toggle light/dark color theme
+maputil.nmap_all
+{ {"<Leader>bg", ':let &background = ( &background == "dark"? "light" : "dark")<CR>'}              -- Toggle light/dark color theme
     -- Easy split navigation
 , {"<C-j>", "<C-w>j"}
 , {"<C-k>", "<C-w>k"}
@@ -26,20 +26,20 @@ mapkeys.nmap_all
 }
 
 -- Insert --
-mapkeys.imap_all
+maputil.imap_all
 { {"jk", "<ESC>"}
 -- Uppercase in insert mode
 , {"<C-u>", "<ESC>viwUea"}
 }
 
 -- Visual --
-mapkeys.vmap_all
+maputil.vmap_all
 { {"<", "<gv"} -- Stay in indent mode
 , {">", ">gv"}
 }
 
 -- Terminal --
-mapkeys.tmap_all
+maputil.tmap_all
 { {"<C-h>", "<C-\\><C-N><C-w>h"} -- Better terminal navigation
 , {"<C-j>", "<C-\\><C-N><C-w>j"}
 , {"<C-k>", "<C-\\><C-N><C-w>k"}

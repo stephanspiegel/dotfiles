@@ -5,7 +5,22 @@ local plugin_specifications =
 , { 'psliwka/vim-smoothie' }            -- smooth scrolling
 , { 'tpope/vim-surround' }              -- surround with quotes, brackets, etc.
 , { 'fcpg/vim-spotlightify' }           -- Highlighted search results, improved
-, { 'tpope/vim-unimpaired' }
+, { 'tpope/vim-unimpaired'              -- Handy pairs of keymappings
+  , config = function()
+      -- Make `[q` etc scroll to the middle
+    require'stephanspiegel.maputil'.nmap_all(
+      { {'[q', '<Plug>(unimpaired-cprevious)zz', {silent = true}}
+      , {']q', '<Plug>(unimpaired-cnext)zz', {silent = true}}
+      , {'[Q', '<Plug>(unimpaired-cfirst)zz', {silent = true}}
+      , {']Q', '<Plug>(unimpaired-clast)zz', {silent = true}}
+      , {'[l', '<Plug>(unimpaired-lprevious)zz', {silent = true}}
+      , {']l', '<Plug>(unimpaired-lnext)zz', {silent = true}}
+      , {'[L', '<Plug>(unimpaired-lfirst)zz', {silent = true}}
+      , {']L', '<Plug>(unimpaired-llast)zz', {silent = true}}
+
+      })
+    end
+  }
 , { 'tpope/vim-sleuth' }                -- automatically set tabstop
 , { 'windwp/nvim-autopairs'
   , config = function () require'stephanspiegel.pluginconfigs.autopairs' end

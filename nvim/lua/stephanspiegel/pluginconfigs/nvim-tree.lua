@@ -96,7 +96,7 @@ nvim_tree.setup {
     }
   }
 }
-local mapkeys = require('stephanspiegel.mapkeys')
-mapkeys.nmap('<Leader>e', ':NvimTreeToggle<cr>')
+local maputil = require('stephanspiegel.maputil')
+maputil.nmap('<Leader>e', ':NvimTreeToggle<cr>')
 
 vim.g.nvim_tree_respect_buf_cwd = 1

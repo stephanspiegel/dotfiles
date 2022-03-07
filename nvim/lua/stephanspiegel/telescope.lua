@@ -4,7 +4,7 @@ if not telescope_status_ok then
 end
 
 local actions = require('telescope.actions')
-local mapkeys = require('stephanspiegel.mapkeys')
+local maputil = require('stephanspiegel.maputil')
 telescope.setup{
   defaults = {
     -- Default configuration for telescope goes here:
@@ -47,7 +47,7 @@ telescope.setup{
     }
   }
 }
-mapkeys.nmap_all (
+maputil.nmap_all (
 { { '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<cr>" }
 , { '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>" }
 , { '<leader>b', "<cmd>lua require('telescope.builtin').buffers()<cr>" }

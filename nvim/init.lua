@@ -1,9 +1,15 @@
 local namespace = 'stephanspiegel.'
 
-require (namespace..'options')
-require (namespace..'keymaps')
-require (namespace..'plugins')
-require (namespace..'colorscheme')
-require (namespace..'completion')
-require (namespace..'lsp')
-require (namespace..'commands')
+local modules = {
+    'options',
+    'mappings',
+    'plugins',
+    'colorscheme',
+    'completion',
+    'lsp',
+    'commands',
+}
+
+for _, module in ipairs(modules) do
+   require(namespace..module)
+end

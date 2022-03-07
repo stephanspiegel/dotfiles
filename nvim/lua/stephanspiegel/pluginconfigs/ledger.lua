@@ -8,13 +8,13 @@ vim.g.ledger_bin = '/usr/bin/ledger'
 vim.g.ledger_main = '~/ledger/personal/main.ledger'
 vim.g.ledger_extra_options = ' --pedantic --explicit --check-payees'
 
-local mapkeys = require('stephanspiegel.mapkeys')
-mapkeys.nmap('<leader>c', ":call ledger#transaction_state_toggle(line('.'), ' *')<CR>")
-mapkeys.imap_all(
+local maputil = require('stephanspiegel.maputil')
+maputil.nmap('<leader>c', ":call ledger#transaction_state_toggle(line('.'), ' *')<CR>")
+maputil.imap_all(
 { { '<Tab>', '<C-r>=ledger#autocomplete_and_align()<CR>'}
 , { '<C-T>', '<ESC>?[0-9.]\\+<CR>c//e<CR><C-R>=luaeval("require \'stephanspiegel.pluginconfigs.ledger\'.taxify(_A)", str2float(@"))<CR><ESC>:nohlsearch<CR>a' }
 })
-mapkeys.vmap_all(
+maputil.vmap_all(
 { {'<Tab>', ':LedgerAlign<CR>'}
 , {'<C-T>', '"xygvc<C-R>=luaeval("require \'stephanspiegel.pluginconfigs.ledger\'.taxify(_A)", str2float(@x))<CR><ESC>'}
 })
