@@ -162,6 +162,21 @@ local colorscheme_specifications =
 , { 'smallwat3r/vim-hashpunk-sw' }
 , { 'theniceboy/nvim-deus' }
 , { 'xstrex/FireCode.vim' }
+, { 'catppuccin/nvim'
+  , as = 'catppuccin'
+  , config = function()
+      require('catppuccin').setup({ colorscheme = 'neon_latte' })
+    end,
+  }
+, { 'embark-theme/vim', as = 'embark' }
+, { 'eddyekofo94/gruvbox-flat.nvim' }
+, { 'rose-pine/neovim'
+  , config = function()
+      require('rose-pine').setup({
+        dark_variant = 'moon'
+      })
+    end
+  }
 }
 
 local fn = vim.fn
