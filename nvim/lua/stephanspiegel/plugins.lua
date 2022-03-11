@@ -17,7 +17,6 @@ local plugin_specifications =
       , {']l', '<Plug>(unimpaired-lnext)zz', {silent = true}}
       , {'[L', '<Plug>(unimpaired-lfirst)zz', {silent = true}}
       , {']L', '<Plug>(unimpaired-llast)zz', {silent = true}}
-
       })
     end
   }
@@ -71,10 +70,9 @@ local plugin_specifications =
       vim.g.vista_fzf_preview = {'right:50%'}
     end
   }
-, { 'feline-nvim/feline.nvim'
-  , config = function()
-      require('feline').setup()
-    end
+, {'nvim-lualine/lualine.nvim'
+  , requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  , config = function() require('stephanspiegel.pluginconfigs.lualine') end
   }
 , { 'vhyrro/neorg'                      -- Neorg, "orgmode" for neovim
     , config = function() require('stephanspiegel.pluginconfigs.neorg') end
@@ -123,7 +121,7 @@ local plugin_specifications =
   , config = function() require 'stephanspiegel.treesitter' end
   }
 , { 'nvim-treesitter/nvim-treesitter-textobjects' }
-, { 'p00f/nvim-ts-rainbow' }           -- highlight brackets in matching colors
+, { 'p00f/nvim-ts-rainbow' }            -- highlight brackets in matching colors
 , { 'nvim-treesitter/playground'
   , run = ':TSInstallQuery' }
   -- git
