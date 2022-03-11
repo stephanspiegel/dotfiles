@@ -43,6 +43,7 @@ local options =
 , splitright = true                        -- force all vertical splits to go to the right of current window
 , swapfile = true                          -- creates a swapfile
 , tabstop = 4                              -- insert 2 spaces for a tab
+, title = true
 , termguicolors = true                     -- set term gui colors (most terminals support this)
 , timeoutlen = 1000                         -- time to wait for a mapped sequence to complete (in milliseconds)
 , undofile = true                          -- enable persistent undo
