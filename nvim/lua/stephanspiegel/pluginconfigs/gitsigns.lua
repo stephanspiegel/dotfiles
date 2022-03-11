@@ -17,10 +17,10 @@ gitsigns.setup {
     follow_files = true,
   },
   attach_to_untracked = true,
-  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
     virt_text = true,
-    virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+    virt_text_pos = "right_align", -- 'eol' | 'overlay' | 'right_align'
     delay = 1000,
     ignore_whitespace = false,
   },
@@ -49,8 +49,8 @@ gitsigns.setup {
     end
 
     -- Navigation
-    map('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", {expr=true})
-    map('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", {expr=true})
+    map('n', ']c', "&diff ? ']czz' : '<cmd>Gitsigns next_hunk<CR>zz'", {expr=true})
+    map('n', '[c', "&diff ? '[czz' : '<cmd>Gitsigns prev_hunk<CR>zz'", {expr=true})
 
     -- Actions
     map('n', '<leader>hs', ':Gitsigns stage_hunk<CR>')
