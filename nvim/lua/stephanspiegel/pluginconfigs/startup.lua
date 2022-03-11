@@ -73,5 +73,6 @@ local settings = {
     parts = { "header", "body", "footer" },
 }
 
+vim.o.colorcolumn = '0'
 vim.b.indent_blankline_enabled = false
 require'startup'.setup(settings)

@@ -33,7 +33,6 @@ M.setup = function()
     },
   }
 
-  require'lspconfig'.soql.setup{}
   vim.diagnostic.config(config)
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
