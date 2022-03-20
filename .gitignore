@@ -44,7 +44,7 @@ plug.vim.old
 view/
 
 # Ignore vifm state tracking
-vifm/vifminfo.json
+vifm/vifminfo.json*
 
 wallpapers/
 nvim/plugin/
