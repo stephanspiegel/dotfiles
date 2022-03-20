@@ -5,6 +5,7 @@ local plugin_specifications =
 , { 'psliwka/vim-smoothie' }            -- smooth scrolling
 , { 'tpope/vim-surround' }              -- surround with quotes, brackets, etc.
 , { 'fcpg/vim-spotlightify' }           -- Highlighted search results, improved
+, { 'tpope/vim-abolish' }
 , { 'tpope/vim-unimpaired'              -- Handy pairs of keymappings
   , config = function()
       -- Make `[q` etc scroll to the middle
@@ -70,12 +71,15 @@ local plugin_specifications =
       vim.g.vista_fzf_preview = {'right:50%'}
     end
   }
+, {'rcarriga/nvim-notify'
+  , requires = { 'nvim-telescope/telescope.nvim' }
+  }
 , {'nvim-lualine/lualine.nvim'
   , requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   , config = function() require('stephanspiegel.pluginconfigs.lualine') end
   }
 , { 'vhyrro/neorg'                      -- Neorg, "orgmode" for neovim
-    , config = function() require('stephanspiegel.pluginconfigs.neorg') end
+  , config = function() require('stephanspiegel.pluginconfigs.neorg') end
   }
 , { 'ray-x/go.nvim'
   , requires =
@@ -109,7 +113,7 @@ local plugin_specifications =
   }
   -- telescope
 , { 'nvim-telescope/telescope.nvim'
-  , requires = {  'nvim-lua/plenary.nvim'  }
+  , requires = { 'nvim-lua/plenary.nvim' }
   , config = function() require 'stephanspiegel.telescope' end
   }
 , { 'nvim-telescope/telescope-fzf-native.nvim'
