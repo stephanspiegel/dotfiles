@@ -71,5 +71,6 @@ luasnip.snippets =
     })
 
   }
-
+, apexcode = require'stephanspiegel.snippets.apex'
+, lua = require'stephanspiegel.snippets.lua'
 }
