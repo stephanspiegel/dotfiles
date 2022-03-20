@@ -25,5 +25,10 @@ alias playdefcon="mplayer -playlist https://somafm.com/defcon130.pls" # Soma FM 
 # change the kitty theme using a fzf selector
 alias switchtheme="find ~/.config/kitty/kitty-themes/themes -iname '*.conf' -printf '%f\n' | sed 's/\.conf$//' | sort -r | fzf | xargs -Ixx kitty @ set-colors --all --configured ~/.config/kitty/kitty-themes/themes/xx.conf"
 
+# System
+alias shutdown='sudo shutdown now'
+alias restart='sudo reboot'
+alias suspend='systemctl suspend'
+
 # add more aliases
 alias realias="vim ~/dotfiles/zsh/aliases"
