@@ -1,1 +1,1 @@
-/home/stephan/.cache/wal/Colors.hs
+/home/stephan/.config/cache/wal/Colors.hs

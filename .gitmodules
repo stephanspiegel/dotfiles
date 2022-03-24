@@ -5,3 +5,12 @@
 [submodule "kitty/kitty-themes"]
 	path = kitty/kitty-themes
 	url = https://github.com/dexpota/kitty-themes.git
+[submodule "xmonad/xmonad-git"]
+	path = xmonad/xmonad-git
+	url = https://github.com/xmonad/xmonad
+[submodule "xmonad/xmonad-contrib-git"]
+	path = xmonad/xmonad-contrib-git
+	url = https://github.com/xmonad/xmonad-contrib
+[submodule "xmonad/xmobar-git"]
+	path = xmonad/xmobar-git
+	url = https://github.com/jaor/xmobar
