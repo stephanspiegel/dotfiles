@@ -25,5 +25,5 @@
 
 - shell:
   - [git submodule update --init --recursive, Install submodules]
-  - [ln -s ~/.cache/wal/Colors.hs ~/.config/xmonad/lib/Colors.hs, Link pywal output to xmonad Colors module]
-  - [ln -s ~/.cache/wal/Colors.hs ~/.config/xmobar/lib/Colors.hs, Link pywal output to xmobar Colors module]
+  - [ln -s ~/.config/cache/wal/Colors.hs ~/.config/xmonad/lib/Colors.hs, Link pywal output to xmonad Colors module]
+  - [ln -s ~/.config/cache/wal/Colors.hs ~/.config/xmobar/lib/Colors.hs, Link pywal output to xmobar Colors module]
