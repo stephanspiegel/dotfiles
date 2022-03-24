@@ -180,7 +180,16 @@ local plugin_specifications = {
     config = function()
       require("stephanspiegel.pluginconfigs.diffview")
     end,
-  } ,
+  },
+  {
+    "ThePrimeagen/git-worktree.nvim",    -- wrapper for git-worktrees
+    requires = "nvim-telescope/telescope.nvim",
+    config = function()
+      require("telescope").load_extension("git_worktree")
+      vim.cmd [[ command WorktreeList lua require('telescope').extensions.git_worktree.git_worktrees() ]]
+      vim.cmd [[ command WorktreeCreate lua require('telescope').extensions.git_worktree.create_git_worktree() ]]
+    end,
+  },
   -- ledger
   {
     "ledger/vim-ledger",
