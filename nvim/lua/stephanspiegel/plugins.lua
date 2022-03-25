@@ -1,6 +1,5 @@
 local plugin_specifications = {
   { "wbthomason/packer.nvim" },          -- Have packer manage itself
-  { "nvim-lua/popup.nvim" },             -- An implementation of the Popup API from vim in Neovim
   { "nvim-lua/plenary.nvim" },           -- Useful lua functions used by lots of plugins
   { "psliwka/vim-smoothie" },            -- smooth scrolling
   { "tpope/vim-surround" },              -- surround with quotes, brackets, etc.
@@ -94,7 +93,18 @@ local plugin_specifications = {
       vim.g.vista_fzf_preview = { "right:50%" }
     end,
   },
-  { "rcarriga/nvim-notify", requires = { "nvim-telescope/telescope.nvim" } },
+  -- UI
+  { "nvim-lua/popup.nvim" },             -- An implementation of the Popup API from vim in Neovim
+  {
+    "rcarriga/nvim-notify",              -- notification popups
+    requires = { "nvim-telescope/telescope.nvim" }
+  },
+  {
+    "meznaric/conmenu",                  -- context menu
+    requires = {
+      "ThePrimeagen/git-worktree.nvim",
+    }
+  },
   {
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
