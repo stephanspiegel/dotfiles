@@ -5,6 +5,11 @@
 - clean: ['~']
 
 - link:
+    ~/.config/awesome: awesomewm/
+    ~/.config/dijo: dijo/
+    ~/.config/keepassxc: keepassxc/
+    ~/.config/kmonad: kmonad/
+    ~/.config/mpv: mpv/
     ~/.config/kitty: kitty/
     ~/.config/nvim: nvim/
     ~/.config/vifm: vifm/
