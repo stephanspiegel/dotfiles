@@ -1,3 +1,12 @@
+local kraftwerk = function()
+  local project_path = '~/Projects/vim/kraftwerk.nvim'
+  if vim.fn.isdirectory(vim.fn.expand(project_path)) then
+    return { project_path }
+  else
+    return { 'stephanspiegel/kraftwerk.vim' }
+  end
+end
+
 local plugin_specifications = {
   { "wbthomason/packer.nvim" },          -- Have packer manage itself
   { "nvim-lua/plenary.nvim" },           -- Useful lua functions used by lots of plugins
@@ -35,26 +44,6 @@ local plugin_specifications = {
       require("Comment").setup()
     end,
   },
-  { "kyazdani42/nvim-web-devicons" },
-  {
-    "kyazdani42/nvim-tree.lua",
-    config = function()
-      require("stephanspiegel.pluginconfigs.nvim-tree")
-    end,
-  },
-  {
-    "startup-nvim/startup.nvim",
-    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    config = function()
-      require("stephanspiegel.pluginconfigs.startup")
-    end,
-  },
-  {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("stephanspiegel.pluginconfigs.projects")
-    end,
-  },
   {
     "rmagatti/auto-session",
     config = function()
@@ -86,6 +75,22 @@ local plugin_specifications = {
   { "lukas-reineke/indent-blankline.nvim" },
   { "jremmen/vim-ripgrep" },
   { "xiyaowong/nvim-transparent" },
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                        Navigation                        │
+-- └──────────────────────────────────────────────────────────┘
+  {
+    "kyazdani42/nvim-tree.lua",
+    config = function()
+      require("stephanspiegel.pluginconfigs.nvim-tree")
+    end,
+  },
+  { "ThePrimeagen/harpoon" },
+  {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("stephanspiegel.pluginconfigs.projects")
+    end,
+  },
   {
     "liuchengxu/vista.vim",
     config = function()
@@ -93,8 +98,11 @@ local plugin_specifications = {
       vim.g.vista_fzf_preview = { "right:50%" }
     end,
   },
-  -- UI
+-- ┌───────────────────────────────────────────────────────────┐
+-- │                            UI                             │
+-- └───────────────────────────────────────────────────────────┘
   { "nvim-lua/popup.nvim" },             -- An implementation of the Popup API from vim in Neovim
+  { "kyazdani42/nvim-web-devicons" },
   {
     "rcarriga/nvim-notify",              -- notification popups
     requires = { "nvim-telescope/telescope.nvim" }
@@ -103,7 +111,10 @@ local plugin_specifications = {
     "meznaric/conmenu",                  -- context menu
     requires = {
       "ThePrimeagen/git-worktree.nvim",
-    }
+    },
+    config = function()
+      require("stephanspiegel.pluginconfigs.conmenu")
+    end,
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -112,6 +123,16 @@ local plugin_specifications = {
       require("stephanspiegel.pluginconfigs.lualine")
     end,
   },
+  {
+    "startup-nvim/startup.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    config = function()
+      require("stephanspiegel.pluginconfigs.startup")
+    end,
+  },
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                 Languages and filetypes                  │
+-- └──────────────────────────────────────────────────────────┘
   {
     "vhyrro/neorg",                      -- Neorg, "orgmode" for neovim
     config = function()
@@ -125,8 +146,10 @@ local plugin_specifications = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
     },
   },
-  { "~/Projects/vim/kraftwerk.nvim" },
-  -- completion
+  kraftwerk(),
+-- ┌───────────────────────────────────────────────────────────┐
+-- │                        Completion                         │
+-- └───────────────────────────────────────────────────────────┘
   { "hrsh7th/nvim-cmp" },                -- The completion plugin
   { "hrsh7th/cmp-buffer" },              -- buffer completions
   { "hrsh7th/cmp-path" },                -- path completions
@@ -155,7 +178,9 @@ local plugin_specifications = {
     end,
     requires = { "nvim-lua/plenary.nvim" },
   },
-  -- telescope
+-- ┌───────────────────────────────────────────────────────────┐
+-- │                        Telescope                          │
+-- └───────────────────────────────────────────────────────────┘
   {
     "nvim-telescope/telescope.nvim",
     requires = { "nvim-lua/plenary.nvim" },
@@ -164,7 +189,9 @@ local plugin_specifications = {
     end,
   },
   { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-  -- treesitter
+-- ┌───────────────────────────────────────────────────────────┐
+-- │                        Treesitter                         │
+-- └───────────────────────────────────────────────────────────┘
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -175,7 +202,9 @@ local plugin_specifications = {
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   { "p00f/nvim-ts-rainbow" },            -- highlight brackets in matching colors
   { "nvim-treesitter/playground", run = ":TSInstallQuery" },
-  -- git
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                           git                            │
+-- └──────────────────────────────────────────────────────────┘
   { "tpope/vim-fugitive" },
   {
     "lewis6991/gitsigns.nvim",
@@ -196,11 +225,13 @@ local plugin_specifications = {
     requires = "nvim-telescope/telescope.nvim",
     config = function()
       require("telescope").load_extension("git_worktree")
-      vim.cmd [[ command WorktreeList lua require('telescope').extensions.git_worktree.git_worktrees() ]]
-      vim.cmd [[ command WorktreeCreate lua require('telescope').extensions.git_worktree.create_git_worktree() ]]
+      vim.cmd [[ command! WorktreeList lua require('telescope').extensions.git_worktree.git_worktrees() ]]
+      vim.cmd [[ command! WorktreeCreate lua require('telescope').extensions.git_worktree.create_git_worktree() ]]
     end,
   },
-  -- ledger
+-- ┌───────────────────────────────────────────────────────────┐
+-- │                          Ledger                           │
+-- └───────────────────────────────────────────────────────────┘
   {
     "ledger/vim-ledger",
     ft = "ledger",
@@ -211,6 +242,9 @@ local plugin_specifications = {
   { "rcaputo/vim-ledger_x" },
 }
 
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                          Themes                          │
+-- └──────────────────────────────────────────────────────────┘
 local colorscheme_specifications = {
   { "folke/tokyonight.nvim" },
   { "junegunn/seoul256.vim" },
