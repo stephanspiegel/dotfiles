@@ -49,7 +49,7 @@ telescope.setup{
   }
 }
 maputil.nmap_all (
-{ { '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<cr>" }
+{ { '<leader>ff', "<cmd>lua require('telescope.builtin').find_files({no_ignore=true, hidden=true})<cr>" }
 , { '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>" }
 , { '<leader>b', "<cmd>lua require('telescope.builtin').buffers()<cr>" }
 , { '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>" }
@@ -57,7 +57,6 @@ maputil.nmap_all (
 , { '<leader>hc', "<cmd>lua require('telescope.builtin').command_history()<cr>" }
 , { '<leader>hs', "<cmd>lua require('telescope.builtin').search_history()<cr>" }
 , { '<leader>cs', "<cmd>lua require('telescope.builtin').colorscheme()<cr>" }
-, { '<leader>ex', "<cmd>lua require('telescope.builtin').file_browser()<cr>" }
 , { '<leader>rg', "<cmd>lua require('telescope.builtin').grep_string()<cr>" }
 , { '<leader>gb', "<cmd>lua require('telescope.builtin').git_branches()<cr>" }
 })
