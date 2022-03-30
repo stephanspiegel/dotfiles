@@ -59,12 +59,6 @@ local plugin_specifications = {
     end,
   },
   {
-    "jbyuki/venn.nvim",                  -- Diagrams in vim
-    config = function()
-      require("stephanspiegel.pluginconfigs.venn")
-    end,
-  },
-  {
     "sudormrfbin/cheatsheet.nvim",       -- cheat sheets with telescope UI
     requires = {
       { "nvim-telescope/telescope.nvim" },
@@ -240,6 +234,21 @@ local plugin_specifications = {
     end,
   },
   { "rcaputo/vim-ledger_x" },
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                         Diagrams                         │
+-- └──────────────────────────────────────────────────────────┘
+  {
+    "jbyuki/venn.nvim",                  -- Diagrams in vim
+    config = function()
+      require("stephanspiegel.pluginconfigs.venn")
+    end,
+  },
+  {
+    "willchao612/vim-diagon",            -- Simple Unicode or ASCII diagrams
+    config = function()
+      vim.g.diagon_use_echo = 1    --- Use echo instead of replacing original text directly
+    end
+  },
 }
 
 -- ┌──────────────────────────────────────────────────────────┐
