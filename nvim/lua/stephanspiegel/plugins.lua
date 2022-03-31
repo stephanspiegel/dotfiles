@@ -1,21 +1,27 @@
+-- ╭──────────────────────────────────────────────────────────╮
+-- │                        Kraftwerk                         │
+-- ╰──────────────────────────────────────────────────────────╯
 local kraftwerk = function()
-  local project_path = '~/Projects/vim/kraftwerk.nvim'
+  local project_path = "~/Projects/vim/kraftwerk.nvim"
   if vim.fn.isdirectory(vim.fn.expand(project_path)) then
     return { project_path }
   else
-    return { 'stephanspiegel/kraftwerk.vim' }
+    return { "stephanspiegel/kraftwerk.vim" }
   end
 end
 
+-- ╒══════════════════════════════════════════════════════════╕
+--                    Plugin Specifications
+-- ╘══════════════════════════════════════════════════════════╛
 local plugin_specifications = {
-  { "wbthomason/packer.nvim" },          -- Have packer manage itself
-  { "nvim-lua/plenary.nvim" },           -- Useful lua functions used by lots of plugins
-  { "psliwka/vim-smoothie" },            -- smooth scrolling
-  { "tpope/vim-surround" },              -- surround with quotes, brackets, etc.
-  { "fcpg/vim-spotlightify" },           -- Highlighted search results, improved
-  { "tpope/vim-abolish" },               -- Search for, substitute, and abbreviate multiple variants of a word
+  { "wbthomason/packer.nvim" }, -- Have packer manage itself
+  { "nvim-lua/plenary.nvim" }, -- Useful lua functions used by lots of plugins
+  { "psliwka/vim-smoothie" }, -- smooth scrolling
+  { "tpope/vim-surround" }, -- surround with quotes, brackets, etc.
+  { "fcpg/vim-spotlightify" }, -- Highlighted search results, improved
+  { "tpope/vim-abolish" }, -- Search for, substitute, and abbreviate multiple variants of a word
   {
-    "tpope/vim-unimpaired",              -- Handy pairs of keymappings
+    "tpope/vim-unimpaired", -- Handy pairs of keymappings
     config = function()
       -- Make `[q` etc scroll to the middle
       -- need to explicitly pass `{silent=true}` because we don't want `{noremap=true}` from the defaults
@@ -31,7 +37,7 @@ local plugin_specifications = {
       })
     end,
   },
-  { "tpope/vim-sleuth" },                -- automatically set tabstop
+  { "tpope/vim-sleuth" }, -- automatically set tabstop
   {
     "windwp/nvim-autopairs",
     config = function()
@@ -59,7 +65,7 @@ local plugin_specifications = {
     end,
   },
   {
-    "sudormrfbin/cheatsheet.nvim",       -- cheat sheets with telescope UI
+    "sudormrfbin/cheatsheet.nvim", -- cheat sheets with telescope UI
     requires = {
       { "nvim-telescope/telescope.nvim" },
       { "nvim-lua/popup.nvim" },
@@ -69,9 +75,9 @@ local plugin_specifications = {
   { "lukas-reineke/indent-blankline.nvim" },
   { "jremmen/vim-ripgrep" },
   { "xiyaowong/nvim-transparent" },
--- ┌──────────────────────────────────────────────────────────┐
--- │                        Navigation                        │
--- └──────────────────────────────────────────────────────────┘
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                        Navigation                        │
+  -- ╰──────────────────────────────────────────────────────────╯
   {
     "kyazdani42/nvim-tree.lua",
     config = function()
@@ -92,17 +98,17 @@ local plugin_specifications = {
       vim.g.vista_fzf_preview = { "right:50%" }
     end,
   },
--- ┌───────────────────────────────────────────────────────────┐
--- │                            UI                             │
--- └───────────────────────────────────────────────────────────┘
-  { "nvim-lua/popup.nvim" },             -- An implementation of the Popup API from vim in Neovim
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                            UI                            │
+  -- ╰──────────────────────────────────────────────────────────╯
+  { "nvim-lua/popup.nvim" }, -- An implementation of the Popup API from vim in Neovim
   { "kyazdani42/nvim-web-devicons" },
   {
-    "rcarriga/nvim-notify",              -- notification popups
-    requires = { "nvim-telescope/telescope.nvim" }
+    "rcarriga/nvim-notify", -- notification popups
+    requires = { "nvim-telescope/telescope.nvim" },
   },
   {
-    "meznaric/conmenu",                  -- context menu
+    "meznaric/conmenu", -- context menu
     requires = {
       "ThePrimeagen/git-worktree.nvim",
     },
@@ -124,11 +130,11 @@ local plugin_specifications = {
       require("stephanspiegel.pluginconfigs.startup")
     end,
   },
--- ┌──────────────────────────────────────────────────────────┐
--- │                 Languages and filetypes                  │
--- └──────────────────────────────────────────────────────────┘
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                 Languages and filetypes                  │
+  -- ╰──────────────────────────────────────────────────────────╯
   {
-    "vhyrro/neorg",                      -- Neorg, "orgmode" for neovim
+    "vhyrro/neorg", -- Neorg, "orgmode" for neovim
     config = function()
       require("stephanspiegel.pluginconfigs.neorg")
     end,
@@ -141,22 +147,22 @@ local plugin_specifications = {
     },
   },
   kraftwerk(),
--- ┌───────────────────────────────────────────────────────────┐
--- │                        Completion                         │
--- └───────────────────────────────────────────────────────────┘
-  { "hrsh7th/nvim-cmp" },                -- The completion plugin
-  { "hrsh7th/cmp-buffer" },              -- buffer completions
-  { "hrsh7th/cmp-path" },                -- path completions
-  { "hrsh7th/cmp-cmdline" },             -- cmdline completions
-  { "saadparwaiz1/cmp_luasnip" },        -- snippet completions
-  { "lukas-reineke/cmp-rg" },            -- ripgrep everything
-  { "hrsh7th/cmp-nvim-lsp" },            -- lsp completions
-  { "hrsh7th/cmp-nvim-lua" },            -- source for neovim Lua API
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                        Completion                        │
+  -- ╰──────────────────────────────────────────────────────────╯
+  { "hrsh7th/nvim-cmp" }, -- The completion plugin
+  { "hrsh7th/cmp-buffer" }, -- buffer completions
+  { "hrsh7th/cmp-path" }, -- path completions
+  { "hrsh7th/cmp-cmdline" }, -- cmdline completions
+  { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
+  { "lukas-reineke/cmp-rg" }, -- ripgrep everything
+  { "hrsh7th/cmp-nvim-lsp" }, -- lsp completions
+  { "hrsh7th/cmp-nvim-lua" }, -- source for neovim Lua API
   -- snippets
-  { "L3MON4D3/LuaSnip" },                -- snippet engine
-  { "rafamadriz/friendly-snippets" },    -- a bunch of snippets to use
+  { "L3MON4D3/LuaSnip" }, -- snippet engine
+  { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
   -- lsp
-  { "neovim/nvim-lspconfig" },           -- enable LSP
+  { "neovim/nvim-lspconfig" }, -- enable LSP
   { "williamboman/nvim-lsp-installer" }, -- simple to use language server installer
   {
     "folke/trouble.nvim",
@@ -166,15 +172,15 @@ local plugin_specifications = {
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",   -- use LSP API with linters that aren't strictly speaking LSPs
+    "jose-elias-alvarez/null-ls.nvim", -- use LSP API with linters that aren't strictly speaking LSPs
     config = function()
       require("stephanspiegel.pluginconfigs.null-ls")
     end,
     requires = { "nvim-lua/plenary.nvim" },
   },
--- ┌───────────────────────────────────────────────────────────┐
--- │                        Telescope                          │
--- └───────────────────────────────────────────────────────────┘
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                        Telescope                         │
+  -- ╰──────────────────────────────────────────────────────────╯
   {
     "nvim-telescope/telescope.nvim",
     requires = { "nvim-lua/plenary.nvim" },
@@ -183,9 +189,9 @@ local plugin_specifications = {
     end,
   },
   { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
--- ┌───────────────────────────────────────────────────────────┐
--- │                        Treesitter                         │
--- └───────────────────────────────────────────────────────────┘
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                        Treesitter                        │
+  -- ╰──────────────────────────────────────────────────────────╯
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -194,11 +200,11 @@ local plugin_specifications = {
     end,
   },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
-  { "p00f/nvim-ts-rainbow" },            -- highlight brackets in matching colors
+  { "p00f/nvim-ts-rainbow" }, -- highlight brackets in matching colors
   { "nvim-treesitter/playground", run = ":TSInstallQuery" },
--- ┌──────────────────────────────────────────────────────────┐
--- │                           git                            │
--- └──────────────────────────────────────────────────────────┘
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                           git                            │
+  -- ╰──────────────────────────────────────────────────────────╯
   { "tpope/vim-fugitive" },
   {
     "lewis6991/gitsigns.nvim",
@@ -215,17 +221,17 @@ local plugin_specifications = {
     end,
   },
   {
-    "ThePrimeagen/git-worktree.nvim",    -- wrapper for git-worktrees
+    "ThePrimeagen/git-worktree.nvim", -- wrapper for git-worktrees
     requires = "nvim-telescope/telescope.nvim",
     config = function()
       require("telescope").load_extension("git_worktree")
-      vim.cmd [[ command! WorktreeList lua require('telescope').extensions.git_worktree.git_worktrees() ]]
-      vim.cmd [[ command! WorktreeCreate lua require('telescope').extensions.git_worktree.create_git_worktree() ]]
+      vim.cmd([[ command! WorktreeList lua require('telescope').extensions.git_worktree.git_worktrees() ]])
+      vim.cmd([[ command! WorktreeCreate lua require('telescope').extensions.git_worktree.create_git_worktree() ]])
     end,
   },
--- ┌───────────────────────────────────────────────────────────┐
--- │                          Ledger                           │
--- └───────────────────────────────────────────────────────────┘
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                          Ledger                          │
+  -- ╰──────────────────────────────────────────────────────────╯
   {
     "ledger/vim-ledger",
     ft = "ledger",
@@ -234,26 +240,27 @@ local plugin_specifications = {
     end,
   },
   { "rcaputo/vim-ledger_x" },
--- ┌──────────────────────────────────────────────────────────┐
--- │                         Diagrams                         │
--- └──────────────────────────────────────────────────────────┘
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                         Diagrams                         │
+  -- ╰──────────────────────────────────────────────────────────╯
   {
-    "jbyuki/venn.nvim",                  -- Diagrams in vim
+    "jbyuki/venn.nvim", -- Diagrams in vim
     config = function()
       require("stephanspiegel.pluginconfigs.venn")
     end,
   },
   {
-    "willchao612/vim-diagon",            -- Simple Unicode or ASCII diagrams
+    "willchao612/vim-diagon", -- Simple Unicode or ASCII diagrams
     config = function()
-      vim.g.diagon_use_echo = 1    --- Use echo instead of replacing original text directly
-    end
+      vim.g.diagon_use_echo = 1 --- Use echo instead of replacing original text directly
+    end,
   },
+  { "LudoPinelli/comment-box.nvim" }, -- Draw boxes around comments
 }
 
--- ┌──────────────────────────────────────────────────────────┐
--- │                          Themes                          │
--- └──────────────────────────────────────────────────────────┘
+-- ╒══════════════════════════════════════════════════════════╕
+--                     Theme Specifications
+-- ╘══════════════════════════════════════════════════════════╛
 local colorscheme_specifications = {
   { "folke/tokyonight.nvim" },
   { "junegunn/seoul256.vim" },
@@ -291,6 +298,8 @@ local colorscheme_specifications = {
     end,
   },
 }
+
+-- ├──────────────────────────────────────────────────────────┤
 
 local fn = vim.fn
 local cmd = vim.cmd
