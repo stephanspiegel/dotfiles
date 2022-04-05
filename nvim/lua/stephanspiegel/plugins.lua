@@ -201,7 +201,7 @@ local plugin_specifications = {
   },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   { "p00f/nvim-ts-rainbow" }, -- highlight brackets in matching colors
-  { "nvim-treesitter/playground", run = ":TSInstallQuery" },
+  { "nvim-treesitter/playground", run = ":TSInstall query" },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                           git                            │
   -- ╰──────────────────────────────────────────────────────────╯
