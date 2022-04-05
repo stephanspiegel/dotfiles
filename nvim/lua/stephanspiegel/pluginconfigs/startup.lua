@@ -25,6 +25,13 @@ local todays_date = function()
   return vim.fn.executable('ddate') and show_discordian_date() or show_gregorian_date()
 end
 
+local build_content = function()
+  local content = vim.fn.systemlist("figlet -f smblock", os.date("%H:%M"))
+  table.insert(content, "")
+  table.insert(content, todays_date())
+  return content
+end
+
 local settings = {
     -- every line should be same width without escaped \
     header = {
@@ -34,16 +41,7 @@ local settings = {
         fold_section = false,
         title = "Header",
         margin = 5,
-        content = {
-            " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
-            " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
-            " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
-            " ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
-            " ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
-            " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
-            "",
-            todays_date()
-        },
+        content = build_content(),
         highlight = "Statement",
         default_color = "",
         oldfiles_amount = 0,
