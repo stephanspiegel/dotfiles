@@ -51,7 +51,7 @@ local options =
 , wrap = true                              -- wrap lines
 , linebreak = true                         -- wrap at word boundaries
 , breakindent = true                       -- indent wrapped lines
-, showbreak = '↪️ '
+, showbreak = '↪ '
 , writebackup = false                      -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 , sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
 }
