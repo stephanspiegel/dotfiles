@@ -2,7 +2,7 @@ local lspconfig = require 'lspconfig'
 local server = require 'nvim-lsp-installer.server'
 local servers = require 'nvim-lsp-installer.servers'
 local configs = require 'lspconfig.configs'
-local std = require 'nvim-lsp-installer.installers.std'
+local std = require 'nvim-lsp-installer.core.managers.std'
 -- local context = require 'nvim-lsp-installer.installers.context'
 
 local server_name = 'apex'
@@ -19,15 +19,14 @@ local root_dir = server.get_server_root_path(server_name)
 local apex_server = server.Server:new {
   name = server_name,
   root_dir = root_dir,
+  async = true,
   languages = { 'apex' },
   homepage = 'https://developer.salesforce.com/tools/vscode/en/apex/language-server',
-  installer = {
-    std.ensure_executables {
-    { 'java', 'java was not found in path.' },
-    },
+  installer = function(ctx)
+    std.system_executable { { 'java', 'java was not found in path.' } }
     std.download_file('https://github.com/forcedotcom/salesforcedx-vscode/blob/develop/packages/salesforcedx-vscode-apex/out/apex-jorje-lsp.jar?raw=true',
-      'apex-langserver.jar'),
-  },
+      'apex-langserver.jar')
+  end,
   default_options = {
       cmd = {
         'java',

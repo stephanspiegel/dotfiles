@@ -1,7 +1,7 @@
 local lspconfig = require 'lspconfig'
 local server = require 'nvim-lsp-installer.server'
 local servers = require 'nvim-lsp-installer.servers'
-local npm = require 'nvim-lsp-installer.installers.npm'
+local npm = require 'nvim-lsp-installer.core.managers.npm'
 local configs = require 'lspconfig.configs'
 
 local server_name = 'soql'
@@ -18,6 +18,7 @@ local root_dir = server.get_server_root_path(server_name)
 local soql_server = server.Server:new {
     name = server_name,
     root_dir = root_dir,
+    async = true,
     languages = { 'soql' },
     homepage = 'https://github.com/forcedotcom/soql-language-server',
     installer = npm.packages { '@salesforce/soql-language-server' },
