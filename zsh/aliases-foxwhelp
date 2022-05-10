@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+# Internet radio stations
+## Austria
+alias playoe1="mplayer 'https://orf-live.ors-shoutcast.at/oe1-q2a' -cache 2048 -cache-min 75" # Oesterreich 1
+alias playoe3="mplayer 'https://orf-live.ors-shoutcast.at/oe3-q2a' -cache 2048 -cache-min 75" # Oesterreich 3
+alias playoe2="mplayer 'https://orf-live.ors-shoutcast.at/vbg-q2a' -cache 2048 -cache-min 75" # Radio Vorarlberg
+
+## Maine
+alias playmainepublic="" # Maine Public Radio
+alias playmaineclassical="" # Maine Public Classical
+
+## SOMA.fm
+alias playgroovesalad="mplayer -playlist http://somafm.com/groovesalad130.pls" # Soma FM Groove Salad
+alias playsecretagent="mplayer -playlist https://somafm.com/secretagent130.pls" # Soma FM Secret Agent
+alias playfolk="mplayer -playlist https://somafm.com/folkfwd130.pls" # Soma FM Folk Forward
+alias playdubstep="mplayer -playlist https://somafm.com/dubstep130.pls" # Soma FM Dub Step Beyond
+alias playspace="mplayer -playlist https://somafm.com/spacestation130.pls" # Soma FM Space Station Soma
+alias playdefcon="mplayer -playlist https://somafm.com/defcon130.pls" # Soma FM DEF CON Radio
+
+# System
+alias shutdown='sudo shutdown now'
+alias restart='sudo reboot'
+alias suspend='systemctl suspend'
+
+# Bluetooth headset
+alias headseton='bluetoothctl -- power on && bluetoothctl -- connect 95:05:BB:22:82:E7'
+alias headsetoff='bluetoothctl -- disconnect 95:05:BB:22:82:E7'
+
