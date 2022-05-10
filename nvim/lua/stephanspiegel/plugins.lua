@@ -1,12 +1,12 @@
 -- ╭──────────────────────────────────────────────────────────╮
 -- │                        Kraftwerk                         │
 -- ╰──────────────────────────────────────────────────────────╯
-local kraftwerk = function()
+local kraftwerk_path = function()
   local project_path = "~/Projects/vim/kraftwerk.nvim"
   if vim.fn.isdirectory(vim.fn.expand(project_path)) then
-    return { project_path }
+    return project_path
   else
-    return { "stephanspiegel/kraftwerk.vim" }
+    return "stephanspiegel/kraftwerk.nvim"
   end
 end
 
@@ -135,6 +135,7 @@ local plugin_specifications = {
   -- ╰──────────────────────────────────────────────────────────╯
   {
     "vhyrro/neorg", -- Neorg, "orgmode" for neovim
+    requires = "nvim-neorg/neorg-telescope",
     config = function()
       require("stephanspiegel.pluginconfigs.neorg")
     end,
@@ -146,7 +147,12 @@ local plugin_specifications = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
     },
   },
-  kraftwerk(),
+  {
+    kraftwerk_path(),
+    config = function()
+      require("stephanspiegel.pluginconfigs.kraftwerk")
+    end
+  },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                        Completion                        │
   -- ╰──────────────────────────────────────────────────────────╯
