@@ -7,6 +7,25 @@ alias ls='lsd -al' # enhanced ls
 # change the kitty theme using a fzf selector
 alias switchtheme="find ~/.config/kitty/kitty-themes/themes -iname '*.conf' -printf '%f\n' | sed 's/\.conf$//' | sort -r | fzf | xargs -Ixx kitty @ set-colors --all --configured ~/.config/kitty/kitty-themes/themes/xx.conf"
 
+#sfdx
+alias fss='sfdx force:source:status'
+alias fsl='sfdx force:source:pull'
+alias fsp='sfdx force:source:push'
+alias fol='sfdx force:org:list'
+alias fod='sfdx force:org:display'
+alias foo='sfdx force:org:open'
+alias fstr='sfdx force:source:tracking:reset --noprompt'
+alias sdfx='sfdx'
+alias newclass='sfdx force:apex:class:create'
+
+alias orgs="sfdx force:org:list --json | jq '.result.scratchOrgs|map({(.instanceUrl): .alias})|add'"
+
+alias rat=$'sfdx force:apex:test:run --wait=25 --testlevel=RunAllTestsInOrg --resultformat=json | jq \'{outcome: .result.summary.outcome, failing: .result.summary.failing, failed_tests: [(.result.tests[]|select(.Outcome == "Pass"|not))|{FullName, Message, StackTrace, Outcome}] }\''
+
+#git
+alias gby=gitcopybranchname.sh
+alias lg=lazygit
+
 eval $(thefuck --alias)
 
 case $(hostname) in
