@@ -106,6 +106,9 @@ local plugin_specifications = {
   {
     "rcarriga/nvim-notify", -- notification popups
     requires = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      vim.notify = require'notify'
+    end,
   },
   {
     "meznaric/conmenu", -- context menu
