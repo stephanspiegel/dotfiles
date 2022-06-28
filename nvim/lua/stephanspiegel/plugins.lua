@@ -3,10 +3,10 @@
 -- ╰──────────────────────────────────────────────────────────╯
 local kraftwerk_path = function()
   local project_path = "~/Projects/vim/kraftwerk.nvim"
-  if vim.fn.isdirectory(vim.fn.expand(project_path)) then
-    return project_path
-  else
+  if vim.fn.isdirectory(vim.fn.expand(project_path)) == 0 then
     return "stephanspiegel/kraftwerk.nvim"
+  else
+    return project_path
   end
 end
 
