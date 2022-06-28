@@ -5,7 +5,31 @@ if not status_ok then
 end
 
 configs.setup {
-  ensure_installed = "maintained",
+  ensure_installed = {
+    "bash",
+    "c_sharp",
+    "css",
+    "haskell",
+    "help",
+    "html",
+    "http",
+    "javascript",
+    "json",
+    "ledger",
+    "lua",
+    "markdown",
+    "nix",
+    "norg",
+    "python",
+    "query",
+    "regex",
+    "rust",
+    "soql",
+    "toml",
+    "typescript",
+    "vim",
+    "yaml",
+  },
   sync_install = false,
   ignore_install = { "" }, -- List of parsers to ignore installing
   autopairs = {
@@ -45,3 +69,18 @@ configs.setup {
     },
   }
 }
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.soql = {
+  install_info = {
+    url = "~/Projects/vim/tree-sitter-soql",
+    files = {"src/parser.c"},
+    branch = "main",
+    generate_requires_npm = false,
+    requires_generate_from_grammar = false,
+  },
+  filetype = "soql",
+}
+
+local ft_to_parser = require"nvim-treesitter.parsers".filetype_to_parsername
+ft_to_parser.soql = "soql"
