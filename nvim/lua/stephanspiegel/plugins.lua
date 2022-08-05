@@ -75,6 +75,7 @@ local plugin_specifications = {
   { "lukas-reineke/indent-blankline.nvim" },
   { "jremmen/vim-ripgrep" },
   { "xiyaowong/nvim-transparent" },
+  { "chrisbra/Recover.vim" }, -- Add option `(C)ompare` when swapfile found
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                        Navigation                        │
   -- ╰──────────────────────────────────────────────────────────╯
