@@ -1,2 +1,77 @@
-$ stack build --silent --stack-yaml /home/stephan/dotfiles/xmonad/stack.yaml
-$ stack ghc --stack-yaml /home/stephan/dotfiles/xmonad/stack.yaml -- --make xmonad.hs -i -ilib -fforce-recomp -main-is main -v0 -outputdir /home/stephan/.config/xmonad/build-x86_64-linux -o /home/stephan/.config/xmonad/xmonad-x86_64-linux
+
+xmonad.hs:1:1: error:
+    Could not find module ‘XMonad’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+1 | import XMonad
+  | ^^^^^^^^^^^^^
+
+xmonad.hs:2:1: error:
+    Could not find module ‘XMonad.Util.EZConfig’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+2 | import XMonad.Util.EZConfig
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+xmonad.hs:3:1: error:
+    Could not find module ‘XMonad.Util.Ungrab’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+3 | import XMonad.Util.Ungrab
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+xmonad.hs:4:1: error:
+    Could not find module ‘XMonad.Hooks.EwmhDesktops’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+4 | import XMonad.Hooks.EwmhDesktops
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+xmonad.hs:5:1: error:
+    Could not find module ‘XMonad.Hooks.DynamicLog’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+5 | import XMonad.Hooks.DynamicLog
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+xmonad.hs:6:1: error:
+    Could not find module ‘XMonad.Hooks.StatusBar’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+6 | import XMonad.Hooks.StatusBar
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+xmonad.hs:7:1: error:
+    Could not find module ‘XMonad.Hooks.StatusBar.PP’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+7 | import XMonad.Hooks.StatusBar.PP
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+xmonad.hs:8:1: error:
+    Could not find module ‘XMonad.Util.Loggers’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+8 | import XMonad.Util.Loggers
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+xmonad.hs:9:1: error:
+    Could not find module ‘XMonad.Util.SpawnOnce’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+9 | import XMonad.Util.SpawnOnce
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+xmonad.hs:10:1: error:
+    Could not find module ‘XMonad.Util.Hacks’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+   |
+10 | import qualified XMonad.Util.Hacks as Hacks
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+xmonad.hs:11:1: error:
+    Could not find module ‘XMonad.Hooks.ManageHelpers’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+   |
+11 | import XMonad.Hooks.ManageHelpers            -- provides isDialog
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
