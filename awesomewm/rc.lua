@@ -108,7 +108,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 shape = require("gears.shape")
 mytextclock = wibox.widget {
     {
-        widget = wibox.widget.textclock(" %a-%FT%H:%M ") 
+        widget = wibox.widget.textclock("%a-%FT%H:%M")
     },
     widget = wibox.container.background,
 }
@@ -186,6 +186,8 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
+        layout = wibox.layout.fixed.horizontal,
+        spacing = 8,
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons
@@ -213,8 +215,10 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            spacing = 15,
             -- mykeyboardlayout,
-            wibox.widget.systray(),
+            require('lib.wibar.battery'),
+            require('lib.wibar.volume'),
             mytextclock,
             s.mylayoutbox,
         },
