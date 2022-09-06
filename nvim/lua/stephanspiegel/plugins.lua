@@ -76,6 +76,7 @@ local plugin_specifications = {
   { "jremmen/vim-ripgrep" },
   { "xiyaowong/nvim-transparent" },
   { "chrisbra/Recover.vim" }, -- Add option `(C)ompare` when swapfile found
+  { "phaazon/mind.nvim" }, -- tree-based note taking system
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                        Navigation                        │
   -- ╰──────────────────────────────────────────────────────────╯
@@ -138,19 +139,13 @@ local plugin_specifications = {
   -- │                 Languages and filetypes                  │
   -- ╰──────────────────────────────────────────────────────────╯
   {
-    "vhyrro/neorg", -- Neorg, "orgmode" for neovim
-    requires = "nvim-neorg/neorg-telescope",
-    config = function()
-      require("stephanspiegel.pluginconfigs.neorg")
-    end,
-  },
-  {
     "ray-x/go.nvim",
     requires = {
       { "nvim-treesitter/nvim-treesitter" },
       { "nvim-treesitter/nvim-treesitter-textobjects" },
     },
   },
+  { "kmonad/kmonad-vim" },
   {
     kraftwerk_path(),
     config = function()
@@ -230,6 +225,8 @@ local plugin_specifications = {
       require("stephanspiegel.pluginconfigs.diffview")
     end,
   },
+  { 'rickhowe/spotdiff.vim' }, -- show diffs per selection
+  { 'rickhowe/diffchar.vim' }, -- show diff character by character
   {
     "ThePrimeagen/git-worktree.nvim", -- wrapper for git-worktrees
     requires = "nvim-telescope/telescope.nvim",
@@ -276,7 +273,6 @@ local colorscheme_specifications = {
   { "junegunn/seoul256.vim" },
   { "mhartington/oceanic-next" },
   { "morhetz/gruvbox" },
-  { "nightsense/stellarized" },
   { "rafamadriz/neon" },
   { "rakr/vim-one" },
   { "rakr/vim-two-firewatch" },
@@ -307,6 +303,7 @@ local colorscheme_specifications = {
       })
     end,
   },
+  { "https://gitlab.com/protesilaos/tempus-themes-vim.git" },
 }
 
 -- ├──────────────────────────────────────────────────────────┤
