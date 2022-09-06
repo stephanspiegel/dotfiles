@@ -1,1 +1,0 @@
-/home/stephan/.config/cache/wal/Colors.hs
