@@ -1,10 +1,11 @@
 local awful = require "awful"
 
 local unplugged_icons = { '', '', '', '', '', '', '', '', '', '', '' }
-local charging_icons = {'', '', '', '', '', '', ''}
+local charging_icons = {' ', ' ', ' ', ' ', ' ', ' ', ''}
 
 local makeNormalizeFunction = function(orig_min, orig_max, new_min, new_max)
     return function(value)
+        if value == nil then value = orig_min end
         return (new_max - new_min) / (orig_max - orig_min) * (value - orig_max) + new_max
     end
 end
@@ -27,7 +28,7 @@ local getChargingIcon = function(value)
 end
 
 return awful.widget.watch([[sh -c "acpi | grep -i 'Battery 0'"]], 30, function(widget, stdout)
-    local pattern = 'Battery 0: (%a+), (%d+)%%, .*'
+    local pattern = 'Battery 0: (%a+), (%d+)%%.*'
     local _, _, status, percentage = string.find(stdout, pattern)
     local iconFunction = getUnpluggedIcon 
     if status == 'Charging' then iconFunction = getChargingIcon end
