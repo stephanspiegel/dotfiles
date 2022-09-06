@@ -9,9 +9,7 @@
   cap           (tap-hold-next-release 200 esc lctl)
   ret-ctrl      (tap-hold-next-release 200 ret lctl)
   spc-shift     (tap-hold-next-release 200 spc lsft)
-  shl           (sticky-key 300 lsft)
-  shr           (sticky-key 300 rsft)
-  nav           (tap-hold-next-release 300 (tap-hold-next-release 300 d ( layer-toggle navigation )) s)
+  ;; nav           (tap-hold-next-release 300 s (tap-hold-next-release 300 d ( layer-toggle navigation )) )
 )
 
 (defsrc
@@ -24,21 +22,31 @@
                                                     left down rght
 )
 
+;; (deflayer template
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _  
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _   
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _  
+;;   _    _    _    _    _    _    _    _    _    _    _    _   
+;;   _         _    _    _                   _    _    _    _    _   
+;;                                                     _    _    _   
+;; )
+
 (deflayer default
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt ins  del
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   @cap a    s    d    f    g    h    j    k    l    ;    '    @ret-ctrl
-  @shl z    x    c    v    b    n    m    ,    .    /    @shr
+  rsft z    x    c    v    b    n    m    ,    .    /    rsft
   lctl      lmet lalt @spc-shift          ralt rctl pgup up   pgdn
                                                     left down rght
 )
-(deflayer navigation
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt ins  del
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    up   o    p    [    ]    \
-  @cap a    s    d    f    g    h    left down rght ;    '    @ret-ctrl
-  @shl z    x    c    v    b    n    m    ,    .    /    @shr
-  lctl      lmet lalt @spc-shift          ralt rctl pgup up   pgdn
-                                                    left down rght
-)
+;; (deflayer navigation
+;;   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt ins  del
+;;   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+;;   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+;;   @cap a    s    d    f    g    left down up   rght ;    '    @ret-ctrl
+;;   rsft z    x    c    v    b    n    m    ,    .    /    rsft
+;;   lctl      lmet lalt @spc-shift          ralt rctl pgup up   pgdn
+;;                                                     left down rght
+;; )
