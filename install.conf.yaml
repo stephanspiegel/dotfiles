@@ -14,8 +14,6 @@
     ~/.config/nvim: nvim/
     ~/.config/vifm: vifm/
     ~/.config/wal: wal/
-    ~/.config/xmobar: xmobar/
-    ~/.config/xmonad: xmonad/
     ~/.fehbg: fehbg
     ~/.gitconfig: gitconfig
     ~/.p10k.zsh: zsh/p10k.zsh
@@ -30,5 +28,3 @@
 
 - shell:
   - [git submodule update --init --recursive, Install submodules]
-  - [ln -s ~/.config/cache/wal/Colors.hs ~/.config/xmonad/lib/Colors.hs, Link pywal output to xmonad Colors module]
-  - [ln -s ~/.config/cache/wal/Colors.hs ~/.config/xmobar/lib/Colors.hs, Link pywal output to xmobar Colors module]
