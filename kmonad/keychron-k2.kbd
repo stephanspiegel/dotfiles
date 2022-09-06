@@ -1,0 +1,56 @@
+#|
+For linux, set up udev as follows: 
+  1. Create udev rule sudo touch /etc/udev/rules.d/80-keychron.rules 
+  2. Add the following udev rules to /etc/udev/rules.d/80-keychron.rules (first one for BT, second for USB):
+      SUBSYSTEMS=="input", ATTRS{id/product}=="0255", ATTRS{id/vendor}=="05ac", ATTRS{id/version}=="011b", RUN+="echo 0 | tee /sys/module/hid_apple/parameters/fnmode", SYMLINK+="input/by-id/keychron_k2-kbd"
+      SUBSYSTEMS=="input", ATTRS{id/product}=="024f", ATTRS{id/vendor}=="05ac", ATTRS{id/version}=="0111", RUN+="echo 0 | tee /sys/module/hid_apple/parameters/fnmode", SYMLINK+="input/by-id/keychron_k2-kbd"
+  3. sudo udevadm control --reload-rules && sudo udevadm trigger
+|#
+(defcfg
+  input   (device-file "/dev/input/by-id/keychron_k2-kbd")
+  output  (uinput-sink
+            "KMonad: Keychron K2"
+            "/usr/bin/sleep 1 && /usr/bin/setxkbmap -option compose:ralt -option caps:none")
+)
+
+(defalias
+  cap           (tap-hold-next-release 200 esc lctl)
+  ret-ctrl      (tap-hold-next-release 200 ret lctl)
+  spc-shift     (tap-hold-next-release 200 spc lsft)
+  ;; nav           (tap-hold-next-release 300 (tap-hold-next-release 300 s ( layer-toggle navigation )) d)
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt del
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc      pgup
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \         pgdn
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret            home
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft           up   end
+  lctl lmet lalt spc                           ralt      rctl      left down rght
+)
+
+;; (deflayer template
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _    _  
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _         _   
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _         _   
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _              _   
+;;   _    _    _    _    _    _    _    _    _    _    _    _              _    _  
+;;   _    _    _    _                             _         _         _    _    _   
+;; )
+
+(deflayer default
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt del
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc      pgup
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \         pgdn
+  @cap a    s    d    f    g    h    j    k    l    ;    '    @ret-ctrl      home
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft           up   end
+  lctl      lmet lalt @spc-shift          ralt rctl                left down rght
+)
+;; (deflayer navigation
+;;   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt del
+;;   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc      pgup
+;;   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \         pgdn
+;;   @cap a    s    d    f    g    left down up   rght ;    '    @ret-ctrl      home
+;;   lsft z    x    c    v    b    n    m    ,    .    /    rsft           up   end
+;;   lctl      lmet lalt @spc-shift          ralt rctl                left down rght
+;; )
