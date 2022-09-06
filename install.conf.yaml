@@ -13,6 +13,7 @@
     ~/.config/kitty: kitty/
     ~/.config/nvim: nvim/
     ~/.config/vifm: vifm/
+    ~/.config/systemd: systemd/
     ~/.config/wal: wal/
     ~/.fehbg: fehbg
     ~/.gitconfig: gitconfig
