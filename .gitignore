@@ -48,3 +48,6 @@ vifm/vifminfo.json*
 
 wallpapers/
 nvim/plugin/
+
+# systemd auto-generated
+systemd/**/*.wants/*
