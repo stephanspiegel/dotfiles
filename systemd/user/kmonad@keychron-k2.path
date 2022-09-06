@@ -1,0 +1,8 @@
+[Unit]
+Description=keychron k2 availability watcher
+
+[Path]
+PathExists=/dev/input/by-id/keychron-k2
+
+[Install]
+WantedBy=default.target

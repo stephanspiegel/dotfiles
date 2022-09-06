@@ -1,0 +1,12 @@
+[Unit]
+Description=kmonad for K2
+Conflicts=kmonad@dell-latitude-5490.service
+OnFailure=kmonad@dell-latitude-5490.service
+
+[Service]
+ExecStart=/usr/bin/kmonad %h/.config/kmonad/keychron-k2.kbd
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=default.target

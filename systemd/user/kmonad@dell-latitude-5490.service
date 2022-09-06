@@ -1,0 +1,11 @@
+[Unit]
+Description=kmonad for onboard keyboard
+Conflicts=kmonad@keychron-k2.service
+
+[Service]
+ExecStart=/usr/bin/kmonad %h/.config/kmonad/dell-latitude-5490.kbd
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=default.target
