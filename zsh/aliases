@@ -33,5 +33,8 @@ case $(hostname) in
   (sspiegel) source "$ZDOTDIR/aliases-zipari";;
 esac
 
+# timewarrior
+alias t=timew
+
 # add more aliases
 alias realias="vim ~/dotfiles/zsh/aliases"
