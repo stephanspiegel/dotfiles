@@ -165,3 +165,6 @@ source /usr/share/fzf/key-bindings.zsh  # use fzf completion key mappings
 
 # sfdx autocomplete setup
 eval SFDX_AC_ZSH_SETUP_PATH=/home/stephan/.config/cache/sfdx/autocomplete/zsh_setup && test -f $SFDX_AC_ZSH_SETUP_PATH && source $SFDX_AC_ZSH_SETUP_PATH;
+
+# keychain for ssh
+# eval $(keychain --eval --quiet dd-wrt id_ed25519)
