@@ -2,12 +2,12 @@
 For linux, set up udev as follows: 
   1. Create udev rule sudo touch /etc/udev/rules.d/80-keychron.rules 
   2. Add the following udev rules to /etc/udev/rules.d/80-keychron.rules (first one for BT, second for USB):
-      SUBSYSTEMS=="input", ATTRS{id/product}=="0255", ATTRS{id/vendor}=="05ac", ATTRS{id/version}=="011b", RUN+="echo 0 | tee /sys/module/hid_apple/parameters/fnmode", SYMLINK+="input/by-id/keychron_k2-kbd"
-      SUBSYSTEMS=="input", ATTRS{id/product}=="024f", ATTRS{id/vendor}=="05ac", ATTRS{id/version}=="0111", RUN+="echo 0 | tee /sys/module/hid_apple/parameters/fnmode", SYMLINK+="input/by-id/keychron_k2-kbd"
+      SUBSYSTEMS=="input", ATTRS{id/product}=="0255", ATTRS{id/vendor}=="05ac", ATTRS{id/version}=="011b", RUN+="echo 0 | tee /sys/module/hid_apple/parameters/fnmode", SYMLINK+="input/by-id/keychron-k2"
+      SUBSYSTEMS=="input", ATTRS{id/product}=="024f", ATTRS{id/vendor}=="05ac", ATTRS{id/version}=="0111", RUN+="echo 0 | tee /sys/module/hid_apple/parameters/fnmode", SYMLINK+="input/by-id/keychron-k2"
   3. sudo udevadm control --reload-rules && sudo udevadm trigger
 |#
 (defcfg
-  input   (device-file "/dev/input/by-id/keychron_k2-kbd")
+  input   (device-file "/dev/input/by-id/keychron-k2")
   output  (uinput-sink
             "KMonad: Keychron K2"
             "/usr/bin/sleep 1 && /usr/bin/setxkbmap -option compose:ralt -option caps:none")
