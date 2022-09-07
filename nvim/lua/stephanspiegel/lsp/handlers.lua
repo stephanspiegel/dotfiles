@@ -2,6 +2,7 @@ local M = {}
 
 -- TODO: backfill this to template
 M.setup = function()
+  vim.g.diagnostics_enabled = true
   local signs = {
     { name = "DiagnosticSignError", text = "" },
     { name = "DiagnosticSignWarn", text = "" },
@@ -41,6 +42,7 @@ M.setup = function()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
   })
+
 end
 
 local function lsp_highlight_document(client)
@@ -80,7 +82,20 @@ local function lsp_keymaps(bufnr)
   )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ts", "<cmd>lua require('stephanspiegel.lsp.handlers').toggle_diagnostics()<CR>", opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+end
+
+M.toggle_diagnostics = function()
+  print('In toggle_diagnostics')
+  print('vim.g.diagnostics_enabled is '..vim.inspect(vim.g.diagnostics_enabled))
+  if vim.g.diagnostics_enabled then
+    vim.diagnostic.hide()
+    vim.g.diagnostics_enabled = false
+  else
+    vim.diagnostic.show()
+    vim.g.diagnostics_enabled = true
+  end
 end
 
 M.on_attach = function(client, bufnr)
