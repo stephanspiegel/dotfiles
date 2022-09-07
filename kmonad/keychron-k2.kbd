@@ -16,8 +16,11 @@ For linux, set up udev as follows:
 (defalias
   cap           (tap-hold-next-release 200 esc lctl)
   ret-ctrl      (tap-hold-next-release 200 ret lctl)
-  spc-shift     (tap-hold-next-release 200 spc lsft)
-  ;; nav           (tap-hold-next-release 300 (tap-hold-next-release 300 s ( layer-toggle navigation )) d)
+  spc-shift     (tap-hold-next-release 400 spc lsft :timeout-button spc)
+  scl           (tap-hold-next 50 s ( layer-toggle s-clutch ) :timeout-button s)
+  nav           (tap-next d ( layer-toggle navigation))
+  tlf           C-pgup    ;; move to tab left
+  trt           C-pgdn    ;; move to tab right
 )
 
 (defsrc
@@ -42,15 +45,25 @@ For linux, set up udev as follows:
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt del
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc      pgup
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \         pgdn
-  @cap a    s    d    f    g    h    j    k    l    ;    '    @ret-ctrl      home
+  @cap a    @scl d    f    g    h    j    k    l    ;    '    @ret-ctrl      home
   lsft z    x    c    v    b    n    m    ,    .    /    rsft           up   end
   lctl      lmet lalt @spc-shift          ralt rctl                left down rght
 )
-;; (deflayer navigation
-;;   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt del
-;;   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc      pgup
-;;   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \         pgdn
-;;   @cap a    s    d    f    g    left down up   rght ;    '    @ret-ctrl      home
-;;   lsft z    x    c    v    b    n    m    ,    .    /    rsft           up   end
-;;   lctl      lmet lalt @spc-shift          ralt rctl                left down rght
-;; )
+
+(deflayer s-clutch
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _    _  
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _         _   
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _         _   
+  _    _    _    @nav _    _    _    _    _    _    _    _    _              _   
+  _    _    _    _    _    _    _    _    _    _    _    _              _    _  
+  _    _    _    _                             _         _         _    _    _   
+)
+
+(deflayer navigation
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt del
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc      pgup
+  tab  q    w    e    r    t    y    u    @tlf @trt p    [    ]    \         pgdn
+  @cap a    s    d    f    g    left down up   rght ;    '    @ret-ctrl      home
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft           up   end
+  lctl      lmet lalt @spc-shift          ralt rctl                left down rght
+)
