@@ -76,7 +76,11 @@ local plugin_specifications = {
   { "jremmen/vim-ripgrep" },
   { "xiyaowong/nvim-transparent" },
   { "chrisbra/Recover.vim" }, -- Add option `(C)ompare` when swapfile found
-  { "phaazon/mind.nvim" }, -- tree-based note taking system
+  { "phaazon/mind.nvim",      -- tree-based note taking system
+    config = function()
+      require("mind").setup()
+    end
+  },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                        Navigation                        │
   -- ╰──────────────────────────────────────────────────────────╯
@@ -146,6 +150,7 @@ local plugin_specifications = {
     },
   },
   { "kmonad/kmonad-vim" },
+  { "chrisbra/csv.vim" },
   {
     kraftwerk_path(),
     config = function()
@@ -286,6 +291,13 @@ local colorscheme_specifications = {
   { "smallwat3r/vim-hashpunk-sw" },
   { "theniceboy/nvim-deus" },
   { "xstrex/FireCode.vim" },
+  { "ayu-theme/ayu-vim" },
+  { "bluz71/vim-moonfly-colors" },
+  { "mbbill/desertEx" },
+  { "shaunsingh/oxocarbon.nvim" },
+  { "EdenEast/nightfox.nvim" },
+  { "rebelot/kanagawa.nvim" },
+  { "arcticicestudio/nord-vim" },
   {
     "catppuccin/nvim",
     as = "catppuccin",
