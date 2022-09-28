@@ -26,4 +26,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Make Java applications work in XMonad
 export _JAVA_AWT_WM_NONREPARENTING=1 
 
+# Android development
+export ANDROID_SDK_ROOT=/home/stephan/Android/Sdk/
+
 if [ -e /home/stephan/.nix-profile/etc/profile.d/nix.sh ]; then . /home/stephan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
