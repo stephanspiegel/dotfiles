@@ -75,7 +75,7 @@ end
 local pmd = {
     name = 'pmd-apex',
     method = methods.DIAGNOSTICS,
-    filetypes = {'apex', 'apexcode', 'apex-anon'},
+    filetypes = {'apex', 'apexcode', 'apex-anon', 'visualforce'},
     generator = helpers.generator_factory({
         args = function(params) return build_args(params.root) end,
         check_exit_code = {0,4},
