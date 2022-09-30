@@ -3,6 +3,7 @@ local namespace = 'stephanspiegel.'
 local modules =
 { 'options'
 , 'mappings'
+, 'commands'
 , 'plugins'
 , 'colorscheme'
 , 'completion'
