@@ -171,9 +171,26 @@ local plugin_specifications = {
   -- snippets
   { "L3MON4D3/LuaSnip" }, -- snippet engine
   { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
-  -- lsp
-  { "neovim/nvim-lspconfig" }, -- enable LSP
-  { "williamboman/nvim-lsp-installer" }, -- simple to use language server installer
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                           LSP                            │
+  -- ╰──────────────────────────────────────────────────────────╯
+  { "williamboman/mason.nvim",  -- package manager for LSP servers, DAP servers, linters, and formatters
+    config = function()
+      require("mason").setup()
+    end,
+  },
+  { "williamboman/mason-lspconfig.nvim",
+    -- after = "mason.nvim",
+    config = function()
+      require("mason-lspconfig").setup()
+    end,
+  },
+  { "neovim/nvim-lspconfig",
+    -- after = "mason-lspconfig.nvim",
+    config = function()
+      require("stephanspiegel.lsp")
+    end,
+  },
   {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
