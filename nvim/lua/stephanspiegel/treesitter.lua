@@ -24,7 +24,7 @@ configs.setup {
     "query",
     "regex",
     "rust",
-    "soql",
+    -- "soql",
     "toml",
     "typescript",
     "vim",
