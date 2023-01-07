@@ -29,7 +29,7 @@ zstyle :compinstall filename '/home/stephan/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-#
+
 _comp_options+=(globdots) # include hidden files in completions
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
