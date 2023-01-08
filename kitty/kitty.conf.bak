@@ -503,7 +503,7 @@ scrollback_pager_history_size 1000
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
 
-hide_window_decorations yes
+# hide_window_decorations no
 
 #: Hide the window decorations (title-bar and window borders) with
 #: yes. On macOS, titlebar-only can be used to only hide the titlebar.
@@ -928,7 +928,7 @@ allow_remote_control yes
 #: Disable this if you want kitty top-level (OS) windows to not be
 #: resizable on macOS.
 
-macos_thicken_font 0.75
+# macos_thicken_font 0
 
 #: Draw an extra border around the font with the given width, to
 #: increase legibility at small font sizes. For example, a value of
@@ -1321,9 +1321,3 @@ macos_thicken_font 0.75
 #: }}}
 
 # }}}
-
-
-# BEGIN_KITTY_THEME
-# Apprentice
-include current-theme.conf
-# END_KITTY_THEME

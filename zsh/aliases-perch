@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+alias sr='sfdx force:source:tracking:reset -p'
+alias ss='sfdx force:source:status'
+alias sph='sfdx force:source:push --ignorewarnings'
+alias spl='sfdx force:source:pull --forceoverwrite'
+alias sgduat='sfdx sgd:source:delta --from origin/dev-uat --to HEAD --output .;cat package/package.xml'
+alias sgdmain='sfdx sgd:source:delta --from origin/main --to HEAD --output .;cat package/package.xml'
+alias squash='git merge --squash'
+alias log='git log --pretty=oneline --abbrev-commit'
+
+alias backdeploy='git fetch && git rebase origin/main && fsp && git switch dev-stephan && git rebase origin/main && fstr && git switch -'

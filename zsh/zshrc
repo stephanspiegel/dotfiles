@@ -32,7 +32,15 @@ compinit
 #
 _comp_options+=(globdots) # include hidden files in completions
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+case "$OSTYPE" in
+  darwin*)
+    source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+  ;;
+  linux*)
+    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+  ;;
+esac
 
 source "$ZDOTDIR/aliases"
 
@@ -160,11 +168,20 @@ for km in viopp visual; do
   done
 done
 
-source /usr/share/fzf/completion.zsh    # use fzf completion
-source /usr/share/fzf/key-bindings.zsh  # use fzf completion key mappings
 
+case "$OSTYPE" in
+  darwin*)
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  ;;
+  linux*)
+    source /usr/share/fzf/completion.zsh    # use fzf completion
+    source /usr/share/fzf/key-bindings.zsh  # use fzf completion key mappings
+
+  ;;
+esac
 # sfdx autocomplete setup
 eval SFDX_AC_ZSH_SETUP_PATH=/home/stephan/.config/cache/sfdx/autocomplete/zsh_setup && test -f $SFDX_AC_ZSH_SETUP_PATH && source $SFDX_AC_ZSH_SETUP_PATH;
 
 # keychain for ssh
 # eval $(keychain --eval --quiet dd-wrt id_ed25519)
+

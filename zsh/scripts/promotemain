@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+function promotemain() {
+	git checkout main
+	git pull
+	git checkout -b promotion/$1-main
+	git pull origin $1
+	git push --set-upstream origin promotion/$1-main
+	sgdmain
+}
+
+promotemain $1
