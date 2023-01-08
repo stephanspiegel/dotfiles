@@ -7,6 +7,7 @@
 - clean: ['~']
 
 - link:
+    ~/.gitconfig: 
     ~/.config/keepassxc:
     ~/.config/kitty:
     ~/.config/nvim:
@@ -34,7 +35,7 @@
     ~/.config/mpv: mpv/
     ~/.config/systemd: systemd/
     ~/.fehbg: fehbg
-    ~/.gitconfig: gitconfigs/foxwhelp
+    ~/.config/.gitlocal: gitconfigs/foxwhelp
 
 - shell:
   - [git submodule update --init --recursive, Install submodules]
