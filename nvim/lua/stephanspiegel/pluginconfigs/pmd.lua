@@ -1,5 +1,6 @@
-local methods = require('null-ls.methods').internal
+local null_ls = require("null-ls")
 local helpers = require("null-ls.helpers")
+local utils = require("null-ls.utils")
 
 local pmd_command = 'pmd'
 
@@ -43,15 +44,21 @@ local get_rulesets = function(root_directory)
         vim.list_extend(ruleset_files, root_rulesets)
     end
     rulesets_by_root[root_directory] = table.concat(ruleset_files, ',')
-    return rulesets_by_root[root_directory]
+    local rulesets = rulesets_by_root[root_directory];
+    if rulesets == "" then
+        vim.notify('PMD: no ruleset found', vim.log.levels.WARN)
+        return
+    end
+    return rulesets
 end
 
 local using_legacy_pmd
 
 local build_args = function(root_directory)
     using_legacy_pmd = using_legacy_pmd or pmd_version_lessthan_6_41_0()
+    local ruleSets = get_rulesets(root_directory)
     local parameters = {
-        ['--rulesets'] = get_rulesets(root_directory),
+        ['--rulesets'] = ruleSets,
         ['--dir'] = root_directory,
         ['--cache'] = root_directory..'/.pmdCache',
         ['--format'] = 'json'
@@ -74,7 +81,7 @@ end
 
 local pmd = {
     name = 'pmd-apex',
-    method = methods.DIAGNOSTICS,
+    method = null_ls.methods.DIAGNOSTICS,
     filetypes = {'apex', 'apexcode', 'apex-anon', 'visualforce'},
     generator = helpers.generator_factory({
         args = function(params) return build_args(params.root) end,
@@ -83,6 +90,11 @@ local pmd = {
         format = 'json',
         ignore_stderr = true,
         multiple_files = true,
+        runtime_condition = helpers.cache.by_bufnr(function(params)
+            local root = utils.root_pattern('sfdx-project.json')(params.bufname)
+            local rulesets = get_rulesets(root)
+            return rulesets ~= nil
+        end),
         on_output = function(params)
             local diagnostics = {}
             for _, file_result in ipairs(params.output.files) do

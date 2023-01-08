@@ -151,6 +151,11 @@ local plugin_specifications = {
   },
   { "kmonad/kmonad-vim" },
   { "chrisbra/csv.vim" },
+  { "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
+  },
   {
     kraftwerk_path(),
     config = function()
@@ -332,7 +337,7 @@ local colorscheme_specifications = {
       })
     end,
   },
-  { "https://gitlab.com/protesilaos/tempus-themes-vim.git" },
+  { "https://gitlab.com/protesilaos/tempus-themes-vim" },
 }
 
 -- ├──────────────────────────────────────────────────────────┤

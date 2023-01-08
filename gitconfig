@@ -1,32 +1,23 @@
-[user]
-	email = sspiegel@perchenergy.com
-	name = Stephan Spiegel
-
+[include]
+    path = .config/.gitlocal
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [commit]
-	verbose = true
-
+    verbose = true
 [core]
-	pager = delta
-
+    pager = delta
 [interactive]
-	diffFilter = delta --color-only
-
+    diffFilter = delta --color-only --features=interactive
 [init]
-	defaultBranch = main
-
+    defaultBranch = main
 [delta]
     navigate = true    # use n and N to move between diff sections
     light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-	side-by-side = true
-
+    side-by-side = true
 [merge]
     conflictstyle = diff3
-
 [diff]
     colorMoved = default

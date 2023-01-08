@@ -1,22 +1,18 @@
 - defaults:
     link:
       relink: true
+      create: true
+      force: true
 
 - clean: ['~']
 
 - link:
-    ~/.config/awesome: awesomewm/
-    ~/.config/dijo: dijo/
-    ~/.config/keepassxc: keepassxc/
-    ~/.config/kmonad: kmonad/
-    ~/.config/mpv: mpv/
-    ~/.config/kitty: kitty/
-    ~/.config/nvim: nvim/
-    ~/.config/vifm: vifm/
-    ~/.config/systemd: systemd/
-    ~/.config/wal: wal/
-    ~/.fehbg: fehbg
-    ~/.gitconfig: gitconfig
+    ~/.gitconfig: 
+    ~/.config/keepassxc:
+    ~/.config/kitty:
+    ~/.config/nvim:
+    ~/.config/vifm:
+    ~/.config/wal:
     ~/.p10k.zsh: zsh/p10k.zsh
     ~/.zshenv: zsh/zshenv
     ~/.config/zsh: 
@@ -26,6 +22,20 @@
         - zsh/zshenv
         - zsh/zshrc
     ~/.config/zsh/.zshrc: zsh/zshrc
+    ~/.config/lazygit/config.yml: lazygit/config.yml
+
+# foxwhelp specific links
+- defaults:
+    link:
+      if: '[ "$(hostname)" = "foxwhelp" ]'
+- link:
+    ~/.config/awesome: awesomewm/
+    ~/.config/dijo: dijo/
+    ~/.config/kmonad: kmonad/
+    ~/.config/mpv: mpv/
+    ~/.config/systemd: systemd/
+    ~/.fehbg: fehbg
+    ~/.config/.gitlocal: gitconfigs/foxwhelp
 
 - shell:
   - [git submodule update --init --recursive, Install submodules]

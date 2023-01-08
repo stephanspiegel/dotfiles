@@ -13,7 +13,8 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup")
+local apps = require('applications')
+local quake = require'util/quake'
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -44,11 +45,6 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("/home/stephan/.config/awesome/theme.lua")
 
--- This is used later as the default terminal and editor to run.
-terminal = "kitty"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
-
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -78,29 +74,10 @@ awful.layout.layouts = {
 -- }}}
 
 -- {{{ Menu
--- Create a launcher widget and a main menu
-myawesomemenu = {
-    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-    { "manual", terminal .. " -e man awesome" },
-    { "edit config", editor_cmd .. " " .. awesome.conffile },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end },
-}
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-    { "open terminal", terminal }
-}
-})
-
--- mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
---     menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = apps.terminal -- Set the terminal for applications that require it
 -- }}}
-
--- Keyboard map indicator and switcher
--- mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -192,6 +169,9 @@ awful.screen.connect_for_each_screen(function(screen)
 
     -- Create the wibox
     screen.wibar = awful.wibar({ position = "top", screen = screen })
+
+    -- Quake-style drop-down terminal
+    screen.quake = quake({ app = apps.terminal, argname = "--title %s", extra = "--class QuakeDD", visible = true, height = 0.9, screen = screen })
 
     -- Add widgets to the wibox
     screen.wibar:setup {

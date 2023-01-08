@@ -3,6 +3,8 @@ local awful = require("awful")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local mod = require'bindings.mod'
+local apps = require'applications'
+
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
@@ -55,8 +57,10 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
-    awful.key({ mod.super, mod.shift }, "Return", function () awful.spawn(terminal) end,
+    awful.key({ mod.super, mod.shift }, "Return", function () awful.spawn(apps.terminal) end,
         {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end, 
+        {description = "dropdown terminal", group = "launcher"}),
     awful.key({ mod.super, mod.ctrl }, "r", awesome.restart,
         {description = "reload awesome", group = "awesome"}),
     awful.key({ mod.super, mod.shift }, "q", awesome.quit,
@@ -106,7 +110,7 @@ globalkeys = gears.table.join(
         end,
         {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+    awful.key({ modkey }, "p", function() awful.spawn.with_shell(apps.launcher) end,
         {description = "show the menubar", group = "launcher"}),
     awful.key({ modkey }, "s", function() awful.spawn("escrotum -Cs") end,
         {description = "take a screenshot", group = "launcher"})

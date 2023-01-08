@@ -1,4 +1,5 @@
 local maputil = require('stephanspiegel.maputil')
+local kraftwerk = require('kraftwerk')
 
 maputil.nmap_all(
   {
@@ -12,3 +13,12 @@ maputil.vmap_all(
     {'gee', ":'<,'>ForceApexExecute<CR>"}
   }
 )
+
+local function callSetup()
+  print('calling setup from dotfiles')
+  -- kraftwerk.setup {
+  --   sfdx_executable = 'ls'
+  -- }
+end
+
+callSetup()
