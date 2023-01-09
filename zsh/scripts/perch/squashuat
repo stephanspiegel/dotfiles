@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+function squashuat() {
+	git fetch
+	git switch $1
+	git pull
+	git switch dev-uat
+	git pull
+	git merge --squash $1
+	git commit -m "Merge $1 into uat"
+	git push
+	git push origin --delete $1
+	open 'https://jenkins.infra.perch-labs.net/job/Community%20Solar%20Engineering/job/SMP/job/dev-uat/'
+}
+
+squashuat $1

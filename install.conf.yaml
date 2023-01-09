@@ -21,6 +21,8 @@
       exclude: 
         - zsh/zshenv
         - zsh/zshrc
+        - zsh/scripts/foxwhelp
+        - zsh/scripts/perch
     ~/.config/zsh/.zshrc: zsh/zshrc
     ~/.config/lazygit/config.yml: lazygit/config.yml
 
@@ -36,6 +38,18 @@
     ~/.config/systemd: systemd/
     ~/.fehbg: fehbg
     ~/.config/.gitlocal: gitconfigs/foxwhelp
+    ~/.config/zsh/scripts/:
+      path: zsh/scripts/foxwhelp/*
+      glob: true
+
+# perch specific links
+- defaults:
+    link:
+      if: '[ "$(hostname)" = "Sams-MBP.maine.rr.com" ]'
+- link:
+    ~/.config/zsh/scripts/: 
+      path: zsh/scripts/perch/*
+      glob: true
 
 - shell:
   - [git submodule update --init --recursive, Install submodules]

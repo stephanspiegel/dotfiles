@@ -1,12 +1,1 @@
-#!/usr/bin/env bash
-
-function main2uat() {
-    git switch dev-uat
-    git pull --rebase origin
-    git pull origin main
-    git push
-    git switch -
-    open 'https://jenkins.infra.perch-labs.net/job/Community%20Solar%20Engineering/job/SMP/job/dev-uat/'
-}
-
-main2uat
+/Users/stephanspiegel/dotfiles/zsh/scripts/perch/main2uat

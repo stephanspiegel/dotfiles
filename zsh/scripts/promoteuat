@@ -1,12 +1,1 @@
-#!/usr/bin/env bash
-
-function promoteuat() {
-	git checkout dev-uat
-	git pull
-	git checkout -b promotion/$1-uat
-	git pull origin $1
-	git push --set-upstream origin promotion/$1-uat
-	sgduat
-}
-
-promoteuat $1
+/Users/stephanspiegel/dotfiles/zsh/scripts/perch/promoteuat
