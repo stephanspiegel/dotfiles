@@ -10,6 +10,11 @@
     ~/.gitconfig: 
     ~/.config/keepassxc:
     ~/.config/kitty:
+      path: kitty/*
+      glob: true
+      exclude:
+        - kitty/kitty.perch.local.conf
+        - kitty/kitty.foxwhelp.local.conf
     ~/.config/nvim:
     ~/.config/vifm:
     ~/.config/wal:
@@ -41,6 +46,7 @@
     ~/.config/zsh/scripts/:
       path: zsh/scripts/foxwhelp/*
       glob: true
+    ~/.config/kitty/kitty.local.conf: kitty/kitty.foxwhelp.local.conf
 
 # perch specific links
 - defaults:
@@ -50,6 +56,7 @@
     ~/.config/zsh/scripts/: 
       path: zsh/scripts/perch/*
       glob: true
+    ~/.config/kitty/kitty.local.conf: kitty/kitty.perch.local.conf
 
 - shell:
   - [git submodule update --init --recursive, Install submodules]
