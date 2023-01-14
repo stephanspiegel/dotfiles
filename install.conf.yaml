@@ -26,8 +26,8 @@
       exclude: 
         - zsh/zshenv
         - zsh/zshrc
-        - zsh/scripts/foxwhelp
-        - zsh/scripts/perch
+        - zsh/foxwhelp*
+        - zsh/perch*
     ~/.config/zsh/.zshrc: zsh/zshrc
     ~/.config/lazygit/config.yml: lazygit/config.yml
 

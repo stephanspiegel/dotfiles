@@ -28,6 +28,7 @@ end
 
 -- Cache the rulesets to use by project root
 local rulesets_by_root = {}
+
 local get_rulesets = function(root_directory)
     local roots = vim.tbl_keys(rulesets_by_root)
     if vim.tbl_contains(roots, root_directory) then
