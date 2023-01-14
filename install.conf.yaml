@@ -43,9 +43,6 @@
     ~/.config/systemd: systemd/
     ~/.fehbg: fehbg
     ~/.config/.gitlocal: gitconfigs/foxwhelp
-    ~/.config/zsh/scripts/:
-      path: zsh/scripts/foxwhelp/*
-      glob: true
     ~/.config/kitty/kitty.local.conf: kitty/kitty.foxwhelp.local.conf
 
 # perch specific links
@@ -53,9 +50,7 @@
     link:
       if: '[ "$(hostname)" = "Sams-MBP.maine.rr.com" ]'
 - link:
-    ~/.config/zsh/scripts/: 
-      path: zsh/scripts/perch/*
-      glob: true
+    ~/.config/.gitlocal: gitconfigs/perch
     ~/.config/kitty/kitty.local.conf: kitty/kitty.perch.local.conf
 
 - shell:

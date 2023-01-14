@@ -97,6 +97,10 @@ zinit light aperezdc/zsh-fzy
 
 # autoload scripts
 fpath=( ~/dotfiles/zsh/scripts "${fpath[@]}" )
+case $(hostname) in
+  Sams-MacBook-Pro*) fpath=( ~/dotfiles/zsh/scripts/perch "${fpath[@]}" ) ;;
+  foxwhelp) fpath=( ~/dotfiles/zsh/scripts/foxwhelp "${fpath[@]}" ) ;;
+esac
 autoload -Uz $fpath[1]/*(.:t)
 
 # Allow user-level install for `npm -g` to avoid having to sudo

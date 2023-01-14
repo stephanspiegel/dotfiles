@@ -23,15 +23,16 @@ alias orgs="sfdx force:org:list --json | jq '.result.scratchOrgs|map({(.instance
 alias rat=$'sfdx force:apex:test:run --wait=25 --testlevel=RunAllTestsInOrg --resultformat=json | jq \'{outcome: .result.summary.outcome, failing: .result.summary.failing, failed_tests: [(.result.tests[]|select(.Outcome == "Pass"|not))|{FullName, Message, StackTrace, Outcome}] }\''
 
 #git
-alias gby=gitcopybranchname.sh
+alias gbsc='git branch --show-current'
+alias gby="gbsc | tr -d '\n' | pbcopy"
 alias lg=lazygit
+alias gcoi='git branch --all --sort=-committerdate | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git checkout'
 
 eval $(thefuck --alias)
 
 case $(hostname) in
-  (foxwhelp) source "$ZDOTDIR/aliases-foxwhelp";;
-  (sspiegel) source "$ZDOTDIR/aliases-zipari";;
-  (Sams-MBP.maine.rr.com) source "$ZDOTDIR/aliases-perch";;
+  foxwhelp) source "$ZDOTDIR/aliases-foxwhelp";;
+  Sams-MacBook-Pro*) source "$ZDOTDIR/aliases-perch";;
 esac
 
 # timewarrior
@@ -41,4 +42,4 @@ alias t=timew
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 # add more aliases
-alias realias="vim ~/dotfiles/zsh/aliases"
+alias realias="nvim ~/dotfiles/zsh/aliases"
