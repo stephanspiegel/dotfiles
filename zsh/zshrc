@@ -32,7 +32,6 @@ compinit
 
 _comp_options+=(globdots) # include hidden files in completions
 
-
 case "$OSTYPE" in
   darwin*)
     source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
@@ -99,7 +98,7 @@ zinit light aperezdc/zsh-fzy
 fpath=( ~/dotfiles/zsh/scripts "${fpath[@]}" )
 case $(hostname) in
   Sams-MacBook-Pro*) fpath=( ~/dotfiles/zsh/scripts/perch "${fpath[@]}" ) ;;
-  foxwhelp) fpath=( ~/dotfiles/zsh/scripts/foxwhelp "${fpath[@]}" ) ;;
+  foxwhelp) fpath=( ~/dotfiles/zsh/foxwhelp-scripts "${fpath[@]}" ) ;;
 esac
 autoload -Uz $fpath[1]/*(.:t)
 
