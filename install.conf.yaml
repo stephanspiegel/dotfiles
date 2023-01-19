@@ -30,6 +30,7 @@
         - zsh/perch*
     ~/.config/zsh/.zshrc: zsh/zshrc
     ~/.config/lazygit/config.yml: lazygit/config.yml
+    ~/.config/btop:
 
 # foxwhelp specific links
 - defaults:
