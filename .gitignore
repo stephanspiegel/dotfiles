@@ -54,3 +54,6 @@ systemd/**/*.wants/*
 
 # Ignore hosts file, it contains auth tokens
 gh/hosts.yml
+
+# Ignore karabiner backups
+karabiner/automatic_backups/*
