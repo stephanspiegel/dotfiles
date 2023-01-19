@@ -32,7 +32,7 @@ eval $(thefuck --alias)
 
 case $(hostname) in
   foxwhelp) source "$ZDOTDIR/aliases-foxwhelp";;
-  Sams-MacBook-Pro*) source "$ZDOTDIR/aliases-perch";;
+  Sams*) source "$ZDOTDIR/aliases-perch";;
 esac
 
 # timewarrior
