@@ -51,3 +51,6 @@ nvim/plugin/
 
 # systemd auto-generated
 systemd/**/*.wants/*
+
+# Ignore hosts file, it contains auth tokens
+gh/hosts.yml
