@@ -55,6 +55,7 @@
     ~/.config/.gitlocal: gitconfigs/perch
     ~/.config/kitty/kitty.local.conf: kitty/kitty.perch.local.conf
     ~/.config/karabiner:
+    ~/.config/sketchybar:
 
 - shell:
   - [git submodule update --init --recursive, Install submodules]
