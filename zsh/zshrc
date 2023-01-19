@@ -49,9 +49,16 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # sfdx autocomplete setup
-SFDX_AC_ZSH_SETUP_PATH=/home/stephan/.cache/sfdx/autocomplete/zsh_setup \
-    && test -f $SFDX_AC_ZSH_SETUP_PATH \
-    && source $SFDX_AC_ZSH_SETUP_PATH;
+case "$OSTYPE" in
+  darwin*)
+    SFDX_AC_ZSH_SETUP_PATH=/Users/stephanspiegel/Library/Caches/sfdx/autocomplete/zsh_setup
+  ;;
+  linux*)
+    SFDX_AC_ZSH_SETUP_PATH=/home/stephan/.cache/sfdx/autocomplete/zsh_setup
+  ;;
+esac
+test -f $SFDX_AC_ZSH_SETUP_PATH \
+  && source $SFDX_AC_ZSH_SETUP_PATH;
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -97,7 +104,7 @@ zinit light aperezdc/zsh-fzy
 # autoload scripts
 fpath=( ~/dotfiles/zsh/scripts "${fpath[@]}" )
 case $(hostname) in
-  Sams-MacBook-Pro*) fpath=( ~/dotfiles/zsh/scripts/perch "${fpath[@]}" ) ;;
+  Sams*) fpath=( ~/dotfiles/zsh/perch-scripts "${fpath[@]}" ) ;;
   foxwhelp) fpath=( ~/dotfiles/zsh/foxwhelp-scripts "${fpath[@]}" ) ;;
 esac
 autoload -Uz $fpath[1]/*(.:t)
