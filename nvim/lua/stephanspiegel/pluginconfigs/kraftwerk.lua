@@ -15,7 +15,7 @@ maputil.vmap_all(
 )
 
 local function callSetup()
-  print('calling setup from dotfiles')
+  -- print('calling setup from dotfiles')
   -- kraftwerk.setup {
   --   sfdx_executable = 'ls'
   -- }
