@@ -48,18 +48,18 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-# sfdx autocomplete setup
+# sfdx/sf autocomplete setup
 case "$OSTYPE" in
   darwin*)
     SFDX_AC_ZSH_SETUP_PATH=/Users/stephanspiegel/Library/Caches/sfdx/autocomplete/zsh_setup
+    SF_AC_ZSH_SETUP_PATH=/Users/stephanspiegel/Library/Caches/sf/autocomplete/zsh_setup
   ;;
   linux*)
     SFDX_AC_ZSH_SETUP_PATH=/home/stephan/.cache/sfdx/autocomplete/zsh_setup
   ;;
 esac
-test -f $SFDX_AC_ZSH_SETUP_PATH \
-  && source $SFDX_AC_ZSH_SETUP_PATH;
-
+test -f $SFDX_AC_ZSH_SETUP_PATH && source $SFDX_AC_ZSH_SETUP_PATH;
+test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH;
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -103,6 +103,7 @@ zinit light aperezdc/zsh-fzy
 
 # autoload scripts
 fpath=( ~/dotfiles/zsh/scripts "${fpath[@]}" )
+autoload -Uz $fpath[1]/*(.:t)
 case $(hostname) in
   Sams*) fpath=( ~/dotfiles/zsh/perch-scripts "${fpath[@]}" ) ;;
   foxwhelp) fpath=( ~/dotfiles/zsh/foxwhelp-scripts "${fpath[@]}" ) ;;
@@ -189,9 +190,3 @@ case "$OSTYPE" in
 
   ;;
 esac
-# sfdx autocomplete setup
-eval SFDX_AC_ZSH_SETUP_PATH=/home/stephan/.config/cache/sfdx/autocomplete/zsh_setup && test -f $SFDX_AC_ZSH_SETUP_PATH && source $SFDX_AC_ZSH_SETUP_PATH;
-
-# keychain for ssh
-# eval $(keychain --eval --quiet dd-wrt id_ed25519)
-
