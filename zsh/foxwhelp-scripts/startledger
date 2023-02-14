@@ -19,13 +19,13 @@ function reportbudget() {
 
 function reportUsedBudget(){
     firstDayOfNextMonth=$(date -d "`date +%Y%m01` +1 month" +%Y-%m-%d)
-    ledger -f main.ledger --market balance budget --flat --no-total --balance-format '%A\t%T\n' --empty --end $firstDayOfNextMonth | sed 's/^Assets:Budget\t.*//'|sed 's/^Assets:Budget://' |sed '/AvailableNextMonth/d'|sed '/PortlandSweetery/d'|sed '/Unbudgeted/d'| sed 's/ USD$//' | sed 's/://' | sort
+    ledger -f main.ledger --market balance budget --flat --no-total --balance-format '%A\t%T\n' --empty --end $firstDayOfNextMonth | sed 's/^Assets:Budget\t.*//'|sed 's/^Assets:Budget://' |sed '/AvailableNextMonth/d'|sed '/PortlandSweetery/d'|sed '/Unbudgeted/d'| sed '/Jewelery/d' | sed 's/ USD$//' | sed 's/://' | sort
 }
 
 function reportInitialBudget(){
     firstDayOfCurrentMonth=$(date -d "`date +%Y%m01`" +%Y-%m-%d)
     secondDayOfCurrentMonth=$(date -d "`date +%Y%m02`" +%Y-%m-%d)
-    ledger -f main.ledger --market register --limit 'payee=~/Monthly Budget/' --flat --no-total --register-format '%A\t%t\n' --empty --begin $firstDayOfCurrentMonth --end $secondDayOfCurrentMonth | sed 's/^Assets:Budget\t.*//'|sed 's/^Assets:Budget://' |sed '/AvailableNextMonth/d'|sed '/PortlandSweetery/d'|sed '/Unbudgeted/d'| sed 's/ USD$//' | sed 's/://' | sort
+    ledger -f main.ledger --market register --limit 'payee=~/Monthly Budget/' --flat --no-total --register-format '%A\t%t\n' --empty --begin $firstDayOfCurrentMonth --end $secondDayOfCurrentMonth | sed 's/^Assets:Budget\t.*//'|sed 's/^Assets:Budget://' |sed '/AvailableNextMonth/d'|sed '/PortlandSweetery/d'|sed '/Unbudgeted/d'| sed '/Jewelery/d' | sed 's/ USD$//' | sed 's/://' | sort
 }
 
 function ensureLedgerDateOrder(){
