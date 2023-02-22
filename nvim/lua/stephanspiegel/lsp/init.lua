@@ -44,10 +44,10 @@ local lsp_flags = {
     debounce_text_changes = 150,
 }
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
     on_attach = on_attach,
     flags = lsp_flags,
-    settings = require("stephanspiegel.lsp.settings.sumneko_lua")
+    settings = require("stephanspiegel.lsp.settings.lua_ls")
 }
 
 lspconfig.apex_ls.setup {
