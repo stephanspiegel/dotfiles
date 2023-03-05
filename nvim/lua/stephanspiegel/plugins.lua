@@ -210,6 +210,34 @@ local plugin_specifications = {
     end,
     requires = { "nvim-lua/plenary.nvim" },
   },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("stephanspiegel.pluginconfigs.nvim-dap")
+    end,
+    requires = {
+      "theHamsta/nvim-dap-virtual-text",
+      "rcarriga/nvim-dap-ui",
+      "nvim-telescope/telescope-dap.nvim",
+    }
+  },
+  {
+    "jbyuki/one-small-step-for-vimkind",
+    config = function()
+      local dap = require"dap"
+      dap.configurations.lua = {
+        {
+          type = 'nlua',
+          request = 'attach',
+          name = "Attach to running Neovim instance",
+        }
+      }
+      dap.adapters.nlua = function(callback, config)
+        callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
+      end
+    end,
+    requires = { "mfussenegger/nvim-dap" }
+  },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                        Telescope                         │
   -- ╰──────────────────────────────────────────────────────────╯

@@ -65,3 +65,5 @@ maputil.nmap_all({
 if vim.fn.has("unix") == 1 then
 	telescope.load_extension("fzf")
 end
+
+telescope.load_extension("dap")
