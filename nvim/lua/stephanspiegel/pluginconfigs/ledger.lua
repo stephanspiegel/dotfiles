@@ -7,6 +7,7 @@ vim.g.ledger_align_at = 60
 vim.g.ledger_bin = '/usr/bin/ledger'
 vim.g.ledger_main = '~/ledger/personal/main.ledger'
 vim.g.ledger_extra_options = ' --pedantic --explicit --check-payees'
+vim.g.ledger_is_hledger = false
 
 local maputil = require('stephanspiegel.maputil')
 maputil.nmap('<leader>c', ":call ledger#transaction_state_toggle(line('.'), ' *')<CR>")
