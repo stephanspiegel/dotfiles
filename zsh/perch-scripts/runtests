@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Runs Salesforce Apex unit tests for classes that have changed in the current branch compared to a given 
+# branch. If no branch is provided, the default branch used is "dev-uat". 
+#
+# The script retrieves the list of changed class files and extracts the names of any test classes to be run. 
+# It also includes any changed unit test classes. Finally, it runs `sfdx apex run test` to run all found
+# test classes
+
+function runtests(){
+  # Check if branch parameter was provided, set to dev-uat if not
+  if [ -z "$1" ]; then
+    set -- "dev-uat"
+  fi
+
+  # Define the command to run apex tests
+  APEX_CMD="sfdx apex run test --wait 10 --test-level RunSpecifiedTests --class-names"
+
+  # Get list of changed classes in current branch compared to given branch
+  CHANGED_CLASSES=$(git diff --name-only --diff-filter=ACMRT "$1" | grep '\.cls$')
+
+  # Create an array to hold the test class names without duplicates
+  declare -a TEST_CLASSES
+
+  # Loop through each changed class and extract test class names
+  for CLASS_FILE in $CHANGED_CLASSES
+  do
+    # Check if the class is a test class
+    if grep -q "@IsTest" "$CLASS_FILE"; then
+      TEST_CLASSES+=($(basename "$CLASS_FILE" .cls))  # add the test class name
+    fi
+
+    # Note: sed 's///i' may not work on MacOs if GNU sed isn't installed
+    TESTED_BY=$(grep '^[ \t*]*Tested By:\s*' -i "$CLASS_FILE" | sed 's/^[ \t*]*Tested By:\s*//i')
+    if [ -n "$TESTED_BY" ]; then  # check if tests were specified
+      # Add each specified test class to the array, eliminating duplicates
+      for TEST_CLASS in $(echo "$TESTED_BY" | tr ',' ' ')
+      do
+        if [[ ! " ${TEST_CLASSES[@]} " =~ " ${TEST_CLASS} " ]]; then
+          TEST_CLASSES+=("$TEST_CLASS")
+        fi
+      done
+    fi
+  done
+
+  # Combine all test classes into a comma-separated list
+  TEST_CLASSES_LIST=$(IFS=,; echo "${TEST_CLASSES[*]}")
+
+  # Check if there are any tests to run
+  if [ -z "$TEST_CLASSES_LIST" ]; then
+    echo "No tests specified in changed files."
+    exit 0
+  fi
+
+  # Run apex tests with the complete list of test classes
+  echo "Running tests for classes: $TEST_CLASSES_LIST"
+  $APEX_CMD "$TEST_CLASSES_LIST"
+}
+
+runtests "$1"
