@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+function rungpt(){
+
+    # Get the current directory
+    original_dir=$(pwd)
+
+    # Change directory to the specified directory
+    cd ~/projects/third-party/chatgpt-cli || exit 1
+
+    # Run the Python command
+    python3 chatgpt.py "$@"
+
+    # Change directory back to the original directory
+    cd "$original_dir" || exit 1
+}
+
+rungpt "$@"
