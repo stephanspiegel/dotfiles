@@ -106,7 +106,7 @@ zinit light aperezdc/zsh-fzy
 fpath=( ~/dotfiles/zsh/scripts "${fpath[@]}" )
 autoload -Uz $fpath[1]/*(.:t)
 case $(hostname) in
-  Sams*) fpath=( ~/dotfiles/zsh/perch-scripts "${fpath[@]}" ) ;;
+  MBP-sspiegel*) fpath=( ~/dotfiles/zsh/perch-scripts "${fpath[@]}" ) ;;
   foxwhelp) fpath=( ~/dotfiles/zsh/foxwhelp-scripts "${fpath[@]}" ) ;;
 esac
 autoload -Uz $fpath[1]/*(.:t)
