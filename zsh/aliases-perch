@@ -11,5 +11,7 @@ alias log='git log --pretty=oneline --abbrev-commit'
 
 alias backdeploy='git fetch && git rebase origin/main && fsp && git switch dev-stephan && git rebase origin/main && fstr && git switch -'
 
-alias headseton='blueutil --connect "Soundcore Life Q20+"'
-alias headsetoff='blueutil --disconnect "Soundcore Life Q20+"'
+alias headseton='blueutil --connect 95-05-bb-22-82-e7'
+alias headsetoff='blueutil --disconnect 95-05-bb-22-82-e7'
+
+alias gpt='rungpt'
