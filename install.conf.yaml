@@ -32,6 +32,7 @@
     ~/.config/lazygit/config.yml: lazygit/config.yml
     ~/.config/btop:
     ~/.config/gh:
+    ~/.config/gh-dash:
 
 # foxwhelp specific links
 - defaults:
@@ -50,13 +51,14 @@
 # perch specific links
 - defaults:
     link:
-      if: '[ "$(hostname)" = "Sams-MBP.maine.rr.com" ]'
+      if: '[ "$(hostname)" = Stephens-MBP* ]'
 - link:
     ~/.config/.gitlocal: gitconfigs/perch
     ~/.config/kitty/kitty.local.conf: kitty/kitty.perch.local.conf
     ~/.config/karabiner:
     ~/.config/sketchybar:
     ~/.config/yabai:
+    ~/.hammerspoon: hammerspoon/
 
 - shell:
   - [git submodule update --init --recursive, Install submodules]
