@@ -2,6 +2,7 @@
 
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
+alias yr='yabai -m rule --add'
 
 # global settings
 yabai -m config                                 \
@@ -39,4 +40,6 @@ yabai -m config                                 \
     mouse_drop_action            swap           \
     external_bar                 all:30:0
 
-echo "yabai configuration loaded.."
+yr app='Microsoft Teams' space=8
+
+echo "yabai configuration loaded!"
