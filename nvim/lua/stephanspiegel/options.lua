@@ -1,6 +1,6 @@
 local options =
 { backup = false                           -- creates a backup file
-, clipboard = 'unnamedplus'                -- allows neovim to access the system clipboard
+-- , clipboard = 'unnamedplus'                -- allows neovim to access the system clipboard
 , cmdheight = 2                            -- more space in the neovim command line for displaying messages
 , colorcolumn = '120'                        -- highlight column 120 to keep lines short(er)
 , completeopt = { 'menuone', 'noselect' }  -- mostly just for cmp
@@ -30,7 +30,7 @@ local options =
 , number = true                            -- set numbered lines
 , numberwidth = 4                          -- set number column width to 2 {default 4}
 , pumheight = 10                           -- pop up menu height
-, relativenumber = false                   -- set relative numbered lines
+, relativenumber = true                    -- set relative numbered lines
 , scrolloff = 0                            -- Minimal number of screen lines to keep above and below the cursor.
 , shiftwidth = 4                           -- the number of spaces inserted for each indentation
 , showmode = false                         -- we don't need to see things like -- INSERT -- anymore
