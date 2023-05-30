@@ -26,34 +26,37 @@ function runtests(){
   do
     # Check if the class is a test class
     if grep -q "@IsTest" "$CLASS_FILE"; then
-      TEST_CLASSES+=($(basename "$CLASS_FILE" .cls))  # add the test class name
+      TEST_CLASSES+=("$(basename "$CLASS_FILE" .cls)")  # add the test class name
     fi
 
     # Note: sed 's///i' may not work on MacOs if GNU sed isn't installed
     TESTED_BY=$(grep '^[ \t*]*Tested By:\s*' -i "$CLASS_FILE" | sed 's/^[ \t*]*Tested By:\s*//i')
     if [ -n "$TESTED_BY" ]; then  # check if tests were specified
-      # Add each specified test class to the array, eliminating duplicates
       for TEST_CLASS in $(echo "$TESTED_BY" | tr ',' ' ')
       do
-        if [[ ! " ${TEST_CLASSES[@]} " =~ " ${TEST_CLASS} " ]]; then
           TEST_CLASSES+=("$TEST_CLASS")
-        fi
       done
     fi
   done
 
+  # Sort and remove duplicates
+  # read -r UNIQUE_TEST_CLASSES <<< "$(sort -u <<<"${TEST_CLASSES[*]}")"
   # Combine all test classes into a comma-separated list
-  TEST_CLASSES_LIST=$(IFS=,; echo "${TEST_CLASSES[*]}")
+  # readarray -t TEST_CLASSES_LIST <<< echo "$UNIQUE_TEST_CLASSES"; IFS=','; echo "${UNIQUE_TEST_CLASSES[*]}"
+  # printf -v TEST_CLASSES_LIST '%s,' "${UNIQUE_TEST_CLASSES[@]}"
+  # TEST_CLASSES_LIST=$(IFS=,; echo "${UNIQUE_TEST_CLASSES[*]}")
+  read -r UNIQUE_TEST_CLASSES <<< "$(for TEST_CLASS in "${TEST_CLASSES[@]}"; do echo "${TEST_CLASS}"; done | sort -u | tr '\n' ' ')"
+  echo "${UNIQUE_TEST_CLASSES[*]}"
 
   # Check if there are any tests to run
-  if [ -z "$TEST_CLASSES_LIST" ]; then
+  if [ -z "$UNIQUE_TEST_CLASSES" ]; then
     echo "No tests specified in changed files."
     exit 0
   fi
 
   # Run apex tests with the complete list of test classes
-  echo "Running tests for classes: $TEST_CLASSES_LIST"
-  $APEX_CMD "$TEST_CLASSES_LIST"
+  echo "Running tests for classes: $UNIQUE_TEST_CLASSES"
+  $APEX_CMD "$(echo "$UNIQUE_TEST_CLASSES" | tr ' ', ',')"
 }
 
 runtests "$1"
