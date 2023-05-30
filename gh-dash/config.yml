@@ -8,6 +8,8 @@ prSections:
   filters: is:open review-requested:@me
 - title: Involved
   filters: is:open involves:@me -author:@me
+- title: Perch Open PRs
+  filters: is:open org:BlueWaveFinanceGroup
 issuesSections:
 - title: My Issues
   filters: is:open author:@me
@@ -44,6 +46,7 @@ defaults:
   refetchIntervalMinutes: 30
 keybindings:
   prs: []
-repoPaths: {}
+repoPaths: # configure where to locate repos when checking out PRs
+  BlueWaveFinanceGroup/SMP: ~/projects/SMP-worktrees/pr
 pager:
   diff: delta
