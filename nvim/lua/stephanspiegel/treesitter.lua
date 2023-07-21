@@ -82,5 +82,4 @@ parser_config.soql = {
   filetype = "soql",
 }
 
-local ft_to_parser = require"nvim-treesitter.parsers".filetype_to_parsername
-ft_to_parser.soql = "soql"
+vim.treesitter.language.register('soql', 'soql')
