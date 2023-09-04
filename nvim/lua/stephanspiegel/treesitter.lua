@@ -10,7 +10,7 @@ configs.setup {
     "c_sharp",
     "css",
     "haskell",
-    "help",
+    "vimdoc",
     "html",
     "http",
     "javascript",
