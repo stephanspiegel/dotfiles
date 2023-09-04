@@ -14,7 +14,7 @@ end
 --                    Plugin Specifications
 -- ╘══════════════════════════════════════════════════════════╛
 local plugin_specifications = {
-  { "wbthomason/packer.nvim" }, -- Have packer manage itself
+  -- { "wbthomason/packer.nvim" }, -- Have packer manage itself
   { "nvim-lua/plenary.nvim" }, -- Useful lua functions used by lots of plugins
   { "psliwka/vim-smoothie" }, -- smooth scrolling
   { "tpope/vim-surround" }, -- surround with quotes, brackets, etc.
@@ -66,7 +66,7 @@ local plugin_specifications = {
   },
   {
     "sudormrfbin/cheatsheet.nvim", -- cheat sheets with telescope UI
-    requires = {
+    dependencies = {
       { "nvim-telescope/telescope.nvim" },
       { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
@@ -111,14 +111,14 @@ local plugin_specifications = {
   { "kyazdani42/nvim-web-devicons" },
   {
     "rcarriga/nvim-notify", -- notification popups
-    requires = { "nvim-telescope/telescope.nvim" },
+    dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("stephanspiegel.pluginconfigs.notify")
     end,
   },
   {
     "meznaric/conmenu", -- context menu
-    requires = {
+    dependencies = {
       "ThePrimeagen/git-worktree.nvim",
     },
     config = function()
@@ -127,14 +127,14 @@ local plugin_specifications = {
   },
   {
     "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    dependencies = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
       require("stephanspiegel.pluginconfigs.lualine")
     end,
   },
   {
     "startup-nvim/startup.nvim",
-    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     config = function()
       require("stephanspiegel.pluginconfigs.startup")
     end,
@@ -142,18 +142,11 @@ local plugin_specifications = {
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                 Languages and filetypes                  │
   -- ╰──────────────────────────────────────────────────────────╯
-  {
-    "ray-x/go.nvim",
-    requires = {
-      { "nvim-treesitter/nvim-treesitter" },
-      { "nvim-treesitter/nvim-treesitter-textobjects" },
-    },
-  },
   { "kmonad/kmonad-vim" },
   { "chrisbra/csv.vim" },
   { "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    build = "cd app && npm install",
+    init = function() vim.g.mkdp_filetypes = { "markdown" } end,
     ft = { "markdown" },
   },
   {
@@ -185,20 +178,18 @@ local plugin_specifications = {
     end,
   },
   { "williamboman/mason-lspconfig.nvim",
-    -- after = "mason.nvim",
     config = function()
       require("mason-lspconfig").setup()
     end,
   },
   { "neovim/nvim-lspconfig",
-    -- after = "mason-lspconfig.nvim",
     config = function()
       require("stephanspiegel.lsp")
     end,
   },
   {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
       require("stephanspiegel.pluginconfigs.trouble")
     end,
@@ -208,14 +199,14 @@ local plugin_specifications = {
     config = function()
       require("stephanspiegel.pluginconfigs.null-ls")
     end,
-    requires = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
     "mfussenegger/nvim-dap",
     config = function()
       require("stephanspiegel.pluginconfigs.nvim-dap")
     end,
-    requires = {
+    dependencies = {
       "theHamsta/nvim-dap-virtual-text",
       "rcarriga/nvim-dap-ui",
       "nvim-telescope/telescope-dap.nvim",
@@ -236,32 +227,40 @@ local plugin_specifications = {
         callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
       end
     end,
-    requires = { "mfussenegger/nvim-dap" }
+    dependencies = { "mfussenegger/nvim-dap" }
   },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                        Telescope                         │
   -- ╰──────────────────────────────────────────────────────────╯
   {
     "nvim-telescope/telescope.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "fzf"
+    },
     config = function()
       require("stephanspiegel.telescope")
     end,
   },
-  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+  { "nvim-telescope/telescope-fzf-native.nvim", 
+    build = "make",
+    name = "fzf"
+  },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                        Treesitter                        │
   -- ╰──────────────────────────────────────────────────────────╯
   {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    build = ":TSUpdate",
     config = function()
       require("stephanspiegel.treesitter")
     end,
   },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   { "p00f/nvim-ts-rainbow" }, -- highlight brackets in matching colors
-  { "nvim-treesitter/playground", run = ":TSInstall query" },
+  { "nvim-treesitter/playground",
+    build = ":TSInstall query"
+  },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                           git                            │
   -- ╰──────────────────────────────────────────────────────────╯
@@ -271,11 +270,11 @@ local plugin_specifications = {
     config = function()
       require("stephanspiegel.pluginconfigs.gitsigns")
     end,
-    requires = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
     "sindrets/diffview.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("stephanspiegel.pluginconfigs.diffview")
     end,
@@ -284,7 +283,7 @@ local plugin_specifications = {
   { 'rickhowe/diffchar.vim' }, -- show diff character by character
   {
     "ThePrimeagen/git-worktree.nvim", -- wrapper for git-worktrees
-    requires = "nvim-telescope/telescope.nvim",
+    dependencies = "nvim-telescope/telescope.nvim",
     config = function()
       require("telescope").load_extension("git_worktree")
       vim.cmd([[ command! WorktreeList lua require('telescope').extensions.git_worktree.git_worktrees() ]])
@@ -350,12 +349,14 @@ local colorscheme_specifications = {
   { "arcticicestudio/nord-vim" },
   {
     "catppuccin/nvim",
-    as = "catppuccin",
+    name = "catppuccin",
     config = function()
       require("catppuccin").setup({ colorscheme = "neon_latte" })
     end,
   },
-  { "embark-theme/vim", as = "embark" },
+  { "embark-theme/vim",
+    name = "embark"
+  },
   { "eddyekofo94/gruvbox-flat.nvim" },
   {
     "rose-pine/neovim",
@@ -373,44 +374,27 @@ local colorscheme_specifications = {
 local fn = vim.fn
 local cmd = vim.cmd
 
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({
+-- Automatically install lazy.nvim
+local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
     "git",
     "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
   })
-  print("Installing packer. Close and reopen Neovim...")
-  cmd([[packadd packer.nvim]])
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+vim.opt.rtp:prepend(lazypath)
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
+local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
   return
 end
 
--- Have packer use a popup window
-packer.init({
-  display = {
-    open_fn = function()
-      return require("packer.util").float({ border = "rounded" })
-    end,
-  },
-})
-
 vim.list_extend(plugin_specifications, colorscheme_specifications)
 local config_overrides = {}
-return packer.startup({ plugin_specifications, config_overrides })
+return  lazy.setup(plugin_specifications, config_overrides)
