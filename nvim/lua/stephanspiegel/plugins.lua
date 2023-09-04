@@ -1,20 +1,7 @@
--- ╭──────────────────────────────────────────────────────────╮
--- │                        Kraftwerk                         │
--- ╰──────────────────────────────────────────────────────────╯
-local kraftwerk_path = function()
-  local project_path = "~/Projects/vim/kraftwerk.nvim"
-  if vim.fn.isdirectory(vim.fn.expand(project_path)) == 0 then
-    return "stephanspiegel/kraftwerk.nvim"
-  else
-    return project_path
-  end
-end
-
 -- ╒══════════════════════════════════════════════════════════╕
 --                    Plugin Specifications
 -- ╘══════════════════════════════════════════════════════════╛
 local plugin_specifications = {
-  -- { "wbthomason/packer.nvim" }, -- Have packer manage itself
   { "nvim-lua/plenary.nvim" }, -- Useful lua functions used by lots of plugins
   { "psliwka/vim-smoothie" }, -- smooth scrolling
   { "tpope/vim-surround" }, -- surround with quotes, brackets, etc.
@@ -149,8 +136,12 @@ local plugin_specifications = {
     init = function() vim.g.mkdp_filetypes = { "markdown" } end,
     ft = { "markdown" },
   },
+-- ╭──────────────────────────────────────────────────────────╮
+-- │                        Kraftwerk                         │
+-- ╰──────────────────────────────────────────────────────────╯
+
   {
-    kraftwerk_path(),
+    dir =  "~/Projects/vim/kraftwerk.nvim",
     config = function()
       require("stephanspiegel.pluginconfigs.kraftwerk")
     end
