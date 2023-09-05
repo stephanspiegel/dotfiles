@@ -55,4 +55,8 @@ maputil.tmap_all
 , {"<C-j>", "<C-\\><C-N><C-w>j"}
 , {"<C-k>", "<C-\\><C-N><C-w>k"}
 , {"<C-l>", "<C-\\><C-N><C-w>l"}
+, {"<C-Up>", "<cmd>resize -2<CR>"}
+, {"<C-Down>", "<cmd>resize +2<CR>"}
+, {"<C-Left>", "<cmd>vertical resize -2<CR>"}
+, {"<C-Right>", "<cmd>vertical resize +2<CR>"}
 }
