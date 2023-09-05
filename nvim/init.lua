@@ -5,9 +5,7 @@ local modules =
 , 'mappings'
 , 'commands'
 , 'plugins'
-, 'colorscheme'
 , 'completion'
-, 'lsp'
 , 'title'
 }
 

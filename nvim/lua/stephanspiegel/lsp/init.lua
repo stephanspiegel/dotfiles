@@ -50,13 +50,13 @@ lspconfig.lua_ls.setup {
     settings = require("stephanspiegel.lsp.settings.lua_ls")
 }
 
-lspconfig.apex_ls.setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    apex_jar_path = vim.fn.stdpath("data")..'/mason/packages/apex-language-server/apex-jorje-lsp.jar',
-    apex_enable_semantic_errors = false, -- Whether to allow Apex Language Server to surface semantic errors
-    apex_enable_completion_statistics = false, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
-}
+-- lspconfig.apex_ls.setup {
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+--     apex_jar_path = vim.fn.stdpath("data")..'/mason/packages/apex-language-server/apex-jorje-lsp.jar',
+--     apex_enable_semantic_errors = false, -- Whether to allow Apex Language Server to surface semantic errors
+--     apex_enable_completion_statistics = false, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
+-- }
 
 lspconfig.jsonls.setup {
     on_attach = on_attach,

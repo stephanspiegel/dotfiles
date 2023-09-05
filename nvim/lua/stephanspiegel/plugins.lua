@@ -3,8 +3,14 @@
 -- ╘══════════════════════════════════════════════════════════╛
 local plugin_specifications = {
   { "nvim-lua/plenary.nvim" }, -- Useful lua functions used by lots of plugins
-  { "psliwka/vim-smoothie" }, -- smooth scrolling
-  { "tpope/vim-surround" }, -- surround with quotes, brackets, etc.
+  {
+    "psliwka/vim-smoothie", -- smooth scrolling
+    event = { "BufReadPost", "BufNewFile" },
+  },
+  {
+    "tpope/vim-surround", -- surround with quotes, brackets, etc.
+    event = { "BufReadPost", "BufNewFile" }
+  },
   { "fcpg/vim-spotlightify" }, -- Highlighted search results, improved
   { "tpope/vim-abolish" }, -- Search for, substitute, and abbreviate multiple variants of a word
   {
@@ -23,19 +29,25 @@ local plugin_specifications = {
         { "]L", "<Plug>(unimpaired-llast)zz", { silent = true } },
       })
     end,
+    event = { "BufReadPost", "BufNewFile" }
   },
-  { "tpope/vim-sleuth" }, -- automatically set tabstop
+  {
+    "tpope/vim-sleuth",
+    event = { "BufReadPost", "BufNewFile" },
+  }, -- automatically set tabstop
   {
     "windwp/nvim-autopairs",
     config = function()
       require("stephanspiegel.pluginconfigs.autopairs")
     end,
+    event = "InsertEnter",
   },
   {
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup()
     end,
+    event = { "BufReadPost", "BufNewFile" },
   },
   {
     "rmagatti/auto-session",
@@ -50,6 +62,7 @@ local plugin_specifications = {
         auto_session_suppress_dirs = nil,
       })
     end,
+    lazy = false
   },
   {
     "sudormrfbin/cheatsheet.nvim", -- cheat sheets with telescope UI
@@ -58,12 +71,20 @@ local plugin_specifications = {
       { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
     },
+    event = "VeryLazy",
   },
   { "lukas-reineke/indent-blankline.nvim" },
-  { "jremmen/vim-ripgrep" },
+  {
+    "jremmen/vim-ripgrep",
+    cmd = { 'Rg' }
+  },
   { "xiyaowong/nvim-transparent" },
-  { "chrisbra/Recover.vim" }, -- Add option `(C)ompare` when swapfile found
-  { "phaazon/mind.nvim",      -- tree-based note taking system
+  {
+    "chrisbra/Recover.vim", -- Add option `(C)ompare` when swapfile found
+    event = "SwapExists"
+  },
+  {
+    "phaazon/mind.nvim",      -- tree-based note taking system
     config = function()
       require("mind").setup()
     end
@@ -76,6 +97,9 @@ local plugin_specifications = {
     config = function()
       require("stephanspiegel.pluginconfigs.nvim-tree")
     end,
+    keys = {
+      {'<Leader>e', ':NvimTreeToggle<cr>', desc = 'Toggle NvimTree'}
+    }
   },
   { "ThePrimeagen/harpoon" },
   {
@@ -90,6 +114,7 @@ local plugin_specifications = {
       vim.g.vista_default_executive = "nvim_lsp"
       vim.g.vista_fzf_preview = { "right:50%" }
     end,
+    cmd = { "Vista" }
   },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                            UI                            │
@@ -121,17 +146,29 @@ local plugin_specifications = {
   },
   {
     "startup-nvim/startup.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
+      "ahmedkhalf/project.nvim"
+    },
     config = function()
       require("stephanspiegel.pluginconfigs.startup")
     end,
+    lazy = false
   },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                 Languages and filetypes                  │
   -- ╰──────────────────────────────────────────────────────────╯
-  { "kmonad/kmonad-vim" },
-  { "chrisbra/csv.vim" },
-  { "iamcco/markdown-preview.nvim",
+  {
+    "kmonad/kmonad-vim",
+    ft = { "kbd" }
+  },
+  {
+    "chrisbra/csv.vim",
+    ft = { "csv" }
+  },
+  { 
+    "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
     init = function() vim.g.mkdp_filetypes = { "markdown" } end,
     ft = { "markdown" },
@@ -149,15 +186,20 @@ local plugin_specifications = {
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                        Completion                        │
   -- ╰──────────────────────────────────────────────────────────╯
-  { "hrsh7th/nvim-cmp" }, -- The completion plugin
-  { "hrsh7th/cmp-buffer" }, -- buffer completions
-  { "hrsh7th/cmp-path" }, -- path completions
-  { "hrsh7th/cmp-cmdline" }, -- cmdline completions
-  { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
+  {
+    "hrsh7th/nvim-cmp",-- The completion plugin
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-buffer" , -- buffer completions
+      "hrsh7th/cmp-path" , -- path completions
+      "hrsh7th/cmp-cmdline" , -- cmdline completions
+      "hrsh7th/cmp-nvim-lsp" , -- lsp completions
+      "hrsh7th/cmp-nvim-lua" , -- source for neovim Lua API
+    }
+  },
   { "lukas-reineke/cmp-rg" }, -- ripgrep everything
-  { "hrsh7th/cmp-nvim-lsp" }, -- lsp completions
-  { "hrsh7th/cmp-nvim-lua" }, -- source for neovim Lua API
   -- snippets
+  { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
   { "L3MON4D3/LuaSnip" }, -- snippet engine
   { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
   -- ╭──────────────────────────────────────────────────────────╮
@@ -177,6 +219,7 @@ local plugin_specifications = {
     config = function()
       require("stephanspiegel.lsp")
     end,
+    event = "VeryLazy"
   },
   {
     "folke/trouble.nvim",
@@ -229,11 +272,13 @@ local plugin_specifications = {
       "nvim-lua/plenary.nvim",
       "fzf"
     },
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("stephanspiegel.telescope")
     end,
   },
-  { "nvim-telescope/telescope-fzf-native.nvim", 
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
     name = "fzf"
   },
@@ -246,6 +291,8 @@ local plugin_specifications = {
     config = function()
       require("stephanspiegel.treesitter")
     end,
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSUpdateSync" },
   },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   { "p00f/nvim-ts-rainbow" }, -- highlight brackets in matching colors
@@ -255,13 +302,32 @@ local plugin_specifications = {
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                           git                            │
   -- ╰──────────────────────────────────────────────────────────╯
-  { "tpope/vim-fugitive" },
+  {
+    "tpope/vim-fugitive",
+    cmd = {
+      "G",
+      "Git",
+      "Gdiffsplit",
+      "Gread",
+      "Gwrite",
+      "Ggrep",
+      "GMove",
+      "GDelete",
+      "GBrowse",
+      "GRemove",
+      "GRename",
+      "Glgrep",
+      "Gedit"
+    },
+    ft = "fugitive"
+  },
   {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("stephanspiegel.pluginconfigs.gitsigns")
     end,
     dependencies = { "nvim-lua/plenary.nvim" },
+    event = { "BufReadPost", "BufNewFile" },
   },
   {
     "sindrets/diffview.nvim",
@@ -269,9 +335,24 @@ local plugin_specifications = {
     config = function()
       require("stephanspiegel.pluginconfigs.diffview")
     end,
+    event = "BufRead"
   },
-  { 'rickhowe/spotdiff.vim' }, -- show diffs per selection
-  { 'rickhowe/diffchar.vim' }, -- show diff character by character
+  {
+    "rickhowe/spotdiff.vim", -- show diffs per selection
+    event = "BufRead"
+  },
+  {
+    "rickhowe/diffchar.vim", -- show diff character by character
+    event = "BufRead"
+  },
+  {
+    "f-person/git-blame.nvim",
+    event = "BufRead",
+    config = function()
+      vim.cmd "highlight default link gitblame SpecialComment"
+      require("gitblame").setup { enabled = false }
+    end,
+  },
   {
     "ThePrimeagen/git-worktree.nvim", -- wrapper for git-worktrees
     dependencies = "nvim-telescope/telescope.nvim",
@@ -314,7 +395,13 @@ local plugin_specifications = {
 --                     Theme Specifications
 -- ╘══════════════════════════════════════════════════════════╛
 local colorscheme_specifications = {
-  { "folke/tokyonight.nvim" },
+  { "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme tokyonight]])
+    end,
+  },
   { "junegunn/seoul256.vim" },
   { "mhartington/oceanic-next" },
   { "morhetz/gruvbox" },
@@ -387,5 +474,10 @@ if not status_ok then
 end
 
 vim.list_extend(plugin_specifications, colorscheme_specifications)
-local config_overrides = {}
+local config_overrides = {
+  defaults = {
+    lazy = true
+
+  }
+}
 return  lazy.setup(plugin_specifications, config_overrides)
