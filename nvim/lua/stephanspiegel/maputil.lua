@@ -10,40 +10,31 @@
 local default_opts = { noremap = true, silent = true }
 local terminal_opts = { silent = true }
 
-local function map(mode, shortcut, command, opts)
+local function map_mode(mode, opts)
     opts = opts or default_opts
-    vim.api.nvim_set_keymap(mode, shortcut, command, opts)
+    local function bind_mode(lhs, rhs, opts)
+        vim.keymap.set(mode, lhs, rhs, opts)
+    end
+    return bind_mode
 end
 
-local function nmap(shortcut, command, opts)
-    map('n', shortcut, command, opts)
-end
-
-local function imap(shortcut, command, opts)
-    map('i', shortcut, command, opts)
-end
-
-local function vmap(shortcut, command, opts)
-    map('v', shortcut, command, opts)
-end
-
-local function tmap(shortcut, command, opts)
-    opts = opts or terminal_opts
-    vim.api.nvim_set_keymap('t', shortcut, command, opts)
-end
+local nmap = map_mode('n')
+local imap = map_mode('i')
+local vmap = map_mode('v')
+local tmap = map_mode('t', terminal_opts)
 
 local function bind_all(bind_function)
     local function bind_keys(keybinds)
         for _, keybind in ipairs(keybinds) do
-            local shortcut, command, opts = unpack(keybind)
-            bind_function(shortcut, command, opts)
+            local lhs, rhs, opts = unpack(keybind)
+            bind_function(lhs, rhs, opts)
         end
     end
     return bind_keys
 end
 
 return {
-    map = map,
+    map = vim.keymap.set,
     imap = imap,
     nmap = nmap,
     vmap = vmap,

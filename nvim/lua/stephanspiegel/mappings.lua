@@ -27,7 +27,6 @@ maputil.nmap_all
 , {",cs" ,':let @+=expand("%")<CR>'} -- Copy short file name to clipboard
 , {",cl" ,':let @+=expand("%:p")<CR>'} -- Copy long file name to clipboard
 , {",ct" ,':let @+=expand("%:t")<CR>'} -- Copy file name without path to clipboard
-, {"<Leader>e", ":Lexplore 30<CR>"} -- Open file explorer
     -- Resize with arrows
 , {"<C-Up>", ":resize +2<CR>"}
 , {"<C-Down>", ":resize -2<CR>"}
@@ -45,7 +44,7 @@ maputil.imap_all
 
 -- Visual --
 maputil.vmap_all
-{ {"<", "<gv"} -- Stay in indent mode
+{ {"<", "<gv"} -- Stay in visual mode when indenting
 , {">", ">gv"}
 }
 
