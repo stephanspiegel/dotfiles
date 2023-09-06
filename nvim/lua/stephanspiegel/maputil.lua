@@ -18,11 +18,6 @@ local function map_mode(mode, opts)
     return bind_mode
 end
 
-local nmap = map_mode('n')
-local imap = map_mode('i')
-local vmap = map_mode('v')
-local tmap = map_mode('t', terminal_opts)
-
 local function bind_all(bind_function)
     local function bind_keys(keybinds)
         for _, keybind in ipairs(keybinds) do
@@ -33,14 +28,23 @@ local function bind_all(bind_function)
     return bind_keys
 end
 
+local function bind_all_mode(mode)
+    return bind_all(map_mode(mode))
+end
+
+local function tmap_all(lhs, rhs, opts)
+    opts = opts or terminal_opts
+    bind_all_mode(t, opts)
+end
+
 return {
     map = vim.keymap.set,
-    imap = imap,
-    nmap = nmap,
-    vmap = vmap,
-    tmap = tmap,
-    nmap_all = bind_all(nmap),
-    imap_all = bind_all(imap),
-    vmap_all = bind_all(vmap),
-    tmap_all = bind_all(tmap)
+    imap = map_mode('i'),
+    nmap = map_mode('n'),
+    vmap = map_mode('v'),
+    tmap = map_mode('t', terminal_opts),
+    nmap_all = bind_all_mode('n'),
+    imap_all = bind_all_mode('i'),
+    vmap_all = bind_all_mode('v'),
+    tmap_all = tmap_all
 }
