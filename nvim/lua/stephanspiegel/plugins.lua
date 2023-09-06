@@ -450,12 +450,11 @@ local colorscheme_specifications = {
 -- ├──────────────────────────────────────────────────────────┤
 
 local fn = vim.fn
-local cmd = vim.cmd
 
 -- Automatically install lazy.nvim
 local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
+  fn({
     "git",
     "clone",
     "--filter=blob:none",
@@ -480,4 +479,4 @@ local config_overrides = {
 
   }
 }
-return  lazy.setup(plugin_specifications, config_overrides)
+return lazy.setup(plugin_specifications, config_overrides)
