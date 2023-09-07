@@ -11,30 +11,34 @@ local plugin_specifications = {
     "tpope/vim-surround", -- surround with quotes, brackets, etc.
     event = { "BufReadPost", "BufNewFile" }
   },
-  { "fcpg/vim-spotlightify" }, -- Highlighted search results, improved
+  {
+    "fcpg/vim-spotlightify",
+    event = { "BufReadPost", "BufNewFile" },
+  }, -- Highlighted search results, improved
   { "tpope/vim-abolish" }, -- Search for, substitute, and abbreviate multiple variants of a word
   {
     "tpope/vim-unimpaired", -- Handy pairs of keymappings
     config = function()
       -- Make `[q` etc scroll to the middle
       -- need to explicitly pass `{silent=true}` because we don't want `{noremap=true}` from the defaults
+      local unimpaired_opts = { silent = true }
       require("stephanspiegel.maputil").nmap_all({
-        { "[q", "<Plug>(unimpaired-cprevious)zz", { silent = true } },
-        { "]q", "<Plug>(unimpaired-cnext)zz", { silent = true } },
-        { "[Q", "<Plug>(unimpaired-cfirst)zz", { silent = true } },
-        { "]Q", "<Plug>(unimpaired-clast)zz", { silent = true } },
-        { "[l", "<Plug>(unimpaired-lprevious)zz", { silent = true } },
-        { "]l", "<Plug>(unimpaired-lnext)zz", { silent = true } },
-        { "[L", "<Plug>(unimpaired-lfirst)zz", { silent = true } },
-        { "]L", "<Plug>(unimpaired-llast)zz", { silent = true } },
+        { "[q", "<Plug>(unimpaired-cprevious)zz", unimpaired_opts },
+        { "]q", "<Plug>(unimpaired-cnext)zz", unimpaired_opts },
+        { "[Q", "<Plug>(unimpaired-cfirst)zz", unimpaired_opts },
+        { "]Q", "<Plug>(unimpaired-clast)zz", unimpaired_opts },
+        { "[l", "<Plug>(unimpaired-lprevious)zz", unimpaired_opts },
+        { "]l", "<Plug>(unimpaired-lnext)zz", unimpaired_opts },
+        { "[L", "<Plug>(unimpaired-lfirst)zz", unimpaired_opts },
+        { "]L", "<Plug>(unimpaired-llast)zz", unimpaired_opts },
       })
     end,
     event = { "BufReadPost", "BufNewFile" }
   },
   {
-    "tpope/vim-sleuth",
+    "tpope/vim-sleuth", -- automatically set tabstop
     event = { "BufReadPost", "BufNewFile" },
-  }, -- automatically set tabstop
+  },
   {
     "windwp/nvim-autopairs",
     config = function()
@@ -73,12 +77,14 @@ local plugin_specifications = {
     },
     event = "VeryLazy",
   },
-  { "lukas-reineke/indent-blankline.nvim" },
+  { 
+    "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+  },
   {
     "jremmen/vim-ripgrep",
     cmd = { 'Rg' }
   },
-  { "xiyaowong/nvim-transparent" },
   {
     "chrisbra/Recover.vim", -- Add option `(C)ompare` when swapfile found
     event = "SwapExists"
@@ -104,6 +110,7 @@ local plugin_specifications = {
   { "ThePrimeagen/harpoon" },
   {
     "ahmedkhalf/project.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("stephanspiegel.pluginconfigs.projects")
     end,
@@ -127,6 +134,7 @@ local plugin_specifications = {
     config = function()
       require("stephanspiegel.pluginconfigs.notify")
     end,
+    lazy = false
   },
   {
     "meznaric/conmenu", -- context menu
@@ -143,6 +151,7 @@ local plugin_specifications = {
     config = function()
       require("stephanspiegel.pluginconfigs.lualine")
     end,
+    event = "VeryLazy"
   },
   {
     "startup-nvim/startup.nvim",
@@ -173,18 +182,6 @@ local plugin_specifications = {
     init = function() vim.g.mkdp_filetypes = { "markdown" } end,
     ft = { "markdown" },
   },
--- ╭──────────────────────────────────────────────────────────╮
--- │                        Kraftwerk                         │
--- ╰──────────────────────────────────────────────────────────╯
-
-  -- {
-  --   "stephanspiegel/kraftwerk.nvim",
-  --   dir = "~/Projects/vim/kraftwerk.nvim",
-  --   dev = false,
-  --   config = function()
-  --     require("stephanspiegel.pluginconfigs.kraftwerk")
-  --   end
-  -- },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                        Completion                        │
   -- ╰──────────────────────────────────────────────────────────╯
@@ -272,7 +269,9 @@ local plugin_specifications = {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "fzf"
+      "fzf",
+      "ahmedkhalf/project.nvim",
+      "tsakirist/telescope-lazy.nvim",
     },
     event = { "BufReadPost", "BufNewFile" },
     config = function()
@@ -363,6 +362,7 @@ local plugin_specifications = {
       vim.cmd([[ command! WorktreeList lua require('telescope').extensions.git_worktree.git_worktrees() ]])
       vim.cmd([[ command! WorktreeCreate lua require('telescope').extensions.git_worktree.create_git_worktree() ]])
     end,
+    event = "BufRead"
   },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                          Ledger                          │
@@ -374,12 +374,18 @@ local plugin_specifications = {
       require("stephanspiegel.pluginconfigs.ledger")
     end,
   },
-  { "rcaputo/vim-ledger_x" },
+  { 
+    "rcaputo/vim-ledger_x",
+    ft = "ledger"
+  },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                         Diagrams                         │
   -- ╰──────────────────────────────────────────────────────────╯
   {
     "jbyuki/venn.nvim", -- Diagrams in vim
+    keys = {
+      { "<leader>v" }
+    },
     config = function()
       require("stephanspiegel.pluginconfigs.venn")
     end,
@@ -389,8 +395,25 @@ local plugin_specifications = {
     config = function()
       vim.g.diagon_use_echo = 1 --- Use echo instead of replacing original text directly
     end,
+    cmd = "Diagon"
   },
-  { "LudoPinelli/comment-box.nvim" }, -- Draw boxes around comments
+  { 
+    "LudoPinelli/comment-box.nvim",
+    cmd = {
+      "CBllbox",
+      "CBlcbox",
+      "CBlrbox",
+      "CBclbox",
+      "CBccbox",
+      "CBcrbox",
+      "CBrlbox",
+      "CBrcbox",
+      "CBrrbox",
+      "CBalbox",
+      "CBacbox",
+      "CBarbox",
+    }
+  }, -- Draw boxes around comments
 }
 
 -- ╒══════════════════════════════════════════════════════════╕

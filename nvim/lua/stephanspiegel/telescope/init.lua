@@ -5,6 +5,8 @@ end
 
 local actions = require("telescope.actions")
 local maputil = require("stephanspiegel.maputil")
+local builtin = require('telescope.builtin')
+
 telescope.setup({
 	defaults = {
 		-- Default configuration for telescope goes here:
@@ -46,20 +48,34 @@ telescope.setup({
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 			-- the default case_mode is "smart_case"
 		},
+		lazy = {
+			-- Whether or not to show the icon in the first column
+			show_icon = true,
+			-- Mappings for the actions
+			mappings = {
+				open_in_browser = "<C-o>",
+				open_in_file_browser = "<M-b>",
+				open_in_find_files = "<C-f>",
+				open_in_live_grep = "<C-g>",
+				open_plugins_picker = "<C-b>", -- Works only after having called first another action
+				open_lazy_root_find_files = "<C-r>f",
+				open_lazy_root_live_grep = "<C-r>g",
+			},
+		}
 	},
 })
 maputil.nmap_all({
-	{ "<leader>p", "<cmd>lua require('telescope').extensions.projects()<cr>" },
-	{ "<leader>ff", "<cmd>lua require('telescope.builtin').find_files({no_ignore=true, hidden=true})<cr>" },
-	{ "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>" },
-	{ "<leader>b", "<cmd>lua require('telescope.builtin').buffers()<cr>" },
-	{ "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>" },
-	{ "<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>" },
-	{ "<leader>hc", "<cmd>lua require('telescope.builtin').command_history()<cr>" },
-	{ "<leader>hs", "<cmd>lua require('telescope.builtin').search_history()<cr>" },
-	{ "<leader>cs", "<cmd>lua require('telescope.builtin').colorscheme()<cr>" },
-	{ "<leader>rg", "<cmd>lua require('telescope.builtin').grep_string()<cr>" },
-	{ "<leader>gb", "<cmd>lua require('telescope.builtin').git_branches()<cr>" },
+	{ "<leader>p", require'telescope'.extensions.projects.projects },
+	{ "<leader>ff", function() builtin.find_files({no_ignore=true, hidden=true}) end },
+	{ "<leader>fg", builtin.live_grep },
+	{ "<leader>b", builtin.buffers },
+	{ "<leader>fh", builtin.help_tags },
+	{ "<leader>c", builtin.commands },
+	{ "<leader>hc", builtin.command_history },
+	{ "<leader>hs", builtin.search_history },
+	{ "<leader>cs", builtin.colorscheme },
+	{ "<leader>rg", builtin.grep_string },
+	{ "<leader>gb", builtin.git_branches },
 })
 
 if vim.fn.has("unix") == 1 then
@@ -67,3 +83,4 @@ if vim.fn.has("unix") == 1 then
 end
 
 telescope.load_extension("dap")
+telescope.load_extension("lazy")
