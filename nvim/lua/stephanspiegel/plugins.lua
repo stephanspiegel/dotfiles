@@ -1,9 +1,7 @@
-local fn = vim.fn
-
 -- Automatically install lazy.nvim
-local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  fn({
+  vim.fn.system({
     "git",
     "clone",
     "--filter=blob:none",
