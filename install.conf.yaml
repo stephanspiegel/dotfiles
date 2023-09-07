@@ -52,7 +52,7 @@
 # perch specific links
 - defaults:
     link:
-      if: '[ "$(hostname)" = Stephens-MBP* ]'
+      if: '[ "$(hostname)" = "MBP-sspiegel" ]'
 - link:
     ~/.config/.gitlocal: gitconfigs/perch
     ~/.config/kitty/kitty.local.conf: kitty/kitty.perch.local.conf
@@ -60,6 +60,7 @@
     ~/.config/sketchybar:
     ~/.config/yabai:
     ~/.hammerspoon: hammerspoon/
+    ~/.config/ideavim:
 
 - shell:
   - [git submodule update --init --recursive, Install submodules]
