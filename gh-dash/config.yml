@@ -8,8 +8,8 @@ prSections:
   filters: is:open review-requested:@me
 - title: Involved
   filters: is:open involves:@me -author:@me
-- title: Perch Open PRs
-  filters: is:open org:BlueWaveFinanceGroup
+- title: SMP Open PRs
+  filters: is:open repo:BlueWaveFinanceGroup/SMP
 issuesSections:
 - title: My Issues
   filters: is:open author:@me
