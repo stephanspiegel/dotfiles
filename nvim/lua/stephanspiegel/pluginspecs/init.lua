@@ -1,0 +1,456 @@
+-- ╒══════════════════════════════════════════════════════════╕
+--                    Plugin Specifications
+-- ╘══════════════════════════════════════════════════════════╛
+local plugin_specifications = {
+  { "nvim-lua/plenary.nvim" }, -- Useful lua functions used by lots of plugins
+  {
+    "psliwka/vim-smoothie", -- smooth scrolling
+    event = { "BufReadPost", "BufNewFile" },
+  },
+  {
+    "tpope/vim-surround", -- surround with quotes, brackets, etc.
+    event = { "BufReadPost", "BufNewFile" }
+  },
+  { "fcpg/vim-spotlightify" }, -- Highlighted search results, improved
+  { "tpope/vim-abolish" }, -- Search for, substitute, and abbreviate multiple variants of a word
+  {
+    "tpope/vim-unimpaired", -- Handy pairs of keymappings
+    config = function()
+      -- Make `[q` etc scroll to the middle
+      -- need to explicitly pass `{silent=true}` because we don't want `{noremap=true}` from the defaults
+      require("stephanspiegel.maputil").nmap_all({
+        { "[q", "<Plug>(unimpaired-cprevious)zz", { silent = true } },
+        { "]q", "<Plug>(unimpaired-cnext)zz", { silent = true } },
+        { "[Q", "<Plug>(unimpaired-cfirst)zz", { silent = true } },
+        { "]Q", "<Plug>(unimpaired-clast)zz", { silent = true } },
+        { "[l", "<Plug>(unimpaired-lprevious)zz", { silent = true } },
+        { "]l", "<Plug>(unimpaired-lnext)zz", { silent = true } },
+        { "[L", "<Plug>(unimpaired-lfirst)zz", { silent = true } },
+        { "]L", "<Plug>(unimpaired-llast)zz", { silent = true } },
+      })
+    end,
+    event = { "BufReadPost", "BufNewFile" }
+  },
+  {
+    "tpope/vim-sleuth",
+    event = { "BufReadPost", "BufNewFile" },
+  }, -- automatically set tabstop
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("stephanspiegel.pluginconfigs.autopairs")
+    end,
+    event = "InsertEnter",
+  },
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+    event = { "BufReadPost", "BufNewFile" },
+  },
+  {
+    "rmagatti/auto-session",
+    config = function()
+      require("auto-session").setup({
+        log_level = "info",
+        auto_session_enable_last_session = false,
+        auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
+        auto_session_enabled = true,
+        auto_save_enabled = nil,
+        auto_restore_enabled = false,
+        auto_session_suppress_dirs = nil,
+      })
+    end,
+    lazy = false
+  },
+  {
+    "sudormrfbin/cheatsheet.nvim", -- cheat sheets with telescope UI
+    dependencies = {
+      { "nvim-telescope/telescope.nvim" },
+      { "nvim-lua/popup.nvim" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    event = "VeryLazy",
+  },
+  { "lukas-reineke/indent-blankline.nvim" },
+  {
+    "jremmen/vim-ripgrep",
+    cmd = { 'Rg' }
+  },
+  { "xiyaowong/nvim-transparent" },
+  {
+    "chrisbra/Recover.vim", -- Add option `(C)ompare` when swapfile found
+    event = "SwapExists"
+  },
+  {
+    "phaazon/mind.nvim",      -- tree-based note taking system
+    config = function()
+      require("mind").setup()
+    end
+  },
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                        Navigation                        │
+  -- ╰──────────────────────────────────────────────────────────╯
+  {
+    "kyazdani42/nvim-tree.lua",
+    config = function()
+      require("stephanspiegel.pluginconfigs.nvim-tree")
+    end,
+    keys = {
+      {'<Leader>e', ':NvimTreeToggle<cr>', desc = 'Toggle NvimTree'}
+    }
+  },
+  { "ThePrimeagen/harpoon" },
+  {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("stephanspiegel.pluginconfigs.projects")
+    end,
+  },
+  {
+    "liuchengxu/vista.vim",
+    config = function()
+      vim.g.vista_default_executive = "nvim_lsp"
+      vim.g.vista_fzf_preview = { "right:50%" }
+    end,
+    cmd = { "Vista" }
+  },
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                            UI                            │
+  -- ╰──────────────────────────────────────────────────────────╯
+  { "nvim-lua/popup.nvim" }, -- An implementation of the Popup API from vim in Neovim
+  { "kyazdani42/nvim-web-devicons" },
+  {
+    "rcarriga/nvim-notify", -- notification popups
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("stephanspiegel.pluginconfigs.notify")
+    end,
+  },
+  {
+    "meznaric/conmenu", -- context menu
+    dependencies = {
+      "ThePrimeagen/git-worktree.nvim",
+    },
+    config = function()
+      require("stephanspiegel.pluginconfigs.conmenu")
+    end,
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "kyazdani42/nvim-web-devicons", opt = true },
+    config = function()
+      require("stephanspiegel.pluginconfigs.lualine")
+    end,
+  },
+  {
+    "startup-nvim/startup.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
+      "ahmedkhalf/project.nvim"
+    },
+    config = function()
+      require("stephanspiegel.pluginconfigs.startup")
+    end,
+    lazy = false
+  },
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                 Languages and filetypes                  │
+  -- ╰──────────────────────────────────────────────────────────╯
+  {
+    "kmonad/kmonad-vim",
+    ft = { "kbd" }
+  },
+  {
+    "chrisbra/csv.vim",
+    ft = { "csv" }
+  },
+  { 
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    init = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
+  },
+-- ╭──────────────────────────────────────────────────────────╮
+-- │                        Kraftwerk                         │
+-- ╰──────────────────────────────────────────────────────────╯
+
+  -- {
+  --   "stephanspiegel/kraftwerk.nvim",
+  --   dir = "~/Projects/vim/kraftwerk.nvim",
+  --   dev = false,
+  --   config = function()
+  --     require("stephanspiegel.pluginconfigs.kraftwerk")
+  --   end
+  -- },
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                        Completion                        │
+  -- ╰──────────────────────────────────────────────────────────╯
+  {
+    "hrsh7th/nvim-cmp",-- The completion plugin
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-buffer" , -- buffer completions
+      "hrsh7th/cmp-path" , -- path completions
+      "hrsh7th/cmp-cmdline" , -- cmdline completions
+      "hrsh7th/cmp-nvim-lsp" , -- lsp completions
+      "hrsh7th/cmp-nvim-lua" , -- source for neovim Lua API
+    }
+  },
+  { "lukas-reineke/cmp-rg" }, -- ripgrep everything
+  -- snippets
+  { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
+  { "L3MON4D3/LuaSnip" }, -- snippet engine
+  { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                           LSP                            │
+  -- ╰──────────────────────────────────────────────────────────╯
+  { "williamboman/mason.nvim",  -- package manager for LSP servers, DAP servers, linters, and formatters
+    config = function()
+      require("mason").setup()
+    end,
+  },
+  { "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require("mason-lspconfig").setup()
+    end,
+  },
+  { "neovim/nvim-lspconfig",
+    config = function()
+      require("stephanspiegel.lsp")
+    end,
+    event = "VeryLazy"
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("stephanspiegel.pluginconfigs.trouble")
+    end,
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim", -- use LSP API with linters that aren't strictly speaking LSPs
+    config = function()
+      require("stephanspiegel.pluginconfigs.null-ls")
+    end,
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("stephanspiegel.pluginconfigs.nvim-dap")
+    end,
+    dependencies = {
+      "theHamsta/nvim-dap-virtual-text",
+      "rcarriga/nvim-dap-ui",
+      "nvim-telescope/telescope-dap.nvim",
+    }
+  },
+  {
+    "jbyuki/one-small-step-for-vimkind",
+    config = function()
+      local dap = require"dap"
+      dap.configurations.lua = {
+        {
+          type = 'nlua',
+          request = 'attach',
+          name = "Attach to running Neovim instance",
+        }
+      }
+      dap.adapters.nlua = function(callback, config)
+        callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
+      end
+    end,
+    dependencies = { "mfussenegger/nvim-dap" }
+  },
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                        Telescope                         │
+  -- ╰──────────────────────────────────────────────────────────╯
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "fzf"
+    },
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("stephanspiegel.telescope")
+    end,
+  },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+    name = "fzf"
+  },
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                        Treesitter                        │
+  -- ╰──────────────────────────────────────────────────────────╯
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("stephanspiegel.treesitter")
+    end,
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSUpdateSync" },
+  },
+  { "nvim-treesitter/nvim-treesitter-textobjects" },
+  { "p00f/nvim-ts-rainbow" }, -- highlight brackets in matching colors
+  { "nvim-treesitter/playground",
+    build = ":TSInstall query"
+  },
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                           git                            │
+  -- ╰──────────────────────────────────────────────────────────╯
+  {
+    "tpope/vim-fugitive",
+    cmd = {
+      "G",
+      "Git",
+      "Gdiffsplit",
+      "Gread",
+      "Gwrite",
+      "Ggrep",
+      "GMove",
+      "GDelete",
+      "GBrowse",
+      "GRemove",
+      "GRename",
+      "Glgrep",
+      "Gedit"
+    },
+    ft = "fugitive"
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("stephanspiegel.pluginconfigs.gitsigns")
+    end,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = { "BufReadPost", "BufNewFile" },
+  },
+  {
+    "sindrets/diffview.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("stephanspiegel.pluginconfigs.diffview")
+    end,
+    event = "BufRead"
+  },
+  {
+    "rickhowe/spotdiff.vim", -- show diffs per selection
+    event = "BufRead"
+  },
+  {
+    "rickhowe/diffchar.vim", -- show diff character by character
+    event = "BufRead"
+  },
+  {
+    "f-person/git-blame.nvim",
+    event = "BufRead",
+    config = function()
+      vim.cmd "highlight default link gitblame SpecialComment"
+      require("gitblame").setup { enabled = false }
+    end,
+  },
+  {
+    "ThePrimeagen/git-worktree.nvim", -- wrapper for git-worktrees
+    dependencies = "nvim-telescope/telescope.nvim",
+    config = function()
+      require("telescope").load_extension("git_worktree")
+      vim.cmd([[ command! WorktreeList lua require('telescope').extensions.git_worktree.git_worktrees() ]])
+      vim.cmd([[ command! WorktreeCreate lua require('telescope').extensions.git_worktree.create_git_worktree() ]])
+    end,
+  },
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                          Ledger                          │
+  -- ╰──────────────────────────────────────────────────────────╯
+  {
+    "ledger/vim-ledger",
+    ft = "ledger",
+    config = function()
+      require("stephanspiegel.pluginconfigs.ledger")
+    end,
+  },
+  { "rcaputo/vim-ledger_x" },
+  -- ╭──────────────────────────────────────────────────────────╮
+  -- │                         Diagrams                         │
+  -- ╰──────────────────────────────────────────────────────────╯
+  {
+    "jbyuki/venn.nvim", -- Diagrams in vim
+    config = function()
+      require("stephanspiegel.pluginconfigs.venn")
+    end,
+  },
+  {
+    "willchao612/vim-diagon", -- Simple Unicode or ASCII diagrams
+    config = function()
+      vim.g.diagon_use_echo = 1 --- Use echo instead of replacing original text directly
+    end,
+  },
+  { "LudoPinelli/comment-box.nvim" }, -- Draw boxes around comments
+}
+
+-- ╒══════════════════════════════════════════════════════════╕
+--                     Theme Specifications
+-- ╘══════════════════════════════════════════════════════════╛
+local colorscheme_specifications = {
+  { "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme tokyonight]])
+    end,
+  },
+  { "junegunn/seoul256.vim" },
+  { "mhartington/oceanic-next" },
+  { "morhetz/gruvbox" },
+  { "rafamadriz/neon" },
+  { "rakr/vim-one" },
+  { "rakr/vim-two-firewatch" },
+  { "rockerBOO/boo-colorscheme-nvim" },
+  { "sainnhe/edge" },
+  { "sainnhe/everforest" },
+  { "sainnhe/forest-night" },
+  { "sainnhe/gruvbox-material" },
+  { "sainnhe/sonokai" },
+  { "savq/melange" },
+  { "smallwat3r/vim-hashpunk-sw" },
+  { "theniceboy/nvim-deus" },
+  { "xstrex/FireCode.vim" },
+  { "ayu-theme/ayu-vim" },
+  { "bluz71/vim-moonfly-colors" },
+  { "mbbill/desertEx" },
+  { "shaunsingh/oxocarbon.nvim" },
+  { "EdenEast/nightfox.nvim" },
+  { "rebelot/kanagawa.nvim" },
+  { "arcticicestudio/nord-vim" },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    config = function()
+      require("catppuccin").setup({ colorscheme = "neon_latte" })
+    end,
+  },
+  { "embark-theme/vim",
+    name = "embark"
+  },
+  { "eddyekofo94/gruvbox-flat.nvim" },
+  {
+    "rose-pine/neovim",
+    config = function()
+      require("rose-pine").setup({
+        dark_variant = "moon",
+      })
+    end,
+  },
+  { "https://gitlab.com/protesilaos/tempus-themes-vim" },
+}
+
+-- ├──────────────────────────────────────────────────────────┤
+
+vim.list_extend(plugin_specifications, colorscheme_specifications)
+
+return plugin_specifications
