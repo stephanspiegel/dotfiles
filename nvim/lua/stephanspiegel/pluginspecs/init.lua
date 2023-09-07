@@ -77,7 +77,7 @@ local plugin_specifications = {
     },
     event = "VeryLazy",
   },
-  { 
+  {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufNewFile" },
   },
@@ -110,7 +110,6 @@ local plugin_specifications = {
   { "ThePrimeagen/harpoon" },
   {
     "ahmedkhalf/project.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("stephanspiegel.pluginconfigs.projects")
     end,
@@ -397,8 +396,8 @@ local plugin_specifications = {
     end,
     cmd = "Diagon"
   },
-  { 
-    "LudoPinelli/comment-box.nvim",
+  {
+    "LudoPinelli/comment-box.nvim", -- Draw boxes around comments
     cmd = {
       "CBllbox",
       "CBlcbox",
@@ -413,7 +412,11 @@ local plugin_specifications = {
       "CBacbox",
       "CBarbox",
     }
-  }, -- Draw boxes around comments
+  },
+  {
+    "dhruvasagar/vim-table-mode",
+    lazy = false
+  }
 }
 
 -- ╒══════════════════════════════════════════════════════════╕
