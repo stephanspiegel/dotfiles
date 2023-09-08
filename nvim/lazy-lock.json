@@ -45,6 +45,7 @@
   "melange": { "branch": "master", "commit": "517518347e41301bb2d1189d257f3918551a2ea5" },
   "mind.nvim": { "branch": "master", "commit": "002137dd7cf97865ebd01b6a260209d2daf2da66" },
   "neon": { "branch": "main", "commit": "7765aaa7d1cd3804176140644640766e4411c766" },
+  "neorg": { "branch": "main", "commit": "a6c2c4d17c139e942c069cac458c12e65d7e75d3" },
   "neovim": { "branch": "main", "commit": "e29002cbee4854a9c8c4b148d8a52fae3176070f" },
   "nightfox.nvim": { "branch": "main", "commit": "e886e39e592e89f316536a6f070365a9d88901c9" },
   "nord-vim": { "branch": "main", "commit": "f13f5dfbb784deddbc1d8195f34dfd9ec73e2295" },
