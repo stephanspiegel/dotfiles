@@ -127,6 +127,24 @@ local plugin_specifications = {
       {'<Leader>e', ':NvimTreeToggle<cr>', desc = 'Toggle NvimTree'}
     }
   },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {}
+  },
+  {
+    'mrjones2014/legendary.nvim',
+    -- since legendary.nvim handles all your keymaps/commands,
+    -- its recommended to load legendary.nvim before other plugins
+    priority = 10000,
+    lazy = false,
+    -- sqlite is only needed if you want to use frecency sorting
+    dependencies = { 'kkharji/sqlite.lua' }
+  },
   { "ThePrimeagen/harpoon" },
   {
     "ahmedkhalf/project.nvim",
@@ -146,7 +164,10 @@ local plugin_specifications = {
   -- │                            UI                            │
   -- ╰──────────────────────────────────────────────────────────╯
   { "nvim-lua/popup.nvim" }, -- An implementation of the Popup API from vim in Neovim
-  { "kyazdani42/nvim-web-devicons" },
+  {
+    "nvim-tree/nvim-web-devicons",
+    name = "devicons"
+  },
   {
     "rcarriga/nvim-notify", -- notification popups
     dependencies = { "nvim-telescope/telescope.nvim" },
@@ -166,21 +187,17 @@ local plugin_specifications = {
   },
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons", opt = true },
+    dependencies = { "devicons", opt = true },
     config = function()
       require("stephanspiegel.pluginconfigs.lualine")
     end,
     event = "VeryLazy"
   },
   {
-    "startup-nvim/startup.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-lua/plenary.nvim",
-      "ahmedkhalf/project.nvim"
-    },
-    config = function()
-      require("stephanspiegel.pluginconfigs.startup")
+    'goolord/alpha-nvim', -- startup dashboard
+    dependencies = { 'devicons' },
+    config = function ()
+      require'alpha'.setup(require'alpha.themes.startify'.config)
     end,
     lazy = false
   },
@@ -240,7 +257,7 @@ local plugin_specifications = {
   },
   {
     "folke/trouble.nvim",
-    dependencies = "kyazdani42/nvim-web-devicons",
+    dependencies = "devicons",
     config = function()
       require("stephanspiegel.pluginconfigs.trouble")
     end,
@@ -290,6 +307,7 @@ local plugin_specifications = {
       "fzf",
       "ahmedkhalf/project.nvim",
       "tsakirist/telescope-lazy.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
     },
     event = { "BufReadPost", "BufNewFile" },
     config = function()
@@ -380,7 +398,11 @@ local plugin_specifications = {
       vim.cmd([[ command! WorktreeList lua require('telescope').extensions.git_worktree.git_worktrees() ]])
       vim.cmd([[ command! WorktreeCreate lua require('telescope').extensions.git_worktree.create_git_worktree() ]])
     end,
-    event = "BufRead"
+    event = "BufRead",
+    cmd = {
+      "WorktreeList",
+      "WorktreeCreate"
+    }
   },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                          Ledger                          │
