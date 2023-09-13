@@ -1,11 +1,11 @@
 #!/bin/zsh
 
-alias sr='sfdx force:source:tracking:reset -p'
-alias ss='sfdx force:source:status'
-alias sph='sfdx force:source:push --ignorewarnings'
-alias spl='sfdx force:source:pull --forceoverwrite'
-alias sgduat='sfdx sgd:source:delta --from origin/dev-uat --to HEAD --output .;cat package/package.xml'
-alias sgdmain='sfdx sgd:source:delta --from origin/main --to HEAD --output .;cat package/package.xml'
+alias sr='sf project reset tracking --no-prompt'
+alias ss='sf force:source:status' # ERROR: Unable to convert this command; you must convert it manually.
+alias sph='sf force source push --ignorewarnings'
+alias spl='sf force source pull --forceoverwrite'
+alias sgduat='sf sgd:source:delta --from origin/dev-uat --to HEAD --output .;cat package/package.xml' # ERROR: Unable to convert this command; you must convert it manually.
+alias sgdmain='sf sgd:source:delta --from origin/main --to HEAD --output .;cat package/package.xml' # ERROR: Unable to convert this command; you must convert it manually.
 alias squash='git merge --squash'
 alias log='git log --pretty=oneline --abbrev-commit'
 
