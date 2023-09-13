@@ -3,7 +3,7 @@
 # branch. If no branch is provided, the default branch used is "dev-uat". 
 #
 # The script retrieves the list of changed class files and extracts the names of any test classes to be run. 
-# It also includes any changed unit test classes. Finally, it runs `sfdx apex run test` to run all found
+# It also includes any changed unit test classes. Finally, it runs `sf apex run test` to run all found
 # test classes
 
 function runtests(){
@@ -13,7 +13,7 @@ function runtests(){
   fi
 
   # Define the command to run apex tests
-  APEX_CMD="sfdx apex run test --wait 10 --test-level RunSpecifiedTests --class-names"
+  APEX_CMD="sf apex run test --wait 10 --test-level RunSpecifiedTests"
 
   # Get list of changed classes in current branch compared to given branch
   CHANGED_CLASSES=$(git diff --name-only --diff-filter=ACMRT "$1" | grep '\.cls$')
@@ -39,14 +39,7 @@ function runtests(){
     fi
   done
 
-  # Sort and remove duplicates
-  # read -r UNIQUE_TEST_CLASSES <<< "$(sort -u <<<"${TEST_CLASSES[*]}")"
-  # Combine all test classes into a comma-separated list
-  # readarray -t TEST_CLASSES_LIST <<< echo "$UNIQUE_TEST_CLASSES"; IFS=','; echo "${UNIQUE_TEST_CLASSES[*]}"
-  # printf -v TEST_CLASSES_LIST '%s,' "${UNIQUE_TEST_CLASSES[@]}"
-  # TEST_CLASSES_LIST=$(IFS=,; echo "${UNIQUE_TEST_CLASSES[*]}")
   read -r UNIQUE_TEST_CLASSES <<< "$(for TEST_CLASS in "${TEST_CLASSES[@]}"; do echo "${TEST_CLASS}"; done | sort -u | tr '\n' ' ')"
-  echo "${UNIQUE_TEST_CLASSES[*]}"
 
   # Check if there are any tests to run
   if [ -z "$UNIQUE_TEST_CLASSES" ]; then
@@ -56,7 +49,11 @@ function runtests(){
 
   # Run apex tests with the complete list of test classes
   echo "Running tests for classes: $UNIQUE_TEST_CLASSES"
-  $APEX_CMD "$(echo "$UNIQUE_TEST_CLASSES" | tr ' ', ',')"
+  TEST_CLASS_ARRAY=($UNIQUE_TEST_CLASSES)
+
+  CMD_WITH_CLASSES="$APEX_CMD $(echo ${TEST_CLASS_ARRAY[@]/#/'--class-names '})"
+
+  $CMD_WITH_CLASSES
 }
 
 runtests "$1"
