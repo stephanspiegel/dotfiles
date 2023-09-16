@@ -347,14 +347,6 @@ local plugin_specifications = {
     ft = "fugitive"
   },
   {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("stephanspiegel.pluginconfigs.gitsigns")
-    end,
-    dependencies = { "nvim-lua/plenary.nvim" },
-    event = { "BufReadPost", "BufNewFile" },
-  },
-  {
     "rickhowe/spotdiff.vim", -- show diffs per selection
     event = "BufRead"
   },
