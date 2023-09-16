@@ -40,10 +40,7 @@ local plugin_specifications = {
     event = { "BufReadPost", "BufNewFile" },
   },
   {
-    "windwp/nvim-autopairs",
-    config = function()
-      require("stephanspiegel.pluginconfigs.autopairs")
-    end,
+    "cohama/lexima.vim", -- auto pair completion
     event = "InsertEnter",
   },
   {
