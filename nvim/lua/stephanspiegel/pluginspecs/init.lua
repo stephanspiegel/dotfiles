@@ -177,15 +177,6 @@ local plugin_specifications = {
     lazy = false
   },
   {
-    "meznaric/conmenu", -- context menu
-    dependencies = {
-      "ThePrimeagen/git-worktree.nvim",
-    },
-    config = function()
-      require("stephanspiegel.pluginconfigs.conmenu")
-    end,
-  },
-  {
     "nvim-lualine/lualine.nvim",
     dependencies = { "devicons", opt = true },
     config = function()
