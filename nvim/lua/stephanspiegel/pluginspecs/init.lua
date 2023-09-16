@@ -355,14 +355,6 @@ local plugin_specifications = {
     event = { "BufReadPost", "BufNewFile" },
   },
   {
-    "sindrets/diffview.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      require("stephanspiegel.pluginconfigs.diffview")
-    end,
-    event = "BufRead"
-  },
-  {
     "rickhowe/spotdiff.vim", -- show diffs per selection
     event = "BufRead"
   },
