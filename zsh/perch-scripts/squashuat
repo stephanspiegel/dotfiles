@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
 function squashuat() {
+	CURRENT_BRANCH=$(git branch --show-current)
+	FEATURE_BRANCH="${1:-$CURRENT_BRANCH}"
+	PROMOTION_BRANCH="promotion/${FEATURE_BRANCH}"
 	git fetch
-	git switch $1
+	git switch "$PROMOTION_BRANCH"
 	git pull
 	git switch dev-uat
 	git pull
-	git merge --squash $1
-	git commit -m "Merge $1 into uat"
+	git merge --squash "$PROMOTION_BRANCH"
+	git commit -m "Merge $PROMOTION_BRANCH into uat"
 	git push
-	git push origin --delete $1
+	git push origin --delete "$PROMOTION_BRANCH"
 	open 'https://jenkins.infra.perch-labs.net/job/Community%20Solar%20Engineering/job/SMP/job/dev-uat/'
 }
 
