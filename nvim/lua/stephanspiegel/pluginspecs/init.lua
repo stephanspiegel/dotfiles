@@ -357,23 +357,6 @@ local plugin_specifications = {
     name = "fzf"
   },
   -- ╭──────────────────────────────────────────────────────────╮
-  -- │                        Treesitter                        │
-  -- ╰──────────────────────────────────────────────────────────╯
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function()
-      require("stephanspiegel.treesitter")
-    end,
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSUpdateSync" },
-  },
-  { "nvim-treesitter/nvim-treesitter-textobjects" },
-  { "p00f/nvim-ts-rainbow" }, -- highlight brackets in matching colors
-  { "nvim-treesitter/playground",
-    build = ":TSInstall query"
-  },
-  -- ╭──────────────────────────────────────────────────────────╮
   -- │                           git                            │
   -- ╰──────────────────────────────────────────────────────────╯
   {
