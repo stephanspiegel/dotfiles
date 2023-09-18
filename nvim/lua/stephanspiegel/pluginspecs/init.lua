@@ -377,20 +377,6 @@ local plugin_specifications = {
     }
   },
   -- ╭──────────────────────────────────────────────────────────╮
-  -- │                          Ledger                          │
-  -- ╰──────────────────────────────────────────────────────────╯
-  {
-    "ledger/vim-ledger",
-    ft = "ledger",
-    config = function()
-      require("stephanspiegel.pluginconfigs.ledger")
-    end,
-  },
-  { 
-    "rcaputo/vim-ledger_x",
-    ft = "ledger"
-  },
-  -- ╭──────────────────────────────────────────────────────────╮
   -- │                         Diagrams                         │
   -- ╰──────────────────────────────────────────────────────────╯
   {
