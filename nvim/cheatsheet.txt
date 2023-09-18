@@ -1,0 +1,29 @@
+## Salesforce
+Close or deselect | Esc
+Copy URL for active tab | ⌘+c, then s
+Copy URL for active workspace tab and subtabs | ⌘+c, then w
+Edit | e
+Insert quick text | command+period⌘+.
+Open or close History | h
+Open or close Macros | m
+Open or close Notes | n
+Open or close Omni-Channel | o
+Post to feed | ⌘+Enter
+Save | ⌘+s
+Search | /
+Show this menu | ⌘+/
+Focus notifications | c
+Focus notifications (reverse order) | ⇧+c
+Go to docked composer | ⌘+⌥+g, then d
+Go to item menu | ⌘+⌥+g, then i
+Go to list search | ⌘+⌥+g, then f
+Go to list view | ⌘+⌥+g, then l
+Go to prompt | ⌘+F6
+Go to publisher | ⌘+⌥+g, then p
+Go to subtab | ⌘+⌥+g, then s
+Go to utility bar | ⌘+⌥+g, then u
+Go to workspace tab | ⌘+⌥+g, then w
+Switch tabs | ← or →
+Close all tabs | ⇧+w
+Close workspace tab | ⇧+x
+Refresh tab | ⇧+r
