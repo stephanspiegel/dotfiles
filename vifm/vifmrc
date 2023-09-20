@@ -447,6 +447,11 @@ elseif executable('xsel')
     " Yank current file path into into primary and selection clipboards
     nnoremap yf :!echo -n %c:p | xsel --input --primary %i &&
                 \ echo -n %c:p | xsel --clipboard --input %i<cr>
+elseif executable('pbcopy')
+    " Yank current directory path into the clipboard
+    nnoremap yd :!echo -n %d | pbcopy %i<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
+    " Yank current file path into the clipboard
+    nnoremap yf :!echo -n %c:p | pbcopy %i<cr>:echo expand('%"c:p') "is yanked to clipboard"<cr>
 endif
 
 " Mappings for faster renaming
