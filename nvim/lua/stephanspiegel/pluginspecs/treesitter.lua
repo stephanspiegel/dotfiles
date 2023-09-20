@@ -1,19 +1,6 @@
 -- ╭──────────────────────────────────────────────────────────╮
 -- │                        Treesitter                        │
 -- ╰──────────────────────────────────────────────────────────╯
--- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
--- parser_config.soql = {
---   install_info = {
---     url = "~/Projects/vim/tree-sitter-soql",
---     files = {"src/parser.c"},
---     branch = "main",
---     generate_requires_npm = false,
---     requires_generate_from_grammar = false,
---   },
---   filetype = "soql",
--- }
-
--- vim.treesitter.language.register('soql', 'soql')
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -88,10 +75,12 @@ return {
           },
         }
       }
-    end
-  },
-  { "nvim-treesitter/nvim-treesitter-textobjects" },
-  { "nvim-treesitter/playground",
-    build = ":TSInstall query"
+    end,
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
+      { "nvim-treesitter/playground",
+        build = ":TSInstall query"
+      }
+    }
   }
 }
