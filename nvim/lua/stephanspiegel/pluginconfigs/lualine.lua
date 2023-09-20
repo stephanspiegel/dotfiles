@@ -45,7 +45,14 @@ local config = {
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "diagnostics" },
+    lualine_b = {
+      {
+
+      "diagnostics",
+      sources = {  'nvim_lsp', 'nvim_diagnostic' }
+      },
+      "searchcount"
+    },
     lualine_c = { "filename" },
     lualine_x = { "encoding", "fileformat", "filetype" },
     lualine_y = { function() return progress() end },
