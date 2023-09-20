@@ -276,21 +276,20 @@ local plugin_specifications = {
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                           LSP                            │
   -- ╰──────────────────────────────────────────────────────────╯
-  { "williamboman/mason.nvim",  -- package manager for LSP servers, DAP servers, linters, and formatters
-    config = function()
-      require("mason").setup()
-    end,
-  },
-  { "williamboman/mason-lspconfig.nvim",
-    config = function()
-      require("mason-lspconfig").setup()
-    end,
-  },
-  { "neovim/nvim-lspconfig",
-    config = function()
-      require("stephanspiegel.lsp")
-    end,
-    event = "VeryLazy"
+  {
+    "williamboman/mason.nvim",  -- package manager for LSP servers, DAP servers, linters, and formatters
+    config = true,
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+      { "williamboman/mason-lspconfig.nvim",
+        config = true
+      },
+      { "neovim/nvim-lspconfig",
+        config = function()
+          require("stephanspiegel.lsp")
+        end
+      },
+    },
   },
   {
     "folke/trouble.nvim",
