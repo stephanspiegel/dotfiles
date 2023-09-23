@@ -5,16 +5,6 @@ maputil.map("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
---What to use to "open" something (we need this below for `gx`)
-local opener = ""
-if vim.fn.has("mac") == 1 then
-    opener = "open"
-elseif vim.fn.has("unix") == 1 then
-    opener = "xdg-open"
-else
-    vim.notify("gx is not supported on this OS!", "error")
-end
-
 -- Normal --
 maputil.nmap_all
 { {"<Leader>bg", ':let &background = ( &background == "dark"? "light" : "dark")<CR>'}              -- Toggle light/dark color theme
@@ -32,7 +22,6 @@ maputil.nmap_all
 , {"<C-Down>", ":resize -2<CR>"}
 , {"<C-Left>", ":vertical resize -2<CR>"}
 , {"<C-Right>", ":vertical resize +2<CR>"}
-, {"gx",  '<Cmd>call jobstart(["'..opener..'", expand("<cfile>")], {"detach": v:true})<CR>'}
 }
 
 -- Insert --
