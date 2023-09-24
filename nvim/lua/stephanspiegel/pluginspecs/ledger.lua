@@ -27,7 +27,7 @@ return {
       { '<Tab>', '<C-r>=ledger#autocomplete_and_align()<CR>', mode = 'i', desc = 'Autocomplete and align'},
       {
         '<C-T>',
-        '<ESC>?[0-9.]\\+<CR>c//e<CR><C-R>=luaeval("require \'stephanspiegel.functions\'.taxify(_A)", str2float(@"))<CR><ESC>:nohlsearch<CR>a',
+        '<ESC>:lua require("flash").toggle(false)<CR>?[0-9.]\\+<CR>c//e<CR><C-R>=luaeval("require \'stephanspiegel.functions\'.taxify(_A)", str2float(@"))<CR><ESC>:nohlsearch<CR>:require("flash").toggle(true)<CR>a',
         mode = 'i',
         desc = 'Add Maine state sales tax'},
       { '<Tab>', ':LedgerAlign<CR>', mode = 'v', desc = 'Align'},
