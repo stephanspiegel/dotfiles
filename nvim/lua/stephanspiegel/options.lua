@@ -3,7 +3,6 @@ local options =
 -- , clipboard = 'unnamedplus'                -- allows neovim to access the system clipboard
 , cmdheight = 2                            -- more space in the neovim command line for displaying messages
 , colorcolumn = '120'                        -- highlight column 120 to keep lines short(er)
-, completeopt = { 'menuone', 'noselect' }  -- mostly just for cmp
 , conceallevel = 0                         -- so that `` is visible in markdown files
 , cursorline = false                        -- highlight the current line
 , diffopt =
