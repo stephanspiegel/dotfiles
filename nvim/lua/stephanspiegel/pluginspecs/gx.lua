@@ -3,8 +3,6 @@ return {
   event = { "BufEnter" },
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function() require("gx").setup {
-    open_browser_app = "os_specific", -- specify your browser app; default for macOS is "open", Linux "xdg-open" and Windows "powershell.exe"
-    open_browser_args = { "--background" }, -- specify any arguments, such as --background for macOS' "open".
     handlers = {
       plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
       github = true, -- open github issues
