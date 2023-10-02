@@ -30,6 +30,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export ANDROID_SDK_ROOT=/home/stephan/Android/Sdk/
 
 # SSH Agent
-export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+if [[ "$OSTYPE" = *"linux"* ]]; then
+    export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+fi
 
 if [ -e /home/stephan/.nix-profile/etc/profile.d/nix.sh ]; then . /home/stephan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
