@@ -182,6 +182,7 @@ nmap dn <Action>(StepOver)
 nmap do <Action>(StepOut)
 nmap dq <Action>(Stop)
 nmap dr <Action>(RunToCursor)
+nmap <Leader>p <Action>(ManageRecentProjects)
 
 command! ForceSourcePush action IlluminatedCloud.SfdxPush
 
