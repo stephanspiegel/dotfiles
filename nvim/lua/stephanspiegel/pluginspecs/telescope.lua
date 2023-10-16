@@ -4,6 +4,14 @@
 -- ╰──────────────────────────────────────────────────────────╯
 local builtin = require('telescope.builtin')
 
+-- from lazy/lua/lazy/core/plugin.lua
+local get_name = function(pkg)
+  local name = pkg:sub(-4) == ".git" and pkg:sub(1, -5) or pkg
+  name = name:sub(-1) == "/" and name:sub(1, -2) or name
+  local slash = name:reverse():find("/", 1, true) --[[@as number?]]
+  return slash and name:sub(#name - slash + 2) or pkg:gsub("%W+", "_")
+end
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -25,7 +33,20 @@ return {
         { "<leader>c", builtin.commands },
         { "<leader>hc", builtin.command_history },
         { "<leader>hs", builtin.search_history },
-        { "<leader>cs", builtin.colorscheme },
+        { 
+          "<leader>cs", 
+          function() 
+            local specs = require'stephanspiegel.pluginspecs.colorschemes'
+            local packagenames = {}
+            for _, spec in pairs(specs) do
+              local package_name = spec.name or get_name(spec[1])
+              print(spec[1].. ' '..package_name)
+              table.insert(packagenames, package_name)
+            end
+            require'lazy'.load({plugins=packagenames, wait=true})
+            builtin.colorscheme()
+          end
+        },
         { "<leader>rg", builtin.grep_string },
         { "<leader>gb", builtin.git_branches },
         { "<leader>qf", builtin.quickfix },

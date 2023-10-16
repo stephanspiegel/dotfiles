@@ -46,6 +46,7 @@ local colorscheme_specifications = {
   { "eddyekofo94/gruvbox-flat.nvim" },
   {
     "rose-pine/neovim",
+    name = "rose-pine",
     config = function()
       require("rose-pine").setup({
         dark_variant = "moon",

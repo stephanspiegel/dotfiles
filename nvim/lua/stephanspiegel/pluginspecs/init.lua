@@ -114,73 +114,12 @@ local plugin_specifications = {
     cmd = { 'Neorg' }
   },
   -- ╭──────────────────────────────────────────────────────────╮
-  -- │                        Navigation                        │
-  -- ╰──────────────────────────────────────────────────────────╯
-  {
-    "kyazdani42/nvim-tree.lua",
-    config = function()
-      require("stephanspiegel.pluginconfigs.nvim-tree")
-    end,
-    keys = {
-      {'<Leader>e', ':NvimTreeToggle<cr>', desc = 'Toggle NvimTree'}
-    }
-  },
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    opts = {}
-  },
-  {
-    'mrjones2014/legendary.nvim',
-    -- since legendary.nvim handles all your keymaps/commands,
-    -- its recommended to load legendary.nvim before other plugins
-    priority = 10000,
-    lazy = false,
-    -- sqlite is only needed if you want to use frecency sorting
-    dependencies = { 'kkharji/sqlite.lua' }
-  },
-  { "ThePrimeagen/harpoon" },
-  {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("stephanspiegel.pluginconfigs.projects")
-    end,
-  },
-  {
-    "liuchengxu/vista.vim",
-    config = function()
-      vim.g.vista_default_executive = "nvim_lsp"
-      vim.g.vista_fzf_preview = { "right:50%" }
-    end,
-    cmd = { "Vista" }
-  },
-  -- ╭──────────────────────────────────────────────────────────╮
   -- │                            UI                            │
   -- ╰──────────────────────────────────────────────────────────╯
   { "nvim-lua/popup.nvim" }, -- An implementation of the Popup API from vim in Neovim
   {
     "nvim-tree/nvim-web-devicons",
     name = "devicons"
-  },
-  {
-    "rcarriga/nvim-notify", -- notification popups
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    config = function()
-      require("stephanspiegel.pluginconfigs.notify")
-    end,
-    lazy = false
-  },
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "devicons", opt = true },
-    config = function()
-      require("stephanspiegel.pluginconfigs.lualine")
-    end,
-    event = "VeryLazy"
   },
   {
     "kmonad/kmonad-vim",
@@ -197,87 +136,27 @@ local plugin_specifications = {
     ft = { "markdown" },
   },
   -- ╭──────────────────────────────────────────────────────────╮
-  -- │                           LSP                            │
-  -- ╰──────────────────────────────────────────────────────────╯
-  {
-    "williamboman/mason.nvim",  -- package manager for LSP servers, DAP servers, linters, and formatters
-    config = true,
-    event = { "BufReadPost", "BufNewFile" },
-    dependencies = {
-      { "williamboman/mason-lspconfig.nvim",
-        config = true
-      },
-      { "neovim/nvim-lspconfig",
-        config = function()
-          require("stephanspiegel.lsp")
-        end
-      },
-    },
-  },
-  {
-    "folke/trouble.nvim",
-    dependencies = "devicons",
-    config = function()
-      require("stephanspiegel.pluginconfigs.trouble")
-    end,
-  },
-  {
-    "jose-elias-alvarez/null-ls.nvim", -- use LSP API with linters that aren't strictly speaking LSPs
-    config = function()
-      require("stephanspiegel.pluginconfigs.null-ls")
-    end,
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
-  {
-    "mfussenegger/nvim-dap",
-    config = function()
-      require("stephanspiegel.pluginconfigs.nvim-dap")
-    end,
-    dependencies = {
-      "theHamsta/nvim-dap-virtual-text",
-      "rcarriga/nvim-dap-ui",
-      "nvim-telescope/telescope-dap.nvim",
-    }
-  },
-  {
-    "jbyuki/one-small-step-for-vimkind",
-    config = function()
-      local dap = require"dap"
-      dap.configurations.lua = {
-        {
-          type = 'nlua',
-          request = 'attach',
-          name = "Attach to running Neovim instance",
-        }
-      }
-      dap.adapters.nlua = function(callback, config)
-        callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
-      end
-    end,
-    dependencies = { "mfussenegger/nvim-dap" }
-  },
-  -- ╭──────────────────────────────────────────────────────────╮
   -- │                        Telescope                         │
   -- ╰──────────────────────────────────────────────────────────╯
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "fzf",
-      "ahmedkhalf/project.nvim",
-      "tsakirist/telescope-lazy.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
-    },
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      require("stephanspiegel.telescope")
-    end,
-  },
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
-    name = "fzf"
-  },
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "fzf",
+  --     "ahmedkhalf/project.nvim",
+  --     "tsakirist/telescope-lazy.nvim",
+  --     "nvim-telescope/telescope-file-browser.nvim",
+  --   },
+  --   event = { "BufReadPost", "BufNewFile" },
+  --   config = function()
+  --     require("stephanspiegel.telescope")
+  --   end,
+  -- },
+  -- {
+  --   "nvim-telescope/telescope-fzf-native.nvim",
+  --   build = "make",
+  --   name = "fzf"
+  -- },
   -- ╭──────────────────────────────────────────────────────────╮
   -- │                           git                            │
   -- ╰──────────────────────────────────────────────────────────╯
@@ -330,57 +209,7 @@ local plugin_specifications = {
       "WorktreeCreate"
     }
   },
-  -- ╭──────────────────────────────────────────────────────────╮
-  -- │                         Diagrams                         │
-  -- ╰──────────────────────────────────────────────────────────╯
-  {
-    "jbyuki/venn.nvim", -- Diagrams in vim
-    keys = {
-      { "<leader>v" }
-    },
-    config = function()
-      require("stephanspiegel.pluginconfigs.venn")
-    end,
-  },
-  {
-    "willchao612/vim-diagon", -- Simple Unicode or ASCII diagrams
-    config = function()
-      vim.g.diagon_use_echo = 1 --- Use echo instead of replacing original text directly
-    end,
-    cmd = "Diagon"
-  },
-  {
-    "LudoPinelli/comment-box.nvim", -- Draw boxes around comments
-    cmd = {
-      "CBllbox",
-      "CBlcbox",
-      "CBlrbox",
-      "CBclbox",
-      "CBccbox",
-      "CBcrbox",
-      "CBrlbox",
-      "CBrcbox",
-      "CBrrbox",
-      "CBalbox",
-      "CBacbox",
-      "CBarbox",
-    }
-  },
-  {
-    "dhruvasagar/vim-table-mode",
-    cmd = {
-      "TableModeToggle",
-      "TableModeEnable",
-      "TableModeDisable",
-      "Tableize",
-      "TableModeRealign",
-      "TableAddFormula",
-      "TableEvalFormulaLine",
-      "TableSort",
-    }
-  }
 }
-
 -- ├──────────────────────────────────────────────────────────┤
 
 return plugin_specifications
