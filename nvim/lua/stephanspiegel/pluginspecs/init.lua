@@ -106,6 +106,8 @@ local plugin_specifications = {
               workspaces = {
                 notes = "~/notes",
               },
+              default_workspace = "~/notes",
+              open_last_workspace = true
             },
           },
         },
