@@ -43,6 +43,8 @@ esac
 
 source "$ZDOTDIR/aliases"
 
+eval "$(zoxide init zsh)"
+
 # edit command line in nvim with `v`
 autoload -Uz edit-command-line
 zle -N edit-command-line
