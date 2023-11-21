@@ -1,22 +1,43 @@
-// Instructions: open Surfingkeys settings in browser, enable advanced mode, paste this in
+const {
+    Clipboard,
+    Front,
+    Hints,
+    Normal,
+    RUNTIME,
+    Visual,
+    aceVimMap,
+    addSearchAlias,
+    cmap,
+    getClickableElements,
+    imap,
+    imapkey,
+    iunmap,
+    map,
+    mapkey,
+    readText,
+    removeSearchAlias,
+    tabOpenLink,
+    unmap,
+    unmapAllExcept,
+    vmapkey,
+    vunmap
+} = api;
 
- // an example to create a new mapping `ctrl-y`
- //
-api.mapkey('<Ctrl-y>', 'Show me the money', function() {
+mapkey('<Ctrl-y>', 'Show me the money', function() {
     Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
 });
 
 // an example to replace `T` with `gt`, click `Default mappings` to see how `T` works.
-api.map('gt', 'T');
+map('gt', 'T');
 
 // an example to remove mapkey `Ctrl-i`
-api.unmap('<Ctrl-i>');
+unmap('<Ctrl-i>');
 //Search Hoogle
-api.addSearchAlias('k', 'Hoogle', 'https://hoogle.haskell.org/?hoogle=');
+addSearchAlias('k', 'Hoogle', 'https://hoogle.haskell.org/?hoogle=');
 //Search Github
-api.addSearchAlias('r', 'Github', 'https://github.com/search?q=d');
+addSearchAlias('r', 'Github', 'https://github.com/search?q=d');
 //Search Qwant
-api.addSearchAlias('q', 'Qwant', 'https://www.qwant.com/?t=web&q=', 'https://api.qwant.com/api/suggest/?client=opensearch&q=');
+addSearchAlias('q', 'Qwant', 'https://www.qwant.com/?t=web&q=', 'https://api.qwant.com/api/suggest/?client=opensearch&q=');
 
 //   ╔═══════════╗
 //   ║   THEMES  ║
