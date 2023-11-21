@@ -34,13 +34,12 @@ addSearchAlias('q', 'Qwant', 'https://www.qwant.com/?t=web&q=', 'https://api.qwa
 
 settings.defaultSearchEngine = 'q';
 settings.hintAlign = 'left';
-settings.omnibarPosition = 'bottom';
+settings.omnibarPosition = 'middle';
 settings.focusFirstCandidate = false;
 settings.focusAfterClosed = 'last';
 settings.scrollStepSize = 200;
 settings.tabsThreshold = 0;
 settings.modeAfterYank = 'Normal';
-settings.useNeovim = true;
 aceVimMap("jk", "<Esc>", "insert");
 
 //   ╔═══════════╗
@@ -84,7 +83,7 @@ settings.theme = `
 /* Edit these variables for easy theme making */
 :root {
   /* Font */
-  --font: 'Source Code Pro', Ubuntu, sans;
+  --font: 'Cousine Nerd Font Mono', Cousine, sans;
   --font-size: 14;
   --font-weight: bold;
 
