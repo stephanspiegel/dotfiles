@@ -84,7 +84,7 @@ settings.theme = `
 :root {
   /* Font */
   --font: 'Cousine Nerd Font Mono', Cousine, sans;
-  --font-size: 14;
+  --font-size: 16;
   --font-weight: bold;
 
   /* -------------- */
