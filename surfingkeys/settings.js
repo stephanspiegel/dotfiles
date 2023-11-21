@@ -23,21 +23,25 @@ const {
     vunmap
 } = api;
 
-mapkey('<Ctrl-y>', 'Show me the money', function() {
-    Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
-});
+Hints.setCharacters('asdfgyuiopqwertnmzxcvb');
 
-// an example to replace `T` with `gt`, click `Default mappings` to see how `T` works.
-map('gt', 'T');
-
-// an example to remove mapkey `Ctrl-i`
-unmap('<Ctrl-i>');
 //Search Hoogle
 addSearchAlias('k', 'Hoogle', 'https://hoogle.haskell.org/?hoogle=');
 //Search Github
 addSearchAlias('r', 'Github', 'https://github.com/search?q=d');
 //Search Qwant
 addSearchAlias('q', 'Qwant', 'https://www.qwant.com/?t=web&q=', 'https://api.qwant.com/api/suggest/?client=opensearch&q=');
+
+settings.defaultSearchEngine = 'q';
+settings.hintAlign = 'left';
+settings.omnibarPosition = 'bottom';
+settings.focusFirstCandidate = false;
+settings.focusAfterClosed = 'last';
+settings.scrollStepSize = 200;
+settings.tabsThreshold = 0;
+settings.modeAfterYank = 'Normal';
+settings.useNeovim = true;
+aceVimMap("jk", "<Esc>", "insert");
 
 //   ╔═══════════╗
 //   ║   THEMES  ║
@@ -81,7 +85,7 @@ settings.theme = `
 :root {
   /* Font */
   --font: 'Source Code Pro', Ubuntu, sans;
-  --font-size: 12;
+  --font-size: 14;
   --font-weight: bold;
 
   /* -------------- */
