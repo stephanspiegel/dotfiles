@@ -4,6 +4,7 @@
 return {
   {
     "williamboman/mason.nvim",  -- package manager for LSP servers, DAP servers, linters, and formatters
+    cmd = "Mason",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "williamboman/mason-lspconfig.nvim"
@@ -38,16 +39,16 @@ return {
         })
       end,
     },
-    {
-      "neovim/nvim-lspconfig",
-      event = { "BufReadPost", "BufNewFile" },
-      dependencies = {
-        { "antosha417/nvim-lsp-file-operations", config = true },
-      },
-      config = function()
-        require("stephanspiegel.lsp")
-      end
+  },
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+      { "antosha417/nvim-lsp-file-operations", config = true },
     },
+    config = function()
+      require("stephanspiegel.lsp")
+    end
   },
   {
     "jose-elias-alvarez/null-ls.nvim", -- use LSP API with linters that aren't strictly speaking LSPs
