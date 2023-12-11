@@ -5,6 +5,7 @@ function squashuat() {
 	FEATURE_BRANCH="${1:-$CURRENT_BRANCH}"
 	PROMOTION_BRANCH="promotion/${FEATURE_BRANCH}"
 	git fetch
+	git stash
 	git switch "$PROMOTION_BRANCH"
 	git pull
 	git switch dev-uat
@@ -13,6 +14,7 @@ function squashuat() {
 	git commit -m "Merge $PROMOTION_BRANCH into uat"
 	git push
 	git push origin --delete "$PROMOTION_BRANCH"
+	git stash pop
 	open 'https://jenkins.infra.perch-labs.net/job/Community%20Solar%20Engineering/job/SMP/job/dev-uat/'
 }
 
