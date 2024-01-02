@@ -186,4 +186,7 @@ nmap <Leader>p <Action>(ManageRecentProjects)
 
 command! ForceSourcePush action IlluminatedCloud.SfdxPush
 
+nmap ,cs <Action>CopyFileName
+nmap ,cl <Action>CopyPathFromRepositoryRootProvider
+
 Plug 'tpope/vim-surround'
