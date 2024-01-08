@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-sketchybar --set $NAME icon="" label="$(date -u '+%H:%MZ')"
+sketchybar --set $NAME icon="" label="$(date -u '+%H:%MZ')"
