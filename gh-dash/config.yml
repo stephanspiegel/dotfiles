@@ -47,6 +47,6 @@ defaults:
 keybindings:
   prs: []
 repoPaths: # configure where to locate repos when checking out PRs
-  BlueWaveFinanceGroup/SMP: ~/projects/SMP-worktrees/pr
+  BlueWaveFinanceGroup/SMP: ~/projects/SMP/pr
 pager:
   diff: delta
