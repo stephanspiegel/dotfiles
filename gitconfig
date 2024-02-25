@@ -21,5 +21,14 @@
     conflictstyle = diff3
 [diff]
     colorMoved = default
+	algorithm = histogram
+	tool = nvimdiff
 [push]
 	default = current
+[rebase]
+	autoSquash = true
+	autoStash = true
+[help]
+	autocorrect = prompt
+[branch]
+	sort = committerdate
