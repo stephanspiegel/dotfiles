@@ -16,6 +16,7 @@ alias fod='sfdx force:org:display'
 alias foo='sf org open'
 alias fstr='export SFDX_SOURCE_TRACKING_BATCH_SIZE=1000 && sfdx project reset tracking --no-prompt'
 alias sdfx='sfdx'
+alias devcons='sf org open --path _ui/common/apex/debug/ApexCSIPage'
 alias newclass='sfdx force:apex:class:create'
 
 alias orgs="sfdx force:org:list --json | jq '.result.scratchOrgs|map({(.instanceUrl): .alias})|add'"
