@@ -54,6 +54,10 @@ local colorscheme_specifications = {
     end,
   },
   { "https://gitlab.com/protesilaos/tempus-themes-vim" },
+  {
+    'kepano/flexoki-neovim',
+    name = 'flexoki'
+  },
 }
 
 return colorscheme_specifications
