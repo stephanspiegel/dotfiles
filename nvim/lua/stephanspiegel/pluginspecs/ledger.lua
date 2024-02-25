@@ -19,7 +19,7 @@ return {
       -- turn off completion for ledger, where it interferes with plugin provided completion
       vim.api.nvim_command([[
         autocmd FileType ledger* lua require 'cmp'.setup.buffer { enabled = false }
-      ]])
+        ]])
     end,
     ft = "ledger",
     keys = {
@@ -41,5 +41,24 @@ return {
   {
     "rcaputo/vim-ledger_x",
     ft = "ledger"
+  },
+  -- Beancount
+  {
+    "polarmutex/beancount.nvim",
+    ft="beancount"
+  },
+  {
+    "crispgm/cmp-beancount",
+    ft="beancount"
+  },
+  {
+    "nathangrigg/vim-beancount",
+    ft="beancount",
+    config = function ()
+      vim.g.beancount_separator_col = 70;
+    end,
+    keys={
+      { '<Tab>', ':AlignCommodity<CR>', mode = 'v', desc = 'Align on decimal point'},
+    }
   }
 }

@@ -6,6 +6,12 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
+local beancount_ignore_patterns = {
+  "USD",
+  "EUR",
+  "CHF"
+}
+
 return {
   "hrsh7th/nvim-cmp",-- The completion plugin
   event = "InsertEnter",
@@ -82,16 +88,40 @@ return {
             "c",
           }),
       },
-
       sources = {
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
-        { name = "rg" }
-      },
+        { name = "rg" },
+        { name = 'beancount',
+          option = {
+            account = '~/ledger/beancount/meta.beancount'
+          }
+        }
+      }
     }
+    cmp.setup.filetype("beancount", {
+      sources = {
+        {
+          name = "buffer",
+          entry_filter = function(entry, ctx)
+            return not vim.tbl_contains(beancount_ignore_patterns, entry:get_word())
+          end
+        },
+        {
+          name = "beancount",
+          option = {
+            account = "~/ledger/beancount/meta.beancount"
+          },
+        }
+      },
+      experimental = {
+        ghost_text = true,
+        native_menu = false,
+      },
+    })
 
   end,
   dependencies = {
@@ -105,5 +135,6 @@ return {
     "L3MON4D3/LuaSnip" , -- snippet engine
     "saadparwaiz1/cmp_luasnip" , -- snippet completions
     "rafamadriz/friendly-snippets" , -- a bunch of snippets to use
+    "crispgm/cmp-beancount", -- beancount completions
   }
 }

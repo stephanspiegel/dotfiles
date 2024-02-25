@@ -12,6 +12,7 @@ return {
         ensure_installed = {
           "apex",
           "bash",
+          "beancount",
           "c_sharp",
           "css",
           "haskell",

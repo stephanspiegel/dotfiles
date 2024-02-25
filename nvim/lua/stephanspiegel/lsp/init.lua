@@ -73,6 +73,12 @@ lspconfig.rust_analyzer.setup{
     flags = lsp_flags,
 }
 
+lspconfig.beancount.setup {
+    init_options = {
+        journal_file = "~/ledger/beancount/main.beancount",
+    };
+};
+
 -- Hacking in my new servers
 -- See https://github.com/williamboman/mason.nvim/discussions/189
 local index = require("mason-registry.index")
