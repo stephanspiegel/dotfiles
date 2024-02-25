@@ -1,17 +1,17 @@
 format = """
+[](fg:#394260 bg:#769ff0)\
 $directory\
 [](fg:#769ff0 bg:#394260)\
 $git_branch\
 $git_status\
 [](fg:#394260 bg:#212736)\
-$custom\
 $rust\
 $golang\
 $php\
 [](fg:#212736 bg:#1d2230)\
 $time\
 [ ](fg:#1d2230)\
-\n$character
+\n$shell
 """
 
 [directory]
@@ -61,6 +61,11 @@ time_format = "%R" # Hour:Minute Format
 style = "bg:#1d2230"
 format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
 
+[shell]
+nu_indicator = 'nu>'
+zsh_indicator = 'zsh%'
+style = 'cyan bold'
+disabled = false
 # ~/.config/starship.toml
 
 [custom.salesforce]
@@ -70,4 +75,6 @@ detect_folders = ['.sfdx']
 format = ' $symbol [$output]($style)'
 style = 'bold blue'
 symbol = ''
+
 # shell = 'nu'
+

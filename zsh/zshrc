@@ -34,7 +34,7 @@ _comp_options+=(globdots) # include hidden files in completions
 
 case "$OSTYPE" in
   darwin*)
-    source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+    eval "$(starship init zsh)"
   ;;
   linux*)
     source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
