@@ -51,7 +51,7 @@ return {
     end
   },
   {
-    "jose-elias-alvarez/null-ls.nvim", -- use LSP API with linters that aren't strictly speaking LSPs
+    "nvimtools/none-ls.nvim", -- use LSP API with linters that aren't strictly speaking LSPs
     config = function()
       require("stephanspiegel.pluginconfigs.null-ls")
     end,
