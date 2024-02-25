@@ -193,3 +193,5 @@ case "$OSTYPE" in
 
   ;;
 esac
+source /Users/stephanspiegel/.config/broot/launcher/bash/br
+
