@@ -194,6 +194,6 @@ case "$OSTYPE" in
   ;;
 esac
 
-source /Users/stephanspiegel/.config/broot/launcher/bash/br
+source ~/.config/broot/launcher/bash/br
 
 eval "$(atuin init zsh)"

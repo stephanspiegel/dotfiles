@@ -1,8 +1,21 @@
+local determineBrowserApp = function()
+      if(vim.loop.os_uname().sysname == "Linux") then
+        return "xdg-open"
+      end
+      return "open"
+end
+
 return {
   "chrishrb/gx.nvim",
   event = { "BufEnter" },
+  keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
+  cmd = { "Browse" },
+  init = function ()
+    vim.g.netrw_nogx = 1 -- disable netrw gx
+  end,
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function() require("gx").setup {
+    open_browser_app = determineBrowserApp(),
     handlers = {
       plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
       github = true, -- open github issues
@@ -11,7 +24,7 @@ return {
       search = true, -- search the web/selection on the web if nothing else is found
     },
     handler_options = {
-      search_engine = "duckduckgo", -- you can select between google, bing, duckduckgo, and ecosia
+      search_engine = "https://www.qwant.com/?t=web&q=",
     },
   } end,
 }
