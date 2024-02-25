@@ -32,7 +32,7 @@ end
 
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { "devicons", opt = true },
+  dependencies = { "devicons", config = true },
   event = "VeryLazy",
   opts = {
     options = {
