@@ -79,6 +79,7 @@ return {
     end,
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
+      { "nushell/tree-sitter-nu" },
       { "nvim-treesitter/playground",
         build = ":TSInstall query"
       }
