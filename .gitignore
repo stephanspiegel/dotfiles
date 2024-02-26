@@ -57,3 +57,4 @@ gh/hosts.yml
 
 # Ignore karabiner backups
 karabiner/automatic_backups/*
+nushell/history.txt

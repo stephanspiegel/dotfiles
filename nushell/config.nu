@@ -761,7 +761,7 @@ $env.config = {
     ]
 }
 
-use ~/.cache/starship/init.nu
+use ~/.config/cache/starship/init.nu
 use '~/.config/broot/launcher/nushell/br' *
-source ~/.local/share/atuin/init.nu
+source ~/.config/local/share/atuin/init.nu
 source ~/.zoxide.nu
