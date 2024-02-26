@@ -29,6 +29,7 @@
         - zsh/foxwhelp*
         - zsh/perch*
     ~/.config/zsh/.zshrc: zsh/zshrc
+    ~/.config/nushell:
     ~/.config/lazygit/config.yml: lazygit/config.yml
     ~/.config/btop:
     ~/.config/gh:

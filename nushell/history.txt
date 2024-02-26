@@ -1,0 +1,39 @@
+units
+ping 1.1.1.1
+ls
+open .sfdx/sfdx-config.json
+ps
+ps | where name =~ "kmon"
+exit
+headseton
+zsh headseton
+$nu.config
+$nu.config-path
+config nu
+nu -c 'help commands | get name | str join "\n"'
+help commands | get name | str join "\n"
+help commands
+config nu
+exit
+config nu
+exit
+config nu
+starship
+pip install beancount-chase-bank
+python -m venv ~/ledger/beancount
+cd ~/ledger/beancount
+pip install beancount-chase-bank
+br
+bin
+bin/pip install beancount-chase-bank
+bin/pip install autobean
+bean-check main.beancount
+bin/python bean-check main.beancount
+source bin/activate
+exit
+source bin/activate
+exit
+$nu.config-path
+exit
+$nu.config-path
+exit
