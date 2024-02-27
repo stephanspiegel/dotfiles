@@ -761,6 +761,14 @@ $env.config = {
     ]
 }
 
+alias foo = sf org open
+alias devcons = sf org open --path _ui/common/apex/debug/ApexCSIPage
+alias newclass = sf force:apex:class:create
+alias gbsc = git branch --show-current
+# alias gby = gbsc | tr -d '\n' | pbcopy
+alias lg = lazygit
+# alias gcoi = git branch --all --sort=-committerdate | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git checkout
+
 use ~/.config/cache/starship/init.nu
 use '~/.config/broot/launcher/nushell/br' *
 source ~/.config/local/share/atuin/init.nu
