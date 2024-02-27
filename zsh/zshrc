@@ -197,3 +197,5 @@ esac
 source ~/.config/broot/launcher/bash/br
 
 eval "$(atuin init zsh)"
+
+source ~/.config/broot/launcher/bash/br
