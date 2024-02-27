@@ -36,6 +36,8 @@
     ~/.config/gh-dash:
     ~/.config/topgrade:
     ~/.config/starship.toml: starship/starship.toml
+    ~/.config/broot/conf.hjson: broot/conf.hjson
+    ~/.config/broot/verbs.hjson: broot/verbs.hjson
 
 # foxwhelp specific links
 - defaults:
