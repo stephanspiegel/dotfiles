@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+function find_sf_project_root() {
+    sf_root=$(pwd -P 2>/dev/null || command pwd)
+    while [ ! -e "$sf_root/.sf" ]; do
+        sf_root=${sf_root%/*}
+        if [ "$sf_root" = "" ]; then break; fi
+    done
+    echo $sf_root
+}
+
+function prompt_sf() {
+    globalConfig="$(cat ~/.sf/config.json)";
+    sf_root=$(find_sf_project_root)
+    if [ ! $sf_root = "" ] && [ ! $sf_root = $HOME ]
+    then
+        localconfig="$(cat ${sf_root}/.sf/config.json)"    
+        defaultusername="$(echo ${localconfig} | jq -r '.["target-org"]')"
+        defaultdevhubusername="$(echo ${localconfig} | jq -r '.["target-dev-hub"]')"
+    fi
+    if [ -z "$defaultusername" ] || [ "$defaultusername" = "null" ]
+    then
+        defaultusername="$(echo ${globalConfig} | jq -r '.["target-org"]')"
+    fi
+    if [ -z "$defaultdevhubusername" ] || [ "$defaultdevhubusername" = "null" ]
+    then
+        defaultdevhubusername="$(echo ${globalConfig} | jq -r '.["target-dev-hub"]')"
+    fi
+    echo "$defaultdevhubusername $defaultusername"
+}
+
+ prompt_sf
