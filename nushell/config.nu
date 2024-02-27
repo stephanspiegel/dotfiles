@@ -764,10 +764,20 @@ $env.config = {
 alias foo = sf org open
 alias devcons = sf org open --path _ui/common/apex/debug/ApexCSIPage
 alias newclass = sf force:apex:class:create
+
+# git
+alias gb = git branch
+alias gba = git branch --all
+alias gbd = git branch --delete
+alias gbD = git branch --delete --force
 alias gbsc = git branch --show-current
 # alias gby = gbsc | tr -d '\n' | pbcopy
 alias lg = lazygit
 # alias gcoi = git branch --all --sort=-committerdate | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git checkout
+
+def gbda []{
+    git branch --merged | lines | where ($it != "* main") | each {|br| git branch -D ($br | str trim) } | str trim
+}
 
 use ~/.config/cache/starship/init.nu
 use '~/.config/broot/launcher/nushell/br' *
