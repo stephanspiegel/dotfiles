@@ -775,7 +775,7 @@ alias gbsc = git branch --show-current
 alias lg = lazygit
 # alias gcoi = git branch --all --sort=-committerdate | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git checkout
 
-def gbda []{
+def gbda [] {
     git branch --merged | lines | where ($it != "* main") | each {|br| git branch -D ($br | str trim) } | str trim
 }
 
