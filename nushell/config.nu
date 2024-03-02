@@ -239,8 +239,12 @@ $env.config = {
     highlight_resolved_externals: false # true enables highlighting of external commands in the repl resolved by which.
 
     hooks: {
-        pre_prompt: [{ null }] # run before the prompt is shown
-        pre_execution: [{ null }] # run before the repl input is run
+         # run before the prompt is shown
+        pre_prompt: [{ ||
+            print -n $"(ansi title)(pwd | str replace "/Users/stephanspiegel" "~")(ansi st)"
+        }] 
+        # run before the repl input is run
+        pre_execution: [{ null }] 
         env_change: {
             PWD: [{|before, after| null }] # run if the PWD environment is different since the last repl input
         }
@@ -766,18 +770,20 @@ alias devcons = sf org open --path _ui/common/apex/debug/ApexCSIPage
 alias newclass = sf force:apex:class:create
 
 # git
-alias gb = git branch
-alias gba = git branch --all
-alias gbd = git branch --delete
-alias gbD = git branch --delete --force
 alias gbsc = git branch --show-current
-# alias gby = gbsc | tr -d '\n' | pbcopy
+
+def gby [] {
+    gbsc | str trim | pbcopy
+} 
+
 alias lg = lazygit
 # alias gcoi = git branch --all --sort=-committerdate | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git checkout
 
 def gbda [] {
     git branch --merged | lines | where ($it != "* main") | each {|br| git branch -D ($br | str trim) } | str trim
 }
+
+source git-aliases.nu
 
 use ~/.config/cache/starship/init.nu
 use '~/.config/broot/launcher/nushell/br' *
