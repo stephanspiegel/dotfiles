@@ -51,9 +51,9 @@ return {
       lualine_a = { "mode" },
       lualine_b = {
         {
-
           "diagnostics",
-          sources = {  'nvim_lsp', 'nvim_diagnostic' }
+          sources = {  'nvim_lsp', 'nvim_diagnostic' },
+          symbols = {error = '', warn = '', info = '', hint = ''},
         },
         "searchcount"
       },
