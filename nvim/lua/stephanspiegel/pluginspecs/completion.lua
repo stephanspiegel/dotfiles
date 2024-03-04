@@ -106,7 +106,7 @@ return {
       sources = {
         {
           name = "buffer",
-          entry_filter = function(entry, ctx)
+          entry_filter = function(entry, _)
             return not vim.tbl_contains(beancount_ignore_patterns, entry:get_word())
           end
         },

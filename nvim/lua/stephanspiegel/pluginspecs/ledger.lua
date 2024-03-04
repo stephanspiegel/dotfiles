@@ -24,18 +24,32 @@ return {
     ft = "ledger",
     keys = {
       {'<leader>c', ":call ledger#transaction_state_toggle(line('.'), ' *')<CR>", desc = "Toggle 'cleared' state"},
-      { '<Tab>', '<C-r>=ledger#autocomplete_and_align()<CR>', mode = 'i', desc = 'Autocomplete and align'},
+      { '<Tab>',
+        '<C-r>=ledger#autocomplete_and_align()<CR>',
+        mode = 'i',
+        desc = 'Autocomplete and align',
+        ft = 'ledger'
+      },
       {
         '<C-T>',
         '<ESC>:lua require("flash").toggle(false)<CR>?[0-9.]\\+<CR>c//e<CR><C-R>=luaeval("require \'stephanspiegel.functions\'.taxify(_A)", str2float(@"))<CR><ESC>:nohlsearch<CR>:lua require("flash").toggle(true)<CR>a',
         mode = 'i',
-        desc = 'Add Maine state sales tax'},
-      { '<Tab>', ':LedgerAlign<CR>', mode = 'v', desc = 'Align'},
-      {
-        '<C-T>',
-        '"xygvc<C-R>=luaeval("require \'stephanspiegel.functions\'.taxify(_A)", str2float(@x))<CR><ESC>',
-        mode = 'v',
-        desc = 'Add Maine state sales tax'}
+        desc = 'Add Maine state sales tax',
+        ft = 'ledger'
+      },
+    },
+    { '<Tab>',
+      ':LedgerAlign<CR>',
+      mode = 'v',
+      desc = 'Align',
+      ft = 'ledger'
+    },
+    {
+      '<C-T>',
+      '"xygvc<C-R>=luaeval("require \'stephanspiegel.functions\'.taxify(_A)", str2float(@x))<CR><ESC>',
+      mode = 'v',
+      desc = 'Add Maine state sales tax',
+      ft = 'ledger'
     }
   },
   {
@@ -59,6 +73,20 @@ return {
     end,
     keys={
       { '<Tab>', ':AlignCommodity<CR>', mode = 'v', desc = 'Align on decimal point'},
+      {
+        '<C-T>',
+        '<ESC>:lua require("flash").toggle(false)<CR>?[0-9.]\\+<CR>c//e<CR><C-R>=luaeval("require \'stephanspiegel.functions\'.taxify(_A)", str2float(@"))<CR><ESC>:nohlsearch<CR>:lua require("flash").toggle(true)<CR>a',
+        mode = 'i',
+        desc = 'Add Maine state sales tax',
+        ft = 'beancount'
+      },
+      {
+        '<C-T>',
+        '"xygvc<C-R>=luaeval("require \'stephanspiegel.functions\'.taxify(_A)", str2float(@x))<CR><ESC>',
+        mode = 'v',
+        desc = 'Add Maine state sales tax',
+        ft = 'beancount'
+      }
     }
   }
 }
