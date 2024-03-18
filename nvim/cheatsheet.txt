@@ -27,3 +27,56 @@ Switch tabs | ← or →
 Close all tabs | ⇧+w
 Close workspace tab | ⇧+x
 Refresh tab | ⇧+r
+
+## Kitty
+Line up | ctrl+shift+up
+Line down | ctrl+shift+down
+Page up | ctrl+shift+page_up
+Page down | ctrl+shift+page_down
+Top | ctrl+shift+home
+Bottom | ctrl+shift+end
+Previous shell prompt | ctrl+shift+z (see Shell integration)
+Next shell prompt | ctrl+shift+x (see Shell integration)
+Browse scrollback in pager | ctrl+shift+h
+Browse last cmd output | ctrl+shift+g (see Shell integration)
+New tab | ctrl+shift+t
+Close tab | ctrl+shift+q
+Next tab | ctrl+shift+right (also ⌃+⇥ and ⇧+⌘+] on macOS)
+Previous tab | ctrl+shift+left (also ⇧+⌃+⇥ and ⇧+⌘+[ on macOS)
+Next layout | ctrl+shift+l
+Move tab forward | ctrl+shift+.
+Move tab backward | ctrl+shift+,
+Set tab title | ctrl+shift+alt+t (also ⇧+⌘+i on macOS)
+New window | ctrl+shift+enter (also ⌘+↩ on macOS)
+New OS window | ctrl+shift+n (also ⌘+n on macOS)
+Close window | ctrl+shift+w (also ⇧+⌘+d on macOS)
+Resize window | ctrl+shift+r (also ⌘+r on macOS)
+Next window | ctrl+shift+]
+Previous window | ctrl+shift+[
+Move window forward | ctrl+shift+f
+Move window backward | ctrl+shift+b
+Move window to top | ctrl+shift+`
+Visually focus window | ctrl+shift+f7
+Visually swap window | ctrl+shift+f8
+Focus specific window | ctrl+shift+1, ctrl+shift+2 … ctrl+shift+0 (clockwise from the top-left)
+Show this help | ctrl+shift+f1
+Copy to clipboard | ctrl+shift+c (also ⌘+c on macOS)
+Paste from clipboard | ctrl+shift+v (also ⌘+v on macOS)
+Paste from selection | ctrl+shift+s
+Pass selection to program | ctrl+shift+o
+Increase font size | ctrl+shift+equal (also ⌘++ on macOS)
+Decrease font size | ctrl+shift+minus (also ⌘+- on macOS)
+Restore font size | ctrl+shift+backspace (also ⌘+0 on macOS)
+Toggle fullscreen | ctrl+shift+f11 (also ⌃+⌘+f on macOS)
+Toggle maximized | ctrl+shift+f10
+Input Unicode character | ctrl+shift+u (also ⌃+⌘+space on macOS)
+Open URL in web browser | ctrl+shift+e
+Reset the terminal | ctrl+shift+delete (also ⌥+⌘+r on macOS)
+Edit kitty.conf | ctrl+shift+f2 (also ⌘+, on macOS)
+Reload kitty.conf | ctrl+shift+f5 (also ⌃+⌘+, on macOS)
+Debug kitty.conf | ctrl+shift+f6 (also ⌥+⌘+, on macOS)
+Open a kitty shell | ctrl+shift+escape
+Increase background opacity | ctrl+shift+a>m
+Decrease background opacity | ctrl+shift+a>l
+Full background opacity | ctrl+shift+a>1
+Reset background opacity | ctrl+shift+a>d
