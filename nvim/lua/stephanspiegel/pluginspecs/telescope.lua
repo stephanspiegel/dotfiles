@@ -3,6 +3,7 @@
 -- │                        Telescope                         │
 -- ╰──────────────────────────────────────────────────────────╯
 local builtin = require('telescope.builtin')
+local icons = require("nvim-nonicons")
 
 -- from lazy/lua/lazy/core/plugin.lua
 local get_name = function(pkg)
@@ -34,8 +35,8 @@ return {
         { "<leader>hc", builtin.command_history },
         { "<leader>hs", builtin.search_history },
         { 
-          "<leader>cs", 
-          function() 
+          "<leader>cs",
+          function()
             local specs = require'stephanspiegel.pluginspecs.colorschemes'
             local packagenames = {}
             for _, spec in pairs(specs) do
@@ -58,21 +59,24 @@ return {
       local actions = require("telescope.actions")
       return {
       defaults = {
-        -- Default configuration for telescope goes here:
-        -- config_key = value,
-        mappings = {
-          i = {
-            -- map actions.which_key to <C-h> (default: <C-/>)
-            -- actions.which_key shows the mappings for your picker,
-            -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-            ["<C-h>"] = actions.which_key,
-            ["<ESC>"] = actions.close,
-            ["<C-j>"] = actions.move_selection_next,
-            ["<C-k>"] = actions.move_selection_previous,
-            ["<C-n>"] = actions.cycle_history_next,
-            ["<C-p>"] = actions.cycle_history_prev,
+          -- Default configuration for telescope goes here:
+          -- config_key = value,
+          prompt_prefix = "  " .. icons.get("telescope") .. "  ",
+          selection_caret = " ❯ ",
+          entry_prefix = "   ",
+          mappings = {
+            i = {
+              -- map actions.which_key to <C-h> (default: <C-/>)
+              -- actions.which_key shows the mappings for your picker,
+              -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+              ["<C-h>"] = actions.which_key,
+              ["<ESC>"] = actions.close,
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
+              ["<C-n>"] = actions.cycle_history_next,
+              ["<C-p>"] = actions.cycle_history_prev,
+            },
           },
-        },
       },
       pickers = {
         -- Default configuration for builtin pickers goes here:

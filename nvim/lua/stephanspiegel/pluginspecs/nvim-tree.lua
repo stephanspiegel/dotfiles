@@ -1,3 +1,5 @@
+local nonicons_extention = require("nvim-nonicons.extentions.nvim-tree")
+
 return {
   "kyazdani42/nvim-tree.lua",
   keys = {
@@ -12,15 +14,15 @@ return {
       hijack_cursor = false,
       update_cwd = true,
       diagnostics = {
-      enable = true,
-      icons = {
-        hint = "",
-        info = "",
-        warning = "",
-        error = "",
-      },
-    },
-      update_focused_file = {
+          enable = true,
+          icons = {
+            hint = "",
+            info = "",
+            warning = "",
+            error = "",
+          },
+        },
+  update_focused_file = {
       enable = true,
       update_cwd = true,
       update_root = true,
@@ -43,28 +45,9 @@ return {
       },
     },
       renderer = {
-      icons = {
-        glyphs = {
-          default = "",
-          symlink = "",
-          git = {
-            unstaged = "",
-            staged = "S",
-            unmerged = "",
-            renamed = "➜",
-            deleted = "",
-            untracked = "U",
-            ignored = "◌",
-          },
-          folder = {
-            default = "",
-            open = "",
-            empty = "",
-            empty_open = "",
-            symlink = "",
-          },
-        }
-      }
+    icons = {
+      glyphs = nonicons_extention.glyphs,
+    },
     }
   },
 }

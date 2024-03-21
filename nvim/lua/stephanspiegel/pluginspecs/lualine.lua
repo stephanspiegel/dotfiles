@@ -1,4 +1,8 @@
 -- adapted from feline-nvim/feline.nvim
+
+local icons = require("nvim-nonicons")
+local nonicons_extention = require("nvim-nonicons.extentions.lualine")
+
 local api = vim.api
 local scroll_bar_blocks = { '▁', '▂', '▃', '▄', '▅', '▆', '▇', '█' }
 
@@ -48,7 +52,7 @@ return {
       theme = "auto"
     },
     sections = {
-      lualine_a = { "mode" },
+      lualine_a = { nonicons_extention.mode },
       lualine_b = {
         {
           "diagnostics",
