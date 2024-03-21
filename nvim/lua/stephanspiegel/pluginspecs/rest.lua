@@ -1,6 +1,7 @@
 return {
   "rest-nvim/rest.nvim",
   dependencies = { { "nvim-lua/plenary.nvim" } },
+  commit = '91badd46c60df6bd9800c809056af2d80d33da4c',
   config = function()
     require("rest-nvim").setup({
       -- Open request results in a horizontal split
