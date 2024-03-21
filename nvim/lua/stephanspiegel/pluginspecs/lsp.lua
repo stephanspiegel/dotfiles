@@ -7,7 +7,8 @@ return {
     cmd = "Mason",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
-      "williamboman/mason-lspconfig.nvim"
+      "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim"
     },
     opts = {
       ui = {
@@ -22,18 +23,6 @@ return {
         local mason_lspconfig = require("mason-lspconfig")
         mason.setup(opts)
         mason_lspconfig.setup({
-          ensure_installed = {
-            "apex_ls",
-            "cssls",
-            "html",
-            "jsonls",
-            "lua_ls",
-            "prettierd",
-            "rust_analyzer",
-            "selene",
-            "stylua",
-            "tsserver",
-          },
           -- auto-install configured servers (with lspconfig)
           automatic_installation = true, -- not the same as ensure_installed
         })
@@ -49,6 +38,26 @@ return {
     config = function()
       require("stephanspiegel.lsp")
     end
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    ensure_installed = {
+      "apex-language-server",
+      "beancount-language-server",
+      "css-lsp",
+      "html-lsp",
+      "json-lsp",
+      "lua-language-server",
+      "prettierd",
+      "rust-analyzer",
+      "selene",
+      "stylua",
+      "typescript-language-server",
+    },
+    auto_update = true,
+    run_on_start = true,
+    start_delay = 3000, -- 3 second delay
+    debounce_hours = 8
   },
   {
     "nvimtools/none-ls.nvim", -- use LSP API with linters that aren't strictly speaking LSPs
