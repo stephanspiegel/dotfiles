@@ -59,7 +59,7 @@ Move window to top | ctrl+shift+`
 Visually focus window | ctrl+shift+f7
 Visually swap window | ctrl+shift+f8
 Focus specific window | ctrl+shift+1, ctrl+shift+2 … ctrl+shift+0 (clockwise from the top-left)
-Show this help | ctrl+shift+f1
+Show help | ctrl+shift+f1
 Copy to clipboard | ctrl+shift+c (also ⌘+c on macOS)
 Paste from clipboard | ctrl+shift+v (also ⌘+v on macOS)
 Paste from selection | ctrl+shift+s
