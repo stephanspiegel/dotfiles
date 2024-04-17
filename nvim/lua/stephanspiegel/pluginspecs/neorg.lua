@@ -1,7 +1,6 @@
 return {
   "nvim-neorg/neorg",
-  build = ":Neorg sync-parsers",
-  dependencies = { "nvim-lua/plenary.nvim" },
+  dependencies = { "luarocks.nvim" },
   config = function()
     require("neorg").setup {
       load = {
@@ -18,7 +17,8 @@ return {
         },
         ["core.journal"] = {
           config = {
-            strategy = '%Y-%m-%d-%a'
+            strategy = '%Y-%m-%d-%a',
+            workspace = '~/notes'
           }
         }
       },
