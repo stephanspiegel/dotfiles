@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 function startbeancount(){
+    if ! grep -qs '/home/stephan/ledger ' /proc/mounts; then
+        cryfs /home/stephan/Sync/ledger/ /home/stephan/ledger
+    fi
     cd /home/stephan/ledger/beancount
     source .venv/bin/activate
 }
