@@ -37,6 +37,31 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<leader>=', vim.lsp.buf.formatting, bufopts)
     vim.keymap.set('n', 'gl', function() vim.diagnostic.open_float({ scope = "line", border = "rounded" }) end)
+    -- highlight symbol under cursor
+    if client.resolved_capabilities.document_highlight then
+        vim.cmd [[
+        hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+        hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+        hi! LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+        ]]
+        vim.api.nvim_create_augroup('lsp_document_highlight', {
+            clear = false
+        })
+        vim.api.nvim_clear_autocmds({
+            buffer = bufnr,
+            group = 'lsp_document_highlight',
+        })
+        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            group = 'lsp_document_highlight',
+            buffer = bufnr,
+            callback = vim.lsp.buf.document_highlight,
+        })
+        vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            group = 'lsp_document_highlight',
+            buffer = bufnr,
+            callback = vim.lsp.buf.clear_references,
+        })
+    end
 end
 
 local lsp_flags = {
@@ -47,6 +72,32 @@ local lsp_flags = {
 lspconfig.lua_ls.setup {
     on_attach = on_attach,
     flags = lsp_flags,
+    on_init = function(client)
+        local path = client.workspace_folders[1].name
+        if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+            return
+        end
+
+        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            runtime = {
+                -- Tell the language server which version of Lua you're using
+                -- (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT'
+            },
+            -- Make the server aware of Neovim runtime files
+            workspace = {
+                checkThirdParty = false,
+                library = {
+                    vim.env.VIMRUNTIME
+                    -- Depending on the usage, you might want to add additional paths here.
+                    -- "${3rd}/luv/library"
+                    -- "${3rd}/busted/library",
+                }
+                -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+                -- library = vim.api.nvim_get_runtime_file("", true)
+            }
+        })
+    end,
     settings = require("stephanspiegel.lsp.settings.lua_ls")
 }
 
@@ -103,8 +154,13 @@ lspconfig.soql_ls.setup {
     flags = lsp_flags,
 }
 
-local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+local signs = {
+    Error = "󰅚 ",
+    Warn = "󰀪 ",
+    Hint = "󰌶 ",
+    Info = " "
+}
 for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
