@@ -89,17 +89,18 @@ return {
           }),
       },
       sources = {
-        { name = "nvim_lsp" },
-        { name = "nvim_lua" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
-        { name = "rg" },
         { name = 'beancount',
           option = {
             account = '~/ledger/beancount/meta.beancount'
           }
-        }
+        },
+        { name = "buffer" },
+        { name = "luasnip" },
+        { name = "nvim_lsp" },
+        { name = "nvim_lua" },
+        { name = "path" },
+        { name = "rg" },
+        { name = "vsnip" },
       }
     }
     cmp.setup.filetype("beancount", {
@@ -131,6 +132,9 @@ return {
     "hrsh7th/cmp-nvim-lsp" , -- lsp completions
     "lukas-reineke/cmp-rg" , -- ripgrep everything
     "hrsh7th/cmp-nvim-lua" , -- source for neovim Lua API
+    "hrsh7th/cmp-nvim-lsp-signature-help", -- display function signatures with current parameter emphasized
+    "hrsh7th/cmp-vsnip", -- vscode snippets?
+    "hrsh7th/vim-vsnip", -- vscode snippets?
     -- snippets
     "L3MON4D3/LuaSnip" , -- snippet engine
     "saadparwaiz1/cmp_luasnip" , -- snippet completions
