@@ -22,7 +22,7 @@ local git_user_email = function()
   return vim.trim(vim.fn.system("git config --get user.email"))
 end
 
-local date_input = function(args, state, date_format)
+local date_input = function(_, _, date_format)
   date_format = date_format or "%Y-%m-%d"
   return snippet_node(nil, insert_node(1, os.date(date_format)))
 end
@@ -71,3 +71,4 @@ luasnip.add_snippets("all", {
 })
 luasnip.add_snippets("apexcode", require("stephanspiegel.snippets.apex"))
 luasnip.add_snippets("lua", require("stephanspiegel.snippets.lua"))
+luasnip.add_snippets("beancount", require("stephanspiegel.snippets.beancount"))
