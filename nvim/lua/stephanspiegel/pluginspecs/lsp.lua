@@ -44,6 +44,7 @@ return {
     ensure_installed = {
       "apex-language-server",
       "beancount-language-server",
+      "codelldb",
       "css-lsp",
       "html-lsp",
       "json-lsp",
@@ -64,7 +65,7 @@ return {
     config = function()
       require("stephanspiegel.pluginconfigs.null-ls")
     end,
-    dependencies = { 
+    dependencies = {
         "nvim-lua/plenary.nvim" ,
         "nvimtools/none-ls-extras.nvim"
     },

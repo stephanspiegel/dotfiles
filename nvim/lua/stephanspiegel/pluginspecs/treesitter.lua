@@ -13,6 +13,7 @@ return {
           "apex",
           "bash",
           "beancount",
+          "c",
           "c_sharp",
           "css",
           "haskell",
