@@ -5,8 +5,8 @@ return {
         version = 'LuaJIT',
       },
       diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        -- Get the language server to recognize the `vim` global, as well as Busted testing globals
+        globals = {'vim', 'describe', 'it'},
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
