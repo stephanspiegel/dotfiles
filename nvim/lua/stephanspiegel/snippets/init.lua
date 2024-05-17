@@ -72,3 +72,4 @@ luasnip.add_snippets("all", {
 luasnip.add_snippets("apexcode", require("stephanspiegel.snippets.apex"))
 luasnip.add_snippets("lua", require("stephanspiegel.snippets.lua"))
 luasnip.add_snippets("beancount", require("stephanspiegel.snippets.beancount"))
+luasnip.add_snippets("norg", require("stephanspiegel.snippets.norg"))
