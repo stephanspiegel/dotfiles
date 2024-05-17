@@ -213,7 +213,7 @@ return {
         choice_node(
           2,
           {
-            text_node("System.assertEquals(expected, actual);"),
+            text_node("Assert.areEqual(expected, actual);"),
             test_spec_snippet(nil)
           }
         ),
