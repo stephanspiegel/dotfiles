@@ -4,7 +4,7 @@ return {
     -- dir = "~/Projects/vim/kraftwerk.nvim",
     dev = false,
     config = true,
-    ft = "apexcode",
+    ft = {  "apexcode", "soql", "apex" },
     keys = {
       {'gqq', 'mxvap:ForceDataSoqlQuery csv<CR>`x', mode = 'n', desc = 'Run current paragraph as SOQL query'},
       {'gee', 'mxvap:ForceApexExecute<CR>`x', mode = 'n', desc = 'Run current paragraph as Anonymous Apex'},
