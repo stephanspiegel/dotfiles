@@ -5,7 +5,6 @@ local modules =
 , 'mappings'
 , 'commands'
 , 'plugins'
-, 'completion'
 , 'title'
 }
 
