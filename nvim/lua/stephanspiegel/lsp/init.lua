@@ -102,6 +102,7 @@ lspconfig.lua_ls.setup {
 }
 
 lspconfig.apex_ls.setup {
+    filetypes = {'apex', 'apexcode'},
     on_attach = on_attach,
     flags = lsp_flags,
     apex_jar_path = vim.fn.stdpath("data")..'/mason/packages/apex-language-server/extension/dist/apex-jorje-lsp.jar',

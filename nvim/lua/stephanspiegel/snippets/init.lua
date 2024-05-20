@@ -69,7 +69,7 @@ luasnip.add_snippets("all", {
   }),
   snippet({ trig = "signature", dscr = "Identifies who I am" }, { signature_node() }),
 })
-luasnip.add_snippets("apexcode", require("stephanspiegel.snippets.apex"))
+luasnip.add_snippets("apex", require("stephanspiegel.snippets.apex"))
 luasnip.add_snippets("lua", require("stephanspiegel.snippets.lua"))
 luasnip.add_snippets("beancount", require("stephanspiegel.snippets.beancount"))
 luasnip.add_snippets("norg", require("stephanspiegel.snippets.norg"))
