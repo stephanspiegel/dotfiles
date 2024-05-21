@@ -2,31 +2,31 @@
 -- │                        Completion                        │
 -- ╰──────────────────────────────────────────────────────────╯
   kind_icons = {
-    Text = '',
+    Text = '',
     Method = 'm',
-    Function = '',
+    Function = '',
     Constructor = '',
     Field = '',
-    Variable = '',
-    Class = '',
+    Variable = '',
+    Class = '',
     Interface = '',
     Module = '',
     Property = '',
     Unit = '',
-    Value = '',
+    Value = '',
     Enum = '',
     Keyword = '',
     Snippet = '',
-    Color = '',
-    File = '',
+    Color = '',
+    File = '',
     Reference = '',
-    Folder = '',
+    Folder = '󰉋',
     EnumMember = '',
-    Constant = '',
+    Constant = '',
     Struct = '',
     Event = '',
-    Operator = '',
-    TypeParameter = '',
+    Operator = '',
+    TypeParameter = '',
   }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
@@ -111,7 +111,7 @@ return {
         { name = "nvim_lua" },
         { name = "path" },
         { name = "rg" },
-        { name = "vsnip" },
+        -- { name = "vsnip" },
       },
 
       window = {
