@@ -7,7 +7,7 @@ end
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
--- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', 'gh', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
@@ -35,10 +35,10 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<leader>=', vim.lsp.buf.formatting, bufopts)
+    vim.keymap.set('n', '<leader>=', vim.lsp.buf.format, bufopts)
     vim.keymap.set('n', 'gl', function() vim.diagnostic.open_float({ scope = "line", border = "rounded" }) end)
     -- highlight symbol under cursor
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.document_highlight then
         vim.cmd [[
         hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
         hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
@@ -74,7 +74,7 @@ lspconfig.lua_ls.setup {
     flags = lsp_flags,
     on_init = function(client)
         local path = client.workspace_folders[1].name
-        if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+        if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
             return
         end
 
@@ -102,11 +102,11 @@ lspconfig.lua_ls.setup {
 }
 
 lspconfig.apex_ls.setup {
-    filetypes = {'apex', 'apexcode'},
+    filetypes = { 'apex', 'apexcode' },
     on_attach = on_attach,
     flags = lsp_flags,
-    apex_jar_path = vim.fn.stdpath("data")..'/mason/packages/apex-language-server/extension/dist/apex-jorje-lsp.jar',
-    apex_enable_semantic_errors = false, -- Whether to allow Apex Language Server to surface semantic errors
+    apex_jar_path = vim.fn.stdpath("data") .. '/mason/packages/apex-language-server/extension/dist/apex-jorje-lsp.jar',
+    apex_enable_semantic_errors = false,       -- Whether to allow Apex Language Server to surface semantic errors
     apex_enable_completion_statistics = false, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
 }
 
@@ -120,7 +120,7 @@ lspconfig.tsserver.setup {
     flags = lsp_flags,
 }
 
-lspconfig.rust_analyzer.setup{
+lspconfig.rust_analyzer.setup {
     on_attach = on_attach,
     flags = lsp_flags,
 }
@@ -128,7 +128,7 @@ lspconfig.rust_analyzer.setup{
 lspconfig.beancount.setup {
     init_options = {
         journal_file = "~/ledger/beancount/main.beancount",
-    };
+    },
 };
 
 -- Hacking in my new servers
@@ -142,11 +142,11 @@ local configs = require 'lspconfig.configs'
 if not configs.soql_ls then
     configs.soql_ls = {
         default_config = {
-            cmd = {'soql-ls', '--stdio'},
-            filetypes = {'soql'},
+            cmd = { 'soql-ls', '--stdio' },
+            filetypes = { 'soql' },
             root_dir = lspconfig.util.root_pattern('sfdx-project.json'),
             settings = {},
-        }
+        },
     }
 end
 
