@@ -26,15 +26,15 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     keys = function ()
       return {
-        { "<leader>p", require'telescope'.extensions.projects.projects },
-        { "<leader>ff", function() builtin.find_files({no_ignore=true, hidden=true}) end },
-        { "<leader>fg", builtin.live_grep },
-        { "<leader>b", builtin.buffers },
-        { "<leader>fh", builtin.help_tags },
-        { "<leader>c", builtin.commands },
-        { "<leader>hc", builtin.command_history },
-        { "<leader>hs", builtin.search_history },
-        { 
+        { "<leader>p", require'telescope'.extensions.projects.projects, desc = 'Open [P]roject' },
+        { "<leader>ff", function() builtin.find_files({no_ignore=true, hidden=true}) end, desc = '[F]ind [F]iles' },
+        { "<leader>fg", builtin.live_grep, desc = '[F]ind contents using Live [G]rep' },
+        { "<leader>b", builtin.buffers, desc = 'Open [B]uffer' },
+        { "<leader>fh", builtin.help_tags, desc = '[F]ind [H]elp' },
+        { "<leader>c", builtin.commands, desc = 'Show neovim [C]ommands' },
+        { "<leader>hc", builtin.command_history, desc = '[H]istory of [C]ommands' },
+        { "<leader>hs", builtin.search_history, desc = '[H]istory of [S]earches' },
+        {
           "<leader>cs",
           function()
             local specs = require'stephanspiegel.pluginspecs.colorschemes'
@@ -46,19 +46,21 @@ return {
             end
             require'lazy'.load({plugins=packagenames, wait=true})
             builtin.colorscheme()
-          end
+          end,
+          desc = 'Change [C]olor [S]cheme'
         },
-        { "<leader>rg", builtin.grep_string },
-        { "<leader>gb", builtin.git_branches },
-        { "<leader>qf", builtin.quickfix },
-        { "<leader>fb", require "telescope".extensions.file_browser.file_browser },
+        { "<leader>rg", builtin.grep_string, desc = 'Search string under cursor (like [R]ip[G]rep)' },
+        { "<leader>gb", builtin.git_branches, desc = 'Work with [G]it [B]ranches' },
+        { "<leader>qf", builtin.quickfix, desc = 'Populate Telescope with items in [Q]uick [F]ix' },
+        { "<leader>fb", require'telescope'.extensions.file_browser.file_browser, desc = 'Open [F]ile [B]rowser' },
+        { "<leader>sd", builtin.diagnostics, desc = '[S]earch [D]iagnostics' },
       }
     end,
 
     opts = function()
       local actions = require("telescope.actions")
       return {
-      defaults = {
+        defaults = {
           -- Default configuration for telescope goes here:
           -- config_key = value,
           prompt_prefix = "  " .. icons.get("telescope") .. "  ",
@@ -77,51 +79,51 @@ return {
               ["<C-p>"] = actions.cycle_history_prev,
             },
           },
-      },
-      pickers = {
-        -- Default configuration for builtin pickers goes here:
-        -- picker_name = {
-        --   picker_config_key = value,
-        --   ...
-        -- }
-        -- Now the picker_config_key will be applied every time you call this
-        -- builtin picker
-        colorscheme = { enable_preview = true },
-      },
-      extensions = {
-        -- Your extension configuration goes here:
-        -- extension_name = {
-        --   extension_config_key = value,
-        -- }
-        -- please take a look at the readme of the extension you want to configure
-        fzf = {
-          fuzzy = true, -- false will only do exact matching
-          override_generic_sorter = true, -- override the generic sorter
-          override_file_sorter = true, -- override the file sorter
-          case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-          -- the default case_mode is "smart_case"
         },
-        lazy = {
-          -- Whether or not to show the icon in the first column
-          show_icon = true,
-          -- Mappings for the actions
-          mappings = {
-            open_in_browser = "<C-o>",
-            open_in_file_browser = "<M-b>",
-            open_in_find_files = "<C-f>",
-            open_in_live_grep = "<C-g>",
-            open_plugins_picker = "<C-b>", -- Works only after having called first another action
-            open_lazy_root_find_files = "<C-r>f",
-            open_lazy_root_live_grep = "<C-r>g",
+        pickers = {
+          -- Default configuration for builtin pickers goes here:
+          -- picker_name = {
+          --   picker_config_key = value,
+          --   ...
+          -- }
+          -- Now the picker_config_key will be applied every time you call this
+          -- builtin picker
+          colorscheme = { enable_preview = true },
+        },
+        extensions = {
+          -- Your extension configuration goes here:
+          -- extension_name = {
+          --   extension_config_key = value,
+          -- }
+          -- please take a look at the readme of the extension you want to configure
+          fzf = {
+            fuzzy = true, -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true, -- override the file sorter
+            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
           },
+          lazy = {
+            -- Whether or not to show the icon in the first column
+            show_icon = true,
+            -- Mappings for the actions
+            mappings = {
+              open_in_browser = "<C-o>",
+              open_in_file_browser = "<M-b>",
+              open_in_find_files = "<C-f>",
+              open_in_live_grep = "<C-g>",
+              open_plugins_picker = "<C-b>", -- Works only after having called first another action
+              open_lazy_root_find_files = "<C-r>f",
+              open_lazy_root_live_grep = "<C-r>g",
+            },
+          },
+          file_browser = {
+            theme = "ivy",
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true
+          }
         },
-        file_browser = {
-          theme = "ivy",
-          -- disables netrw and use telescope-file-browser in its place
-          hijack_netrw = true
-        }
-      },
-    }
+      }
     end,
     config = function(_, opts)
       local telescope = require("telescope")
