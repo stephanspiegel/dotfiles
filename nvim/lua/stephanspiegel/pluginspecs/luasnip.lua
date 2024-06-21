@@ -10,9 +10,9 @@ return {
     return 'make install_jsregexp'
   end)(),
   config = function()
-    require("luasnip.loaders.from_lua").lazy_load {
-      paths = vim.fn.stdpath "config" .. "/lua/stephanspiegel/snippets",
-    }
+    require("luasnip.loaders.from_lua").lazy_load ({
+      paths = {vim.fn.stdpath "config" .. "/lua/stephanspiegel/snippets"},
+    });
   end,
   dependencies = {
     {

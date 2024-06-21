@@ -1,3 +1,4 @@
+local comment_ft = require("Comment.ft")
 local luasnip = require("luasnip")
 local choice_node = luasnip.choice_node
 local dynamic_node = luasnip.dynamic_node
@@ -32,18 +33,12 @@ local function is_empty(ln)
 end
 
 local comment_string = function()
-  local lcs, rcs = vim.bo.commentstring:match("(.*)%%s(.*)")
-  return not is_empty(lcs) and vim.trim(lcs), not is_empty(rcs) and vim.trim(rcs)
-end
-
-local start_comment_string = function()
-  local lcs, _ = comment_string()
-  return lcs or ""
-end
-
-local end_comment_string = function()
-  local _, rcs = comment_string()
-  return rcs or ""
+  local comment_string_config = comment_ft.get(vim.bo.filetype)
+  if(comment_string_config == nil) then return "//" end
+  local single_line_comment_string = (type(comment_string_config) == "table")
+      and comment_string_config[1]
+      or comment_string_config
+  return single_line_comment_string:match("(.*)%%s(.*)")
 end
 
 local signature_node = function(jump_location)
@@ -60,16 +55,11 @@ luasnip.add_snippets("all", {
     trig = "todo",
     dscr = "TODO comment",
   }, {
-    function_node(start_comment_string),
-    text_node("todo " .. date() .. " "),
+    function_node(comment_string),
+    text_node(" TODO " .. date() .. " "),
     signature_node(1),
     text_node(" -- "),
     insert_node(0, "what needs doing"),
-    function_node(end_comment_string),
   }),
   snippet({ trig = "signature", dscr = "Identifies who I am" }, { signature_node() }),
 })
-luasnip.add_snippets("apex", require("stephanspiegel.snippets.apex"))
-luasnip.add_snippets("lua", require("stephanspiegel.snippets.lua"))
-luasnip.add_snippets("beancount", require("stephanspiegel.snippets.beancount"))
-luasnip.add_snippets("norg", require("stephanspiegel.snippets.norg"))
