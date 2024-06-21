@@ -47,6 +47,8 @@ local plugin_specifications = {
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup()
+      -- set commentstrings for apex; for some reason comment.nvim doesn't get it from treesitter
+      require('Comment.ft').set('apex', {'//%s', '/*%s*/'})
     end,
     event = { "BufReadPost", "BufNewFile" },
   },
