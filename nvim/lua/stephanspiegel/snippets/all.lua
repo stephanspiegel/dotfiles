@@ -46,20 +46,22 @@ local signature_node = function(jump_location)
   return choice_node(jump_location, {
     text_node("<" .. git_user_email() .. "> " .. git_user_name()),
     text_node(git_user_name()),
-    insert_node(nil, git_user_email()),
   })
 end
+
+local todo_labels = { "TODO", "FIX", "NOTE", "WARNING", }
 
 luasnip.add_snippets("all", {
   snippet({
     trig = "todo",
     dscr = "TODO comment",
-  }, {
-    function_node(comment_string),
-    text_node(" TODO " .. date() .. " "),
-    signature_node(1),
-    text_node(" -- "),
-    insert_node(0, "what needs doing"),
-  }),
+  }, fmt('{} {}: {} {} -- {}', {
+      function_node(comment_string),
+      choice_node(1, vim.tbl_map(text_node, todo_labels)),
+      dynamic_node(2, date_input),
+      signature_node(3),
+      insert_node(0, "what needs doing"),
+    })
+  ),
   snippet({ trig = "signature", dscr = "Identifies who I am" }, { signature_node() }),
 })
