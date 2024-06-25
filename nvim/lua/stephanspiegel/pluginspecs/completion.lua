@@ -74,6 +74,11 @@ return {
             luasnip.change_choice(1)
           end
         end),
+        ['<C-k>'] = cmp.mapping(function ()
+          if luasnip.choice_active() then
+            luasnip.change_choice(-1)
+          end
+        end),
         ["<Tab>"] = cmp.mapping(function(fallback)
           -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
           if cmp.visible() then
