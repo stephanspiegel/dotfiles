@@ -39,6 +39,10 @@ esac
 # timewarrior
 alias t=timew
 
+# pomo.sh
+alias pa='pomo start'
+alias pz='pomo stop'
+
 # fix backspace issues when using kitty terminal for ssh
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
