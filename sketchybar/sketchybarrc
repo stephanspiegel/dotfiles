@@ -36,14 +36,13 @@ defaults=(
   drawing=on
   icon.font="Symbols Nerd Font:1000-em:17.0"
   icon.color=$ICON_COLOR
+  icon.y_offset=1
   label.font="Monaspace Neon Var:SemiBold:14.0"
   label.color=$FG_COLOR
   highlight.color=$HIGHLIGHT_COLOR
   background.color=$BAR_COLOR
-  background.corner_radius=5
+  background.corner_radius=10
   background.height=24
-  padding_left=5
-  padding_right=5
   label.padding_left=4
   label.padding_right=10
   icon.padding_left=10
@@ -75,7 +74,7 @@ do
     background.border_color=$FG_COLOR
     background.color=$FG_COLOR
     background.border_width=2
-    background.corner_radius=5
+    background.corner_radius=3
     background.height=22
     background.drawing=off
     label.drawing=off
@@ -105,17 +104,42 @@ sketchybar --add item space_separator left                         \
 # Additional position (e.g. center) are available, see:
 # https://felixkratz.github.io/SketchyBar/config/items#adding-items-to-sketchybar
 
-sketchybar --add item clock right                        \
-           --set clock   update_freq=10                  \
-                         script="$PLUGIN_DIR/clock.sh"   \
-                                                         \
-           --add item battery right                      \
-           --set battery script="$PLUGIN_DIR/battery.sh" \
-                         update_freq=10                  \
+sketchybar --add item clock right                                \
+           --set clock update_freq=10                            \
+                    script="$PLUGIN_DIR/clock.sh"                \
+                    label.color=$BAR_COLOR                       \
+                    icon.color=$BAR_COLOR                        \
+                    background.color=$FG_COLOR                   \
+           --add item utc right                                  \
+           --set utc update_freq=10                              \
+                    script="$PLUGIN_DIR/utc.sh"                  \
+           --add item date right                                 \
+           --set date update_freq=3600                           \
+                    script="$PLUGIN_DIR/date.sh"                 \
+                    label.color=$BAR_COLOR                       \
+                    icon.color=$BAR_COLOR                        \
+                    background.color=$FG_COLOR                   \
+                    icon.padding_right=0                         \
+                    icon.padding_left=0                          \
+           --add item weekday right                              \
+           --set weekday update_freq=3600                        \
+                    script="$PLUGIN_DIR/weekday.sh"              \
+                    background.padding_left=0                    \
+                    background.border_width=1                    \
+           --add bracket datetime date utc clock weekday         \
+           --set datetime background.color=$FG_COLOR             \
+                    background.border_color=$FG_COLOR            \
+                    background.border_width=1                    \
+                    background.height=26                         \
+           --add item battery right                              \
+           --set battery script="$PLUGIN_DIR/battery.sh"         \
+                    update_freq=10                               \
            --subscribe battery system_woke power_source_change   \
-           --add item pomo right                         \
-           --set pomo    update_freq=1                   \
-                         script="$PLUGIN_DIR/pomo.sh"
+           --add item pomo right                                 \
+           --set pomo update_freq=1                              \
+                    script="$PLUGIN_DIR/pomo.sh"                 \
+                    background.border_color=$FG_COLOR            \
+                    background.border_width=1                    \
 
 ##### Finalizing Setup #####
 # The below command is only needed at the end of the initial configuration and
