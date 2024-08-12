@@ -214,3 +214,14 @@ export alias gamc = git am --continue
 export alias gams = git am --skip
 export alias gama = git am --abort
 export alias gamscp = git am --show-current-patch
+
+def gby [] {
+    gbsc | str trim | pbcopy
+} 
+def gbda [] {
+    git branch --merged | lines | where ($it != "* main") | each {|br| git branch -D ($br | str trim) } | str trim
+}
+alias lg = lazygit
+
+# alias gcoi = git branch --all --sort=-committerdate | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git checkout
+
