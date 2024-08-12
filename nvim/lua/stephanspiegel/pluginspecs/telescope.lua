@@ -54,6 +54,12 @@ return {
         { "<leader>qf", builtin.quickfix, desc = 'Populate Telescope with items in [Q]uick [F]ix' },
         { "<leader>fb", require'telescope'.extensions.file_browser.file_browser, desc = 'Open [F]ile [B]rowser' },
         { "<leader>sd", builtin.diagnostics, desc = '[S]earch [D]iagnostics' },
+        { "<leader>fc",
+          function ()
+            builtin.live_grep({glob_pattern={"!*Test*", "!*test*", "!*.xml", "!*Selector.cls"}})
+          end,
+          desc = '[S]earch in (Apex) [C]lasses'
+        },
       }
     end,
 
