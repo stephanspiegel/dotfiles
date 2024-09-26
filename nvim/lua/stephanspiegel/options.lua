@@ -52,7 +52,7 @@ local options =
 , breakindent = true                       -- indent wrapped lines
 , showbreak = '↪ '
 , writebackup = false                      -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-, sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
+, sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 }
 
 vim.opt.breakindentopt:append 'shift:4'
