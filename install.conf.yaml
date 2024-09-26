@@ -62,7 +62,7 @@
     ~/.config/kitty/kitty.local.conf: kitty/kitty.perch.local.conf
     ~/.config/karabiner:
     ~/.config/sketchybar:
-    ~/.config/yabai:
+    ~/.config/aerospace:
     ~/.hammerspoon: hammerspoon/
     ~/.config/ideavim:
 
