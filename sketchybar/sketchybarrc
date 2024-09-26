@@ -50,54 +50,48 @@ defaults=(
 )
 sketchybar --default "${defaults[@]}"
 
-##### Adding Mission Control Space Indicators #####
-# Now we add some mission control spaces:
-# https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
-# to indicate active and available mission control spaces
+##### Aerospace WM Space Indicators #####
+sketchybar --add event aerospace_workspace_change
 
-SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
-
-for i in "${!SPACE_ICONS[@]}"
-do
-  sid=$(($i+1))
-  sketchybar --add space space.$sid left
-  spaceconfig=(
-    space.$sid
-    associated_space=$sid
-    icon=${SPACE_ICONS[i]}
-    icon.color=$FG_COLOR
-    icon.padding_left=8
-    icon.padding_right=8
-    icon.align="center"
-    background.padding_left=5
-    background.padding_right=5
-    background.border_color=$FG_COLOR
-    background.color=$FG_COLOR
-    background.border_width=2
-    background.corner_radius=3
-    background.height=22
-    background.drawing=off
-    label.drawing=off
-    script="$PLUGIN_DIR/space.sh"
-    click_script="yabai -m space --focus $sid"
-  )
-  sketchybar --set "${spaceconfig[@]}"
+SPACE_ICONS=("" "" "" "" "󰈤" "" "󰏆" "󰊻" "󰇮")
+for sid in $(aerospace list-workspaces --all); do
+    sketchybar --add item space.$sid left \
+        --subscribe space.$sid aerospace_workspace_change \
+        --set space.$sid                             \
+            icon=${SPACE_ICONS[$sid -1]}             \
+            icon.color=$FG_COLOR                     \
+            icon.padding_left=8                      \
+            icon.padding_right=8                     \
+            icon.align="center"                      \
+            background.padding_left=5                \
+            background.padding_right=5               \
+            background.border_color=$FG_COLOR        \
+            background.color=$FG_COLOR               \
+            background.border_width=2                \
+            background.corner_radius=3               \
+            background.height=22                     \
+            background.drawing=off                   \
+            label.drawing=off                        \
+            label="$sid"                             \
+            click_script="aerospace workspace $sid"  \
+            script="$CONFIG_DIR/plugins/aerospace.sh $sid"
 done
+
 
 ##### Adding Left Items #####
 # We add some regular items to the left side of the bar
 # only the properties deviating from the current defaults need to be set
 
-sketchybar --add item space_separator left                         \
-           --set space_separator icon=                            \
-                                 background.padding_left=15        \
-                                 background.padding_right=15       \
-                                 label.drawing=off                 \
-                                                                   \
-           --add item front_app  left                              \
-           --set front_app       script="$PLUGIN_DIR/front_app.sh" \
-                                 icon.drawing=off                  \
-           --subscribe front_app front_app_switched
+# sketchybar --add item space_separator left                         \
+#            --set space_separator icon=                            \
+#                                  background.padding_left=15        \
+#                                  background.padding_right=15       \
+#                                  label.drawing=off                 \
+#                                                                    \
+#            --add item front_app  left                              \
+#            --set front_app       script="$PLUGIN_DIR/front_app.sh" \
+#                                  icon.drawing=off                  \
+#            --subscribe front_app front_app_switched
 
 ##### Adding Right Items #####
 # In the same way as the left items we can add items to the right side.
@@ -139,6 +133,10 @@ sketchybar --add item clock right                                \
            --set pomo update_freq=1                              \
                     script="$PLUGIN_DIR/pomo.sh"                 \
                     background.border_color=$FG_COLOR            \
+                    background.border_width=1                    \
+           --add item github right                               \
+           --set github update_freq=120                          \
+                    script="$PLUGIN_DIR/github.sh"               \
                     background.border_width=1                    \
 
 ##### Finalizing Setup #####
