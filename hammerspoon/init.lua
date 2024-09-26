@@ -15,3 +15,13 @@ hs.hotkey.bind({"ctrl", "cmd"}, "n", function()
     })
     :start()
 end)
+
+function toggleMute() 
+  local teams = hs.application.find("Teams")
+  if not (teams == null) then
+    hs.printf('teams: %s', teams)
+        hs.eventtap.keyStroke({"cmd","shift"}, "m", 0, teams)
+  end
+end
+
+hs.hotkey.bind({"ctrl"}, "home", toggleMute)
