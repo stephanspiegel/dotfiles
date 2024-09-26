@@ -259,7 +259,6 @@ $env.config = {
     }
 
     color_config: $dark_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
-    use_grid_icons: true
     footer_mode: "25" # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
     buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
@@ -825,25 +824,10 @@ $env.config = {
     ]
 }
 
-alias foo = sf org open
-alias devcons = sf org open --path _ui/common/apex/debug/ApexCSIPage
-alias newclass = sf force:apex:class:create
-
-# git
-alias gbsc = git branch --show-current
-
-def gby [] {
-    gbsc | str trim | pbcopy
-} 
-
-alias lg = lazygit
-# alias gcoi = git branch --all --sort=-committerdate | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git checkout
-
-def gbda [] {
-    git branch --merged | lines | where ($it != "* main") | each {|br| git branch -D ($br | str trim) } | str trim
-}
 
 source git-aliases.nu
+source sf-aliases.nu
+source aliases.nu
 
 use ~/.config/cache/starship/init.nu
 use '~/.config/broot/launcher/nushell/br' *
