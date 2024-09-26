@@ -115,16 +115,6 @@ lspconfig.jsonls.setup {
     flags = lsp_flags,
 }
 
-lspconfig.tsserver.setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-
-lspconfig.rust_analyzer.setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-
 lspconfig.beancount.setup {
     init_options = {
         journal_file = "~/ledger/beancount/main.beancount",
