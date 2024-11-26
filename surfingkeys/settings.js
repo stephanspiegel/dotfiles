@@ -31,6 +31,8 @@ addSearchAlias('k', 'Hoogle', 'https://hoogle.haskell.org/?hoogle=');
 addSearchAlias('r', 'Github', 'https://github.com/search?q=d');
 //Search Qwant
 addSearchAlias('q', 'Qwant', 'https://www.qwant.com/?t=web&q=', 'https://api.qwant.com/api/suggest/?client=opensearch&q=');
+//Search Leo Dictionary
+addSearchAlias('l', 'Leo', 'https://dict.leo.org/german-english/', '');
 
 settings.defaultSearchEngine = 'q';
 settings.hintAlign = 'left';
