@@ -9,7 +9,7 @@ prSections:
 - title: Involved
   filters: is:open involves:@me -author:@me
 - title: SMP Open PRs
-  filters: is:open repo:BlueWaveFinanceGroup/SMP
+  filters: is:open repo:perch-labs/SMP
 issuesSections:
 - title: My Issues
   filters: is:open author:@me
@@ -47,6 +47,6 @@ defaults:
 keybindings:
   prs: []
 repoPaths: # configure where to locate repos when checking out PRs
-  BlueWaveFinanceGroup/SMP: ~/projects/SMP/pr
+  perch-labs/SMP: ~/projects/SMP/pr
 pager:
   diff: delta
