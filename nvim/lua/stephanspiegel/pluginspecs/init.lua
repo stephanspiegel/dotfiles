@@ -112,6 +112,7 @@ local plugin_specifications = {
   },
   {
     "chrisbra/csv.vim",
+    lazy = false,
     ft = { "csv" }
   },
   {
