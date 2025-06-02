@@ -59,7 +59,7 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ mod.super, mod.shift }, "Return", function () awful.spawn(apps.terminal) end,
         {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end, 
+    awful.key({ modkey, }, "`", function () awful.screen.focused().quake:toggle() end, 
         {description = "dropdown terminal", group = "launcher"}),
     awful.key({ mod.super, mod.ctrl }, "r", awesome.restart,
         {description = "reload awesome", group = "awesome"}),
@@ -112,8 +112,35 @@ globalkeys = gears.table.join(
     -- Menubar
     awful.key({ modkey }, "p", function() awful.spawn.with_shell(apps.launcher) end,
         {description = "show the menubar", group = "launcher"}),
-    awful.key({ modkey }, "s", function() awful.spawn("escrotum -Cs") end,
-        {description = "take a screenshot", group = "launcher"})
+    -- Screenshot
+    awful.key({ modkey }, "s", function() awful.spawn.with_shell("maim -s /home/stephan/Screenshots/screenshot-$(date +%s).png") end,
+        {description = "take a screenshot", group = "launcher"}),
+    -- OCR Screenshot and save to clipboard
+    awful.key({ modkey, mod.shift }, "s", function() awful.spawn.with_shell("/home/stephan/dotfiles/zsh/foxwhelp-scripts/ocr-screenshot.sh") end,
+        {description = "OCR a screenshot", group = "launcher"}),
+    -- Suspend
+    awful.key({ modkey }, "z", function() awful.spawn.with_shell("systemctl suspend") end,
+        {description = "suspend the machine", group = "launcher"}),
+    -- Toggle bluetooth headset off and on
+    awful.key({ modkey }, "a", function() awful.spawn.with_shell("/home/stephan/dotfiles/zsh/foxwhelp-scripts/toggle-headset.sh") end,
+        {description = "toggle bluetooth headset off and on", group = "launcher"}),
+    -- Brightness up and down
+    awful.key({}, "XF86MonBrightnessUp", function()
+        awful.spawn.with_shell("xbacklight -inc 5")
+    end),
+    awful.key({}, "XF86MonBrightnessDown", function()
+        awful.spawn.with_shell("xbacklight -dec 5")
+    end),
+    -- Volume up and down
+    awful.key({}, "XF86AudioRaiseVolume", function() 
+        awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +5%")
+    end),
+    awful.key({}, "XF86AudioLowerVolume", function()
+        awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ -5%")
+    end),
+    awful.key({}, "XF86AudioMute", function()
+        awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ toggle")
+    end)
 )
 
 clientkeys = gears.table.join(
@@ -131,8 +158,8 @@ clientkeys = gears.table.join(
         {description = "move to master", group = "client"}),
     awful.key({ mod.super }, "o", function (c) c:move_to_screen() end,
         {description = "move to screen", group = "client"}),
-    awful.key({ mod.super }, "t", function (c) c.ontop = not c.ontop end,
-        {description = "toggle keep on top", group = "client"}),
+    -- awful.key({ mod.super }, "t", function (c) c.ontop = not c.ontop end,
+    --     {description = "toggle keep on top", group = "client"}),
     awful.key({ mod.super }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be

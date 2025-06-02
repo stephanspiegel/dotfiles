@@ -13,16 +13,23 @@ local theme = {}
 
 theme.font          = "JetBrainsMono Nerd Font 12"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = "#282828"
+theme.bg_focus      = "#282828"
+theme.bg_urgent     = "#282828"
+theme.bg_minimize   = "#282828"
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_normal     = "#33ff33"
+theme.fg_focus      = "#33ff33"
+theme.fg_urgent     = "#33ff33"
+theme.fg_minimize   = "#33ff33"
+
+theme.taglist_bg_focus = "#33ff33"
+theme.taglist_fg_focus = "#282828"
+
+theme.tasklist_fg_focus = "#ffb000"
+theme.tasklist_fg_urgent = "#ffb000"
+theme.tasklist_fg_normal = "#ffb000"
 
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(1)
