@@ -1,9 +1,3 @@
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-    vim.notify("lspconfig not found")
-    return
-end
-
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
@@ -69,81 +63,42 @@ local lsp_flags = {
     debounce_text_changes = 150,
 }
 
-lspconfig.lua_ls.setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    on_init = function(client)
-        local path = client.workspace_folders[1].name
-        if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
-            return
-        end
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('apex_ls')
 
-        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-            runtime = {
-                -- Tell the language server which version of Lua you're using
-                -- (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT'
-            },
-            -- Make the server aware of Neovim runtime files
-            workspace = {
-                checkThirdParty = false,
-                library = {
-                    vim.env.VIMRUNTIME
-                    -- Depending on the usage, you might want to add additional paths here.
-                    -- "${3rd}/luv/library"
-                    -- "${3rd}/busted/library",
-                }
-                -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-                -- library = vim.api.nvim_get_runtime_file("", true)
-            }
-        })
-    end,
-    settings = require("stephanspiegel.lsp.settings.lua_ls")
-}
+vim.lsp.enable('jsonls')
 
-lspconfig.apex_ls.setup {
-    filetypes = { 'apex', 'apexcode' },
-    on_attach = on_attach,
-    flags = lsp_flags,
-    apex_jar_path = vim.fn.stdpath("data") .. '/mason/packages/apex-language-server/extension/dist/apex-jorje-lsp.jar',
-    apex_enable_semantic_errors = false,       -- Whether to allow Apex Language Server to surface semantic errors
-    apex_enable_completion_statistics = false, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
-}
-
-lspconfig.jsonls.setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-
-lspconfig.beancount.setup {
+vim.lsp.config('beancount', {
     init_options = {
         journal_file = "~/ledger/beancount/main.beancount",
     },
-};
+})
+vim.lsp.enable('beancount')
+
+vim.lsp.enable('nushell')
 
 -- Hacking in my new servers
 -- See https://github.com/williamboman/mason.nvim/discussions/189
 local index = require("mason-registry.index")
 index["soql_ls"] = "stephanspiegel.lsp.soql-lsp"
 
--- local lspconfig = require 'lspconfig'
-local configs = require 'lspconfig.configs'
--- Check if it's already defined for when reloading this file.
-if not configs.soql_ls then
-    configs.soql_ls = {
-        default_config = {
-            cmd = { 'soql-ls', '--stdio' },
-            filetypes = { 'soql' },
-            root_dir = lspconfig.util.root_pattern('sfdx-project.json'),
-            settings = {},
-        },
-    }
-end
+-- local configs = require 'lspconfig.configs'
+-- -- Check if it's already defined for when reloading this file.
+-- if not configs.soql_ls then
+--     configs.soql_ls = {
+--         default_config = {
+--             cmd = { 'soql-ls', '--stdio' },
+--             filetypes = { 'soql' },
+--             root_dir = lspconfig.util.root_pattern('sfdx-project.json'),
+--             settings = {},
+--         },
+--     }
+-- end
 
-lspconfig.soql_ls.setup {
+vim.lsp.config('soql_ls', {
     on_attach = on_attach,
     flags = lsp_flags,
-}
+})
 
 local signs = {
     Error = "󰅚 ",
