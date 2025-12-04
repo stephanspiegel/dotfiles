@@ -64,6 +64,10 @@ local lsp_flags = {
 }
 
 vim.lsp.enable('lua_ls')
+
+vim.lsp.config('apex_ls', {
+    apex_jar_path = vim.fn.stdpath('data') .. '/mason/share/apex-language-server/apex-jorje-lsp.jar',
+})
 vim.lsp.enable('apex_ls')
 
 vim.lsp.enable('jsonls')
