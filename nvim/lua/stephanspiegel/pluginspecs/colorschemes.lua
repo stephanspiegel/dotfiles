@@ -3,13 +3,7 @@
 --                     Theme Specifications
 -- ╘══════════════════════════════════════════════════════════╛
 local colorscheme_specifications = {
-  { "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd([[colorscheme tokyonight]])
-    end,
-  },
+  { "folke/tokyonight.nvim" },
   { "junegunn/seoul256.vim" },
   { "mhartington/oceanic-next" },
   { "morhetz/gruvbox" },
@@ -58,6 +52,14 @@ local colorscheme_specifications = {
     'kepano/flexoki-neovim',
     name = 'flexoki'
   },
+{
+  "xero/miasma.nvim",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    vim.cmd("colorscheme miasma")
+  end,
+}
 }
 
 return colorscheme_specifications

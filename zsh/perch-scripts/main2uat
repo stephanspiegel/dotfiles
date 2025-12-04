@@ -6,7 +6,7 @@ function main2uat() {
     git pull origin main
     git push
     git switch -
-    open 'https://jenkins.infra.perch-labs.net/job/Community%20Solar%20Engineering/job/SMP/job/dev-uat/'
+    open 'https://jenkins.infra.perch-labs.net/job/perch-engineering/job/SMP/job/dev-uat/'
 }
 
 main2uat

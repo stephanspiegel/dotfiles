@@ -6,7 +6,8 @@ return {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global, as well as Busted testing globals
-        globals = {'vim', 'describe', 'it'},
+        -- Als hs from hammerspoon
+        globals = {'vim', 'describe', 'it', 'hs'},
       },
       workspace = {
         -- Make the server aware of Neovim runtime files

@@ -15,7 +15,7 @@ function squashuat() {
 	git push
 	git push origin --delete "$PROMOTION_BRANCH"
 	git stash pop
-	open 'https://jenkins.infra.perch-labs.net/job/Community%20Solar%20Engineering/job/SMP/job/dev-uat/'
+	open 'https://jenkins.infra.perch-labs.net/job/perch-engineering/job/SMP/job/dev-uat/'
 }
 
 squashuat $1

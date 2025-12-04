@@ -182,6 +182,17 @@ nmap dn <Action>(StepOver)
 nmap do <Action>(StepOut)
 nmap dq <Action>(Stop)
 nmap dr <Action>(RunToCursor)
+
+" Search Window
+nmap ]q <Action>(NextOccurence)
+nmap [q <Action>(PreviousOccurence)
+
+" Navigate Methods -- doesn't seem to work in Apex???
+nmap [M <Action>(VimMotionMethodBackwardEnd)
+nmap [m <Action>(VimMotionMethodBackwardStart)
+nmap ]M <Action>(VimMotionMethodForwardEnd)
+nmap ]m <Action>(VimMotionMethodForwardStart)
+
 nmap <Leader>p <Action>(ManageRecentProjects)
 
 command! ForceSourcePush action IlluminatedCloud.SfdxPush

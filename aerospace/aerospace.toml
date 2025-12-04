@@ -7,7 +7,6 @@ after-login-command = []
 after-startup-command = [
     'exec-and-forget sketchybar',
     'exec-and-forget open -b org.mozilla.firefox',
-    'exec-and-forget open -b org.keepassxc.keepassxc',
     'exec-and-forget open -b com.jetbrains.intellij',
     'exec-and-forget open -b com.microsoft.teams2',
     'exec-and-forget open -b com.microsoft.Outlook',
@@ -141,8 +140,8 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 alt-shift-f = 'fullscreen'
 
-alt-rightSquareBracket = 'exec-and-forget displayplacer "id:43E3F420-489D-F802-0857-D6964E3302DB res:3840x2160 hz:60 color_depth:8 enabled:true scaling:off origin:(0,0) degree:0"' 
-alt-leftSquareBracket = 'exec-and-forget displayplacer "id:43E3F420-489D-F802-0857-D6964E3302DB res:1920x1080 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"' 
+# alt-rightSquareBracket = ['exec-and-forget /Applications/DeskPad.app/Contents/MacOS/DeskPad', 'move-node-to-workspace 8', 'layout tiling']
+# alt-leftSquareBracket = 'exec-and-forget displayplacer "id:43E3F420-489D-F802-0857-D6964E3302DB res:1920x1080 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"' 
 
 # Modes
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
@@ -206,3 +205,7 @@ run = "move-node-to-workspace 9"
 [[on-window-detected]]
 if.app-id = 'com.cockos.LICEcap'
 run = "layout floating"
+
+[[on-window-detected]]
+if.app-id = 'com.stengo.DeskPad'
+run = 'layout tiling'
